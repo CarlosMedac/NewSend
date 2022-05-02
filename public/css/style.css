@@ -1,0 +1,53 @@
+body{
+    margin: 0;
+}
+.nav{   
+    min-height: 50vh;
+    position: sticky;
+    top: 0;
+}
+.nav2{
+    text-align: right;
+    display: grid;
+    margin-right:20px;
+    margin-top: 10rem;
+}
+.enlace{
+    padding-bottom: 2rem;
+    font-size: 20px;
+}
+.enl_nom{
+    display: none;
+    padding-right: 2rem;
+}
+a{
+    text-decoration: none;
+}
+i{
+    font-size: 30px;
+    display: contents;
+}
+a:hover .enl_nom{
+    display: contents;
+}
+.body{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.home{
+    min-height: 300vh;
+    background-color: rgb(0, 0, 0);
+    min-width: 40rem;   
+    color: white;       
+    
+}
+.br-arr{
+    background-color: rgb(0, 0, 0)  ;
+    opacity: 80%;
+    color: white;
+    position: sticky;
+    top: 0;
+    min-height: 2rem;
+    width: 50%;
+}
