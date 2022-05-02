@@ -24,7 +24,7 @@ class LoginUserController extends AbstractController
             $entityManager->persist($user); //para que se guarde correctamente en la base de datos
             $entityManager->flush(); //lo mismo, es necesario
             $this->addFlash('exito','Se registró exitosamente :)');
-            return $this->redirectToRoute('login'); //redirigimos de momento al login ya que no tenemos creado Home
+            return $this->redirectToRoute('signUp'); //redirigimos al signUp de momento
         }
         return $this->render('login_user/index.html.twig', [
             'controller_name' => 'LoginUserController',

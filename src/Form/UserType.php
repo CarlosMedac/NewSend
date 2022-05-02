@@ -6,18 +6,23 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\UserNameType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class UserType extends AbstractType
+class UserType extends AbstractType 
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class)
-           // ->add('roles') Comentado ya que no queremos que se asignen los roles desde el formulario
-            ->add('password', PasswordType::class)
+        //->add('username', UserNameType::class)
+        // ->add('roles') Comentado ya que no queremos que se asignen los roles desde el formulario
+        ->add('email',EmailType::class )
+           ->add('password', PasswordType::class)
+           //->add('img')
+            
+            //->add('description')
             ->add('registrar', SubmitType::class)
 
         ;
