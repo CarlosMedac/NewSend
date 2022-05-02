@@ -15,6 +15,7 @@ body{
 .enlace{
     padding-bottom: 2rem;
     font-size: 20px;
+    min-width: 5rem;
 }
 .enl_nom{
     display: none;
@@ -37,17 +38,18 @@ a:hover .enl_nom{
 }
 .home{
     min-height: 300vh;
-    background-color: rgb(0, 0, 0);
+    background-color:white;
     min-width: 40rem;   
-    color: white;       
-    
+    color: black;       
+    border-left: solid 1px black;
+    border-right: solid 1px black;
 }
 .br-arr{
-    background-color: rgb(0, 0, 0)  ;
+    background-color: white;
     opacity: 80%;
-    color: white;
+    color: black;
     position: sticky;
     top: 0;
     min-height: 2rem;
-    width: 50%;
+    width: 100%;
 }
