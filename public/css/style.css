@@ -13,13 +13,16 @@ body{
     margin-top: 10rem;
 }
 .enlace{
-    padding-bottom: 2rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 3rem;
+    padding-right: 1rem;
     font-size: 20px;
-    min-width: 5rem;
+    min-width: 10rem;
 }
 .enl_nom{
     display: none;
-    padding-right: 2rem;
 }
 a{
     text-decoration: none;
@@ -28,8 +31,10 @@ i{
     font-size: 30px;
     display: contents;
 }
-a:hover .enl_nom{
-    display: contents;
+.animacion_enlace{
+    background-color: #F7F7F7;
+    opacity: 1;
+    visibility: visible;
 }
 .body{
     display: flex;
