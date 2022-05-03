@@ -9,32 +9,34 @@ body{
 .nav2{
     text-align: right;
     display: grid;
-    margin-right:20px;
     margin-top: 10rem;
+    background-color: #643591;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 .enlace{
     display: flex;
     justify-content: flex-end;
     align-items: center;
     min-height: 3rem;
-    padding-right: 1rem;
     font-size: 20px;
-    min-width: 10rem;
+
+    padding-left: 10px;
+    padding-right: 10px;
 }
-.enl_nom{
-    display: none;
+.enl_ico{
+    padding: 10px;
+    border-radius: 50%;
+    color: white;
 }
-a{
-    text-decoration: none;
+.enl_ico:hover{
+    background-color: #7f5aa1;
 }
 i{
     font-size: 30px;
     display: contents;
-}
-.animacion_enlace{
-    background-color: #F7F7F7;
-    opacity: 1;
-    visibility: visible;
 }
 .body{
     display: flex;
@@ -50,11 +52,23 @@ i{
     border-right: solid 1px black;
 }
 .br-arr{
-    background-color: white;
-    opacity: 80%;
-    color: black;
+    background-color: #c09ce2;
+    opacity: 60%;
+    color: white;
     position: sticky;
     top: 0;
-    min-height: 2rem;
+    min-height: 3rem;
     width: 100%;
+    display: flex;
+    align-items: center;
+}
+.h3-arr{
+    margin-left:4rem;
+}
+.aux{
+    height: 2.5rem;
+}
+#crear_mensaje{
+    position: fixed;
+    bottom:0;
 }

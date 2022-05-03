@@ -16,14 +16,21 @@
             </div>  
             <div class="home" >
                 {% block body %}
-                <div class="br-arr">{{pagina}}</div>
+                <div class="br-arr"><h3 class="h3-arr">{{pagina}}</h3></div>
                 <h1>Hola</h1>
                 {% for i in 0..100 %}
                     {{ i }}
                     <br>    
                 {% endfor %}
                 {% endblock %}
+                 <a id="crear_mensaje">
+                <div class="crear">
+                        <i class="bi bi-pencil-square"></i>
+                </div>
+                <a/>
             </div>
+           
+            
         </div>
     </body>
     <!--=============== JS ===============--> 
