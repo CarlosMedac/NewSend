@@ -17,6 +17,7 @@ use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
 class LoginFormUserAuthenticator extends AbstractLoginFormAuthenticator
 {
+    
     use TargetPathTrait;
 
     public const LOGIN_ROUTE = 'app_login';
