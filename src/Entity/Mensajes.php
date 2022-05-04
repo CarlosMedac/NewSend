@@ -16,12 +16,6 @@ class Mensajes
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $codmensaje;
-
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -33,7 +27,7 @@ class Mensajes
     private $mensaje;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="string")
      */
     private $fecha;
 
@@ -46,12 +40,6 @@ class Mensajes
     {
         return $this->id;
     }
-
-    public function getCodmensaje(): ?string
-    {
-        return $this->codmensaje;
-    }
-
     public function setCodmensaje(string $codmensaje): self
     {
         $this->codmensaje = $codmensaje;
@@ -83,12 +71,12 @@ class Mensajes
         return $this;
     }
 
-    public function getFecha(): ?\DateTimeInterface
+    public function getFecha(): ?string
     {
         return $this->fecha;
     }
 
-    public function setFecha(\DateTimeInterface $fecha): self
+    public function setFecha(string $fecha): self
     {
         $this->fecha = $fecha;
 
