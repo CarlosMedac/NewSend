@@ -16,7 +16,7 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        //->add('username', UserNameType::class)
+        ->add('username')
         // ->add('roles') Comentado ya que no queremos que se asignen los roles desde el formulario
         ->add('email',EmailType::class )
            ->add('password', PasswordType::class)

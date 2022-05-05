@@ -51,7 +51,7 @@ class LoginFormUserAuthenticator extends AbstractLoginFormAuthenticator
         }
 
         // For example:
-        return new RedirectResponse($this->router->generate('pantallaHome'));
+        return new RedirectResponse('home');
         //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
