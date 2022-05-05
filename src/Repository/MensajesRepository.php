@@ -21,7 +21,7 @@ class MensajesRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Mensajes::class);
-    }
+    }  
 
     /**
      * @throws ORMException
@@ -46,6 +46,9 @@ class MensajesRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
+
+   
+    
 
     // /**
     //  * @return Mensajes[] Returns an array of Mensajes objects

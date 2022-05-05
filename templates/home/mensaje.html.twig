@@ -1,0 +1,29 @@
+<div class="mensaje">
+    <div><div class="foto_perfil" style="background-image: url(uploads/img/foto.png)"></div></div>
+    <div class="contenido">
+        <div class="men_cabecera">
+            <div class="nombre"><b>Carlos</b></div>
+            <div class="tiempo">{{mensajes.fechapublicacion | date('Y-m-d') }}</div>
+            <div class="dropdown show">
+                <button class="opciones" href="#" role="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i id="puntitos" class="bi bi-three-dots"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                        <button class="dropdown-item" onclick="Eliminar({{mensajes.id}})">Eliminar</button>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
+        </div>
+            <div class="texto">{{ mensajes.mensaje }} </div>
+                {% if mensajes.imagen !="" %}
+                    <div class="imagen">
+                        <img src="uploads/img/{{mensajes.imagen}}" class="img_mensaje"/>
+                    </div>
+                {% endif %}
+    </div>
+</div>
+
+
+  
+

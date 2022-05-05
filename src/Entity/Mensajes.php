@@ -6,7 +6,7 @@ use App\Repository\MensajesRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=MensajesRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\MensajesRepository")
  */
 class Mensajes
 {
@@ -27,14 +27,20 @@ class Mensajes
     private $mensaje;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="datetime")
      */
-    private $fecha;
+    private $fechapublicacion;
 
+    
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", nullable=true)
      */
-    private $hora;
+    private $imagen;
+
+    public function __construct()
+    {
+        $this->fechapublicacion= new \DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -71,26 +77,26 @@ class Mensajes
         return $this;
     }
 
-    public function getFecha(): ?string
+    public function getFechaPublicacion(): ?\DateTimeInterface
     {
-        return $this->fecha;
+        return $this->fechapublicacion;
     }
 
-    public function setFecha(string $fecha): self
+    public function setFechaPublicacion(\DateTimeInterface $fechapublicacion): self
     {
-        $this->fecha = $fecha;
+        $this->fechapublicacion = $fechapublicacion;
 
         return $this;
     }
 
-    public function getHora(): ?int
+    public function getImagen()
     {
-        return $this->hora;
+        return $this->imagen;
     }
 
-    public function setHora(int $hora): self
+    public function setImagen(String $imagen)
     {
-        $this->hora = $hora;
+        $this->imagen = $imagen;
 
         return $this;
     }
