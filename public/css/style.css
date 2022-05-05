@@ -48,15 +48,17 @@ a{
 }
 .home{
     background-color:white;
-    min-width: 40rem;   
+    max-width: 40rem;   
+    min-width: 40rem;
     color: black;       
     border-left: solid 0.5px #f3f3f3;
     border-right: solid 0.5px #f3f3f3;
+    min-height: 100vh;
 }
 .br-arr{
     background: rgb(255,245,249,1);
     background: linear-gradient(90deg, rgba(255,245,249,1) 0%, rgba(255,242,247,1) 31%, rgba(255,245,249,1) 100%, rgba(255,255,255,1) 100%);
-    opacity: 95%;
+    opacity: 90%;
     position: sticky;
     top: 0;
     min-height: 2rem;
@@ -94,8 +96,6 @@ a{
     -moz-box-shadow: 0px 0px 6px -3px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 6px -3px rgba(0,0,0,0.75);
     color: white;
-    
-
 }
 .br-abj{
     border: none;
@@ -108,4 +108,60 @@ a{
     align-items: center;
     text-align: center;
     justify-content: flex-end;
+}
+
+.mensaje{
+    min-height: 10vh;
+    border-bottom: solid #ece0f7 0.5px;
+    display: flex;
+}
+.mensaje:hover{
+    background-color: #fcf9fc;
+}
+.img_mensaje{
+    max-width: 70%;
+    border-radius: 10px;
+}
+.foto_perfil{
+    margin-top: 20px;
+    margin-left: 20px;
+    height: 50px;
+    width: 50px;
+    /* los siguientes valores son independientes del tamaño del círculo */
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 50%;
+    background-size: 120% auto;
+}
+.contenido{
+    display: flex;
+    flex-direction: column;
+}
+.men_cabecera{
+    display: flex;
+    align-items: flex-end;
+    padding: 18px 20px 5px 0px;
+}
+.imagen{
+    display: flex;
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+.texto{
+    margin-left: 1rem;
+    margin-bottom: 20px;
+    
+}
+.nombre{
+    font-size: 20px;
+    margin-left: 17px;
+}
+.tiempo{
+    margin-left: 10px;
+}
+#puntitos{
+    font-size: 20px;
+}
+.opciones{
+    margin-left: 21rem;
 }
