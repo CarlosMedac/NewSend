@@ -1,3 +1,4 @@
+{% for mensajes in mensajes %}
 <div class="mensaje">
     <div><div class="foto_perfil" style="background-image: url(uploads/img/foto.png)"></div></div>
     <div class="contenido">
@@ -17,13 +18,17 @@
         </div>
             <div class="texto">{{ mensajes.mensaje }} </div>
                 {% if mensajes.imagen !="" %}
-                    <div class="imagen">
-                        <img src="uploads/img/{{mensajes.imagen}}" class="img_mensaje"/>
+                    <div class="imagen" id="imagenclick">
+                        <img data-bs-toggle="modal" data-bs-target="#Modalimg{{mensajes.id}}" src="uploads/img/{{mensajes.imagen}}" class="img_mensaje" />
+                        <input type="text" value="uploads/img/{{mensajes.imagen}}" id="src" hidden>
                     </div>
+                    {% include 'modals/modalimg.html.twig' %}
                 {% endif %}
     </div>
+    
 </div>
-
+{% endfor %}
+<script src="js/img.js"></script>
 
   
 

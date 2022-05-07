@@ -3,19 +3,24 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+            <link rel="stylesheet" href="css/cssbootstrap/bootstrap.min.css">
+            <link rel="stylesheet" type="text/css" href="css/style.css"/>
         {% endblock %}
     </head>
     <body>
-        {% block body %}
-        <h1>Hola</h1>
+        {% block body %}{% endblock %}
+        {% block imgjs %}
+            <!--=============== JS ===============--> 
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+            <script src="js/jsbootstrap/bootstrap.bundle.min.js"></script>
+            <script src="js/excanvas.js"></script>
+            <script src="js/main.js"></script>
+            <script src="js/excanvas.js"></script>
+            <script src="js/img.js"></script>
         {% endblock %}
     </body>
 </html>

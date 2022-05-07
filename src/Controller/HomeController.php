@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Entity\Mensajes;
 use App\Form\MensajeType;
 use App\Repository\MensajesRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,23 +24,24 @@ class HomeController extends AbstractController
      */
     public function home(Request $request, ManagerRegistry $doctrine, SluggerInterface $slugger): Response
     {
+        
         $mensaje = new Mensajes();
         $form = $this->createForm(MensajeType::class,$mensaje);
         $em = $doctrine->getManager();
+        $query = new Query($em);
         $verMensaje = $em->getRepository(Mensajes::class)->findBy(array(), array('fechapublicacion'=>'desc'));
         $form->handleRequest($request);
+
         if($form->isSubmitted() && $form->isValid()) {
+            
+
             $imagen = $form->get('imagen')->getData();
 
-            // this condition is needed because the 'brochure' field is not required
-            // so the PDF file must be processed only when a file is uploaded
             if ($imagen) {
                 $originalFilename = pathinfo($imagen->getClientOriginalName(), PATHINFO_FILENAME);
-                // this is needed to safely include the file name as part of the URL
                 $safeFilename = $slugger->slug($originalFilename);
                 $newFilename = $safeFilename.'-'.uniqid().'.'.$imagen->guessExtension();
 
-                // Move the file to the directory where brochures are stored
                 try {
                     $imagen->move(
                         $this->getParameter('img_directory'),
@@ -49,8 +51,6 @@ class HomeController extends AbstractController
                     throw new Exception("No se ha podido cargar la imagen".$e);
                 }
 
-                // updates the 'imagenname' property to store the PDF file name
-                // instead of its contents
                 $mensaje->setImagen($newFilename);
             }
 
@@ -59,25 +59,49 @@ class HomeController extends AbstractController
             $em->flush();
             return $this->redirectToRoute("home");
         }
-        return $this->render('home/home.html.twig', array(
-            'pagina' => 'Inicio',
-            'mensajes' => $verMensaje,
-            'formulario' => $form->createView()
-        ));
-    }
+
+        if ($request->isXmlHttpRequest()) {
+
+            $prepage=4;
+            $numpage= $request->request->get('page');
+            $posi= (($numpage-1)*$prepage);
+            $query->setDQL(
+                            'SELECT u
+                            FROM App\Entity\Mensajes u
+                            ORDER BY u.fechapublicacion DESC'
+                        );
+            $query->setFirstResult($posi);
+            $query->setMaxResults($prepage);
+            $verMensaje = $query->getResult();
+            $mensajes = $this->render('home/mensaje.html.twig', array(
+                            'mensajes' => $verMensaje,
+                        ));
+                        
+            return $mensajes;
+
+       } else {
+            return $this->render('home/home.html.twig', array(
+                'pagina' => 'Inicio',
+                'mensajes' => " ",
+                'formulario' => $form->createView()
+            ));
+        }
+
+}
+    
 
     /**
      * @Route("/Eliminar", name="Eliminar")
      */
     public function Eliminar(Request $request,  ManagerRegistry $doctrine){
-        if($request->isXmlHttpRequest()){
+        if ($request->isXmlHttpRequest()) {
             $em = $doctrine->getManager();
             $id = $request->request->get('id');
             $mensajeEliminado = $doctrine->getRepository(Mensajes::class)->find($id);
             $em->remove($mensajeEliminado);
             $em->flush();
             return new JsonResponse(['confirmado'=>"OK"]);
-        }else{
+        } else {
             return new JsonResponse(['confirmado'=>"KO"]);
         }
     }
