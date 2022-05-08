@@ -44,13 +44,44 @@ function Eliminar(id) {
         }
     });
 }
-$('#mensaje_imagen').on("change",function(){
-    var url="";
-    url = $(this).val();
-    var indice =url.lastIndexOf("\\");
-    url = url.substring(indice+1);
-    var img = $('<img />',{ id: 'imagen_form', src: 'uploads/img/'+url+''}).appendTo($('.imagenformulario'));
+$('#mensaje_imagen').on("change",function(e){
+        let reader = new FileReader();
+
+        reader.readAsDataURL(e.target.files[0]);
+        reader.onload = function(){
+            let preview = document.getElementById('preview'),
+                    image = document.createElement('img');
+                    image.setAttribute('class','preview-img');
+
+            image.src = reader.result;
+
+            preview.innerHTML = '';
+            preview.innerHTML += '<button type="reset" id="cancel" class="btn_elimg" onclick="Quitarfoto()"><i class="bi bi-x-lg"></i></button>'
+            preview.append(image);
+            
+        };
 });
+$('#submitHome').on("click",function(){
+    if($('#mensaje_mensaje').val() != "" || $('#mensaje_imagen').val() != "") {
+        $('#formhome').submit();
+    } 
+});
+function Quitarfoto () {
+    let preview = document.getElementById('preview');
+    preview.innerHTML = '';
+    $('#mensaje_imagen').val("");
+}
+$(".mensaje_texto").each(function () {
+    if (this.scrollHeight == 0) {
+        this.setAttribute("style", "height:" + (48) + "px;overflow-y:hidden;");
+    } else {
+        this.setAttribute("style", "height:" + (this.scrollHeight) + "px;overflow-y:hidden;");
+    }
+  }).on("input", function () {
+    this.style.height = "auto";
+    this.style.height = (this.scrollHeight) + "px";
+  });
+
 String.prototype.isEmpty = function() {
     return (this.length === 0 || !this.trim());
 };

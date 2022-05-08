@@ -18,11 +18,10 @@ class MensajeType extends AbstractType
     {
         $builder
             // ->add('coduser')
-            ->add('imagen', FileType::class, ['label' => ' ' ,'mapped' => false,'required' => false])
-            ->add('mensaje', TextareaType::class)
+            ->add('imagen', FileType::class, ['label' => false ,'mapped' => false,'required' => false])
+            ->add('mensaje', TextareaType::class, ['label' => ' ' ,'required' => false])
             // ->add('fecha')
             // ->add('hora')
-            ->add('Enviar', SubmitType::class)
         ;
     }
 
