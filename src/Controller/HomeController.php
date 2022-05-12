@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Entity\Mensajes;
+ 
 use App\Form\MensajeType;
 use App\Repository\MensajesRepository;
 use Doctrine\ORM\Query;
@@ -24,7 +25,6 @@ class HomeController extends AbstractController
      */
     public function home(Request $request, ManagerRegistry $doctrine, SluggerInterface $slugger): Response
     {
-        
         $mensaje = new Mensajes();
         $form = $this->createForm(MensajeType::class,$mensaje);
         $em = $doctrine->getManager();
@@ -33,9 +33,10 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-            
+            $user = $this->getUser();//esta tmb la añadí
+            $mensaje ->setCoduser($user);//esta da error
 
-            $imagen = $form->get('imagen')->getData();
+            $imagen = $form->get('imagen')->getData(); 
 
             if ($imagen) {
                 $originalFilename = pathinfo($imagen->getClientOriginalName(), PATHINFO_FILENAME);
