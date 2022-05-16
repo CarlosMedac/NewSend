@@ -25,7 +25,7 @@ class RegistroUserController extends AbstractController
             $user->setPassword($passwordEncoder->encodePassword($user,$form['password']->getData()));
             $entityManager->persist($user);
             $entityManager->flush();
-            $this->addFlash('exito', User::REGISTRO_CORRECTO);     
+            // $this->addFlash('exito', User::REGISTRO_CORRECTO);     
             return $this->redirectToRoute('home');
         }
         return $this->render('registro_user/index.html.twig', [

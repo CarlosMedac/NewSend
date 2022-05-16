@@ -2,7 +2,7 @@ var mypage = 1;
 mycontent(mypage);
 
 $(window).scroll(function (){
-    if($(window).scrollTop() + $(window).height() == $(document).height()){
+    if($(window).scrollTop() + $(window).height() >= $(document).height()){
         mypage++;
         mycontent(mypage);
     }

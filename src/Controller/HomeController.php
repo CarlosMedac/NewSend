@@ -31,10 +31,19 @@ class HomeController extends AbstractController
         $query = new Query($em);
         $verMensaje = $em->getRepository(Mensajes::class)->findBy(array(), array('fechapublicacion'=>'desc'));
         $form->handleRequest($request);
-
+        $username = $this->getUser()->getUserIdentifier();//esta tmb la añadí
+        $user = $this->getUser();//esta tmb la añadí
+        /** @var User $user */
+        $user = $this->security->getUser();
+        if(!empty($user)){
+        $userId = $user->getId();
+        }
+        // $mensaje ->setCoduser($user);//esta da error
+        var_dump($userId);
+        // echo $username;
+        exit;
         if($form->isSubmitted() && $form->isValid()) {
-            $user = $this->getUser();//esta tmb la añadí
-            $mensaje ->setCoduser($user);//esta da error
+           
 
             $imagen = $form->get('imagen')->getData(); 
 
