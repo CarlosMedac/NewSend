@@ -504,6 +504,9 @@
     "symfony/string": {
         "version": "v5.4.3"
     },
+    "symfony/templating": {
+        "version": "v5.4.3"
+    },
     "symfony/translation": {
         "version": "5.4",
         "recipe": {

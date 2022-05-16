@@ -20,7 +20,10 @@ class Mensajes
      * @ORM\Column(type="string", length=255)
      */
     private $coduser;
-
+     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $nombreuser;
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -61,6 +64,17 @@ class Mensajes
     public function setCoduser(string $coduser): self
     {
         $this->coduser = $coduser;
+
+        return $this;
+    }
+    public function getNombreUser(): ?string
+    {
+        return $this->nombreuser;
+    }
+
+    public function setNombreUser(string $nombreuser): self
+    {
+        $this->nombreuser = $nombreuser;
 
         return $this;
     }

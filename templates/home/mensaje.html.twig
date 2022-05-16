@@ -3,7 +3,7 @@
     <div><div class="foto_perfil" style="background-image: url(uploads/img/perfil_defecto.png)"></div></div>
     <div class="contenido">
         <div class="men_cabecera">
-            <div class="nombre"><b>Carlos</b></div>
+            <div class="nombre"><b>{{mensajes.nombreuser}}</b></div>
             <div class="tiempo">{{mensajes.fechapublicacion | date('Y-m-d') }}</div>
             <div class="dropdown show">
                 <button class="opciones" href="#" role="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -24,6 +24,21 @@
                     </div>
                     {% include 'modals/modalimg.html.twig' %}
                 {% endif %}
+                <div class="interaccion">
+                    <div class="interComen">
+                        <i style="color:#9865C6" class="bi bi-chat"></i>
+                    </div>
+                   {% set likes = LikeUsuario(usuarioLogueado,mensajes.id) %}
+                   {% if likes %}
+                    <div class="interLike" onclick="QuitarLike({{mensajes.id}},{{usuarioLogueado}})">
+                        <i style="color:#FCB7F8" class="bi bi-heart-fill"></i>{{LikesTotales(mensajes.id)}}
+                    </div>
+                    {% else %}
+                    <div class="interLike" onclick="Like({{mensajes.id}},{{usuarioLogueado}})">
+                        <i style="color:#FCB7F8" class="bi bi-heart"></i>{{LikesTotales(mensajes.id)}}
+                    </div>
+                    {% endif %}
+                </div>
     </div>
     
 </div>

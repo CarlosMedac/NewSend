@@ -30,7 +30,19 @@ function mycontent(mypage) {
         
     });
 }
-
+function Like(idMensaje,idUsuario) {
+    console.log("distes el like"+idMensaje+"ds"+idUsuario);
+    $.ajax({
+        type: 'POST',
+        url: "/Like",
+        data: ({idMensaje: idMensaje,idUsuario: idUsuario}),
+        async: true,
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+        }
+    });
+}
 function Eliminar(id) {
     $.ajax({
         type: 'POST',
@@ -85,3 +97,5 @@ $(".mensaje_texto").each(function () {
 String.prototype.isEmpty = function() {
     return (this.length === 0 || !this.trim());
 };
+
+

@@ -18,12 +18,12 @@ class Seguir
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $coduser;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $codseguido;
 
@@ -32,24 +32,24 @@ class Seguir
         return $this->id;
     }
 
-    public function getCoduser(): ?string
+    public function getCoduser(): ?int
     {
         return $this->coduser;
     }
 
-    public function setCoduser(string $coduser): self
+    public function setCoduser(int $coduser): self
     {
         $this->coduser = $coduser;
 
         return $this;
     }
 
-    public function getCodseguido(): ?string
+    public function getCodseguido(): ?int
     {
         return $this->codseguido;
     }
 
-    public function setCodseguido(string $codseguido): self
+    public function setCodseguido(int $codseguido): self
     {
         $this->codseguido = $codseguido;
 

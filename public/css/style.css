@@ -272,3 +272,17 @@ img{
     align-items: center;
     justify-content: space-between;
 }
+
+.interaccion {
+    display: flex;
+    margin-bottom: 1vh;
+}
+.interaccion i {
+    font-size: 20px;
+}
+.interLike {
+    margin-left: 10vh;
+}
+.interComen {
+    margin-left: 3vh;
+}
