@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MensajeController!{% endblock %}
+
+{% block body %}
+<div class="body">
+        <div class="nav">
+            {% include 'home/nav.html.twig' %}
+        </div>  
+        <div class="home"> 
+            <div class="br-arr"><h3 class="h3-arr">Send</h3></div>
+                {% if mensajes != " "%}
+                     {% include 'mensaje/mensaje.html.twig' %}
+                {% endif %}
+                {{ form_start(formulario, {'attr': {'id': 'formrespuesta'}})}}
+                            <div class="my-custom-class-for-errors">
+                                {{ form_errors(formulario) }}
+                            </div>
+                            <div class="crear_comentario">
+                                    <div class="foto_perfil" style="margin-right: 10px;background-image: url(../uploads/img/perfil_defecto.png)"></div>
+                                    {{ form_row(formulario.respuesta, {'attr': {'class': 'mensaje_texto','maxlength': '255','placeholder':'Escribe algo' }} ) }}
+                                    {{form_row(formulario.responder,{'attr': {'class': 'boton_comentar'}})}}
+                            </div>
+                            {# <div class="row">
+                                <div id="preview" class="imagen2"></div>
+                                <div class="aux">
+                                <div class="separador"></div>
+                                </div>
+                                <div class="btn-send">
+                                <div class="imagenformulario">
+                                        {{ form_row(formulario.imagen, {'attr': {'style': 'display:none'}}) }}
+                                        <label for="mensaje_imagen">
+                                            <figure class="subir_img">
+                                                <i class="bi bi-image"></i>
+                                            </figure>
+                                        </label>
+                                </div>
+                                <button id="submitHome" type="button" class="boton_guardar">Sends</button>
+                                </div>
+                            </div> #}
+                        {{ form_end(formulario) }}
+                        <div>
+                        {% for comentarios in comentarios %}
+                            <div class="respuesta">
+                                <div class="perfil">
+                                    <div data-bs-toggle="modal" data-bs-target="#Modalimg{{usuarioLogueado}}" class="foto_perfil" style="background-image: url(../uploads/img/perfil_defecto.png);margin-top:0;">
+                                        <input type="text" value="uploads/img/perfil_defecto.png" id="src" hidden>
+                                    </div>   
+                                    {% include 'modals/modalimgPerfil.html.twig' %}
+                                </div>
+                                <div class="contenido">
+                                    <div class="men_cabecera" style="padding:0;" onclick="irPerfil({{comentarios.coduser}})">
+                                        <div class="nombre"><b>{{comentarios.nombreuser}}</b></div>
+                                        <div class="tiempo">{{comentarios.fechapublicacion | date("g:i") }}h</div>
+                                    </div>
+                                    <div class="texto">
+                                        {{comentarios.respuesta}}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+        </div>
+        
+</div>
+{% endblock %}
+

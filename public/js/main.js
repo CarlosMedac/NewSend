@@ -30,8 +30,8 @@ function mycontent(mypage) {
         
     });
 }
+
 function Like(idMensaje,idUsuario) {
-    console.log("distes el like"+idMensaje+"ds"+idUsuario);
     $.ajax({
         type: 'POST',
         url: "/Like",
@@ -39,7 +39,21 @@ function Like(idMensaje,idUsuario) {
         async: true,
         dataType: "json",
         success: function (data) {
-            console.log(data);
+            $('#like'+data.mensaje).html('<div class="corazon"><i class="bi bi-heart-fill"></i></div><div class="likeTotales">'+data.total+'</div>');
+            $('#like'+data.mensaje).attr("onclick","QuitarLike("+data.mensaje+","+data.usuario+")");
+        }
+    });
+}
+function QuitarLike(idMensaje,idUsuario) {
+    $.ajax({
+        type: 'POST',
+        url: "/QuitarLike",
+        data: ({idMensaje: idMensaje,idUsuario: idUsuario}),
+        async: true,
+        dataType: "json",
+        success: function (data) {
+            $('#like'+data.mensaje).html('<div class="corazon"><i id="nolike" class="bi bi-heart"></i></div><div class="likeTotales">'+data.total+'</div>');
+            $('#like'+data.mensaje).attr("onclick","Like("+data.mensaje+","+data.usuario+")");
         }
     });
 }
@@ -51,7 +65,6 @@ function Eliminar(id) {
         async: true,
         dataType: "json",
         success: function (data) {
-            console.log(data)
             window.location.reload();
         }
     });
@@ -99,3 +112,12 @@ String.prototype.isEmpty = function() {
 };
 
 
+function irPerfil (idPerfil) {
+    console.log("perfil");
+}
+function irMensaje (idMensaje) {
+    window.location.href = "/mensaje/"+idMensaje;
+}
+$('.imagen_mensaje').on("click",function(e){
+    e.preventDefault();
+});

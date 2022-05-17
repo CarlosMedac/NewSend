@@ -1,4 +1,8 @@
 $( ".imagen" ).on( "click", function() {
+    imgcolor($(this).children('#src').val()); 
+  });
+  
+$( ".foto_perfil" ).on( "click", function() {
     imgcolor($(this).children('#src').val());
   });
 

@@ -118,6 +118,7 @@ a{
     min-height: 10vh;
     border-bottom: solid #ece0f7 0.5px;
     display: flex;
+    cursor: pointer;
 }
 .mensaje:hover{
     background-color: #fcf9fc;
@@ -194,6 +195,11 @@ img{
     align-items:stretch;
     object-fit: contain;
     max-height: 80vh;
+ }
+ .imagen1 .img_modal_perfil {
+    align-items:stretch;
+    object-fit: contain;
+    max-height: 35vh;
  }
 
 .btn_elimg{
@@ -280,9 +286,72 @@ img{
 .interaccion i {
     font-size: 20px;
 }
-.interLike {
+/* .heart {
     margin-left: 10vh;
-}
+} */
 .interComen {
     margin-left: 3vh;
+    margin-right: 10vh;
+    padding: 6px 6px 3px 6px;
+    border-radius: 50%;
+}
+.interComen:hover {
+    background-color: #bea6e9;
+    opacity: 0.4;
+    color: #7f5aa1;
+}
+
+.heart {
+    display: flex;
+    align-items: center;
+}
+.likeTotales {
+    margin-left: 1.5vh;
+}
+.heart i {
+    color: #FCB7F8;
+    cursor: pointer;
+}
+.corazon{
+    padding: 6px 6px 2px 6px;
+    border-radius: 50%;
+}
+.corazon:hover {
+    background-color: #d68ed3;
+    opacity: 0.4;
+}
+.heart #nolike:hover {
+    color: red;
+}
+
+.crear_comentario {
+    display: flex;
+    margin-top: 1vh;
+    padding-bottom: 3vh;
+    border-bottom: solid 1px #ece0f7;
+    
+}
+
+.boton_comentar {
+    border: none;
+    padding: 10px 10px 10px 10px;
+    width: 6rem;
+    border-radius: 20px;
+    background-color: #9a7cb6;
+    color: white;
+    font-size: 15px;
+    margin-left: 10px;
+    margin-top: 40px;
+}
+.respuesta {
+    display: flex;
+    margin-top: 1vh;
+    padding-bottom: 3vh;
+    border-bottom: solid 1px #ece0f7;
+    min-height: 10vh;
+}
+
+.texto {
+    word-wrap: break-word;
+    max-width: 50vh;
 }

@@ -5,7 +5,7 @@
             <input type="text" value="uploads/img/perfil_defecto.png" id="src" hidden>
         </div>   
         {% include 'modals/modalimgPerfil.html.twig' %}
-        <div class="aux" style="height: 77%;" onclick="irMensaje({{mensajes.id}})"></div>
+        <div class="aux" style="height: 77%;"></div>
     </div>
     <div class="contenido">
         <div class="men_cabecera" onclick="irPerfil({{mensajes.coduser}})">
@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-            <div onclick="irMensaje({{mensajes.id}})" class="texto">{{ mensajes.mensaje }} </div>
+            <div class="texto">{{ mensajes.mensaje }} </div>
                 {% if mensajes.imagen !="" %}
                     <div class="imagen" id="imagenclick">
                         <img data-bs-toggle="modal" data-bs-target="#Modalimg{{mensajes.id}}" src="../uploads/img/{{mensajes.imagen}}" class="img_mensaje" />
@@ -30,23 +30,6 @@
                     </div>
                     {% include 'modals/modalimg.html.twig' %}
                 {% endif %}
-                <div class="interaccion">
-                    <div onclick="irMensaje({{mensajes.id}})">
-                        <div class="interComen">
-                            <i style="color:#9865C6" class="bi bi-chat"></i>
-                        </div>
-                    </div>
-                   {% set likes = LikeUsuario(usuarioLogueado,mensajes.id) %}
-                   {% if likes %}
-                    <div class="heart" id='like{{mensajes.id}}' onclick="QuitarLike({{mensajes.id}},{{usuarioLogueado}})">
-                        <div class="corazon"><i class="bi bi-heart-fill"></i></div><div class="likeTotales">{{LikesTotales(mensajes.id)}}</div>
-                    </div>
-                    {% else %}
-                    <div class="heart" id='like{{mensajes.id}}'  onclick="Like({{mensajes.id}},{{usuarioLogueado}})">
-                        <div class="corazon"><i id="nolike" class="bi bi-heart"></i></div><div class="likeTotales">{{LikesTotales(mensajes.id)}}</div>
-                    </div>
-                    {% endif %}
-                </div>
     </div>
     
 </div>
