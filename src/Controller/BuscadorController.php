@@ -28,7 +28,11 @@ class BuscadorController extends AbstractController
         {
             $entityManager = $this->getDoctrine()->getManager();
             $query = new Query($entityManager);
+<<<<<<< HEAD
             $userEncontrado="hola"; 
+=======
+            $userEncontrado="hola";
+>>>>>>> 716c093 (subida del buscador)
             $requestUser= $request->get('username');
             $query->setDQL(
                 "SELECT u.username
