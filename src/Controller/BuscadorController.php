@@ -7,10 +7,14 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\Persistence\ManagerRegistry;
+use Exception;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\User;
 use App\Form\BarraBusquedaType;
+
 use Doctrine\ORM\Query;
 class BuscadorController extends AbstractController
 {
@@ -28,18 +32,17 @@ class BuscadorController extends AbstractController
         {
             $entityManager = $this->getDoctrine()->getManager();
             $query = new Query($entityManager);
-<<<<<<< HEAD
-            $userEncontrado="hola"; 
-=======
-            $userEncontrado="hola";
->>>>>>> 716c093 (subida del buscador)
+
+         
+            $userEncontrado="a";
+
             $requestUser= $request->get('username');
             $query->setDQL(
                 "SELECT u.username
                 FROM App\Entity\User u 
                 WHERE u.username LIKE :usrname"
             )
-            ->setParameter('usrname',"%a%" );
+            ->setParameter('usrname',"%".$userEncontrado."%" );
 
             
             $verUsers = $query->getResult();
@@ -75,4 +78,34 @@ class BuscadorController extends AbstractController
     //         'form'=>$form->createView()
     //     ]);
     // }
+
+/**
+     * @Route("/buscadorUsers", name="buscadorUsers")
+     */
+    public function Buscador(Request $request,  ManagerRegistry $doctrine){
+        if ($request->isXmlHttpRequest()) {
+            try {
+                             
+                $entityManager = $this->getDoctrine()->getManager();
+                $query = new Query($entityManager);
+                $requestUser= $request->get('userSolicitado');
+                $query->setDQL(
+                    "SELECT u.username
+                    FROM App\Entity\User u 
+                    WHERE u.username LIKE :usrname"
+                )
+                ->setParameter('usrname',"%".$requestUser."%" );
+                
+                $traerUsers = $query->getResult();
+                return new JsonResponse(['Users Encontrados'=>$traerUsers]);
+            } 
+            catch (Exception $e){
+                return new JsonResponse(['ERROR'=>$e]);
+            }
+            
+        } else {
+            return new JsonResponse(['ELSE'=>"Terrible"]);
+        }
+    }
+
 }

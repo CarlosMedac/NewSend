@@ -18,7 +18,7 @@ class BarraBusquedaType extends AbstractType
             //->add('img')
             //->add('email')
             //->add('description')
-            ->add('buscar', SubmitType::class)
+            //->add('buscar', SubmitType::class)
         ;
         
     }
