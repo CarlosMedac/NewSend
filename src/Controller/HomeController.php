@@ -6,21 +6,17 @@ use App\Entity\Mensajes;
 use App\Entity\Seguir;
 
 use App\Form\MensajeType;
-use App\Repository\MensajesRepository;
 use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 use Exception;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Security as CoreSecurity;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-use function PHPUnit\Framework\throwException;
 
 class HomeController extends AbstractController
 {
@@ -94,7 +90,7 @@ class HomeController extends AbstractController
     
                 $mensajes = $this->render('home/mensaje.html.twig', array(
                                 'mensajes' => $verMensaje,
-                                'usuarioLogueado' => $userId
+                                'usuarioLogueadoId' => $userId,
                             ));
                             
                 return $mensajes;
@@ -105,8 +101,10 @@ class HomeController extends AbstractController
        } else {
             return $this->render('home/home.html.twig', array(
                 'pagina' => 'Inicio',
+                'mensajes' => $verMensaje,
                 'mensajes' => " ",
-                'formulario' => $form->createView()
+                'formulario' => $form->createView(),
+                'usuarioLogueadoId' => $userId,
             ));
         }
 

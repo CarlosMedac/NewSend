@@ -94,9 +94,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
     public function getDescription(): string
     {
-        return (string) $this->img;
+        return (string) $this->description;
     }
-
     public function setDescription(string $description): self
     {
         $this->description = $description;

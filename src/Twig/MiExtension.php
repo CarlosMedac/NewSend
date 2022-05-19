@@ -3,6 +3,8 @@
 namespace App\Twig;
 
 use App\Entity\Likes;
+use App\Entity\Mensajes;
+use App\Entity\Respuesta;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Form\FormRegistryInterface;
 use Twig\Extension\AbstractExtension;
@@ -33,6 +35,7 @@ class MiExtension extends AbstractExtension
         return [
             new TwigFunction('LikeUsuario', [$this, 'LikeUsuario']),
             new TwigFunction('LikesTotales', [$this, 'LikesTotales']),
+            new TwigFunction('ComentariosTotales', [$this, 'ComentariosTotales']),
         ];
     }
 
@@ -57,5 +60,17 @@ class MiExtension extends AbstractExtension
         $mensaje = $em->getRepository(Likes::class)->findBy(array('codigoMensaje'=>$codMensaje));
         $likesTotales = count($mensaje);
         return $likesTotales;
+    }
+
+    public function ComentariosTotales($codMensaje)
+    {
+        $em = $this->doctrine->getManager();
+        $mensaje = $em->getRepository(Respuesta::class)->findBy(array('codmensaje'=>$codMensaje));
+        $comentariosTotales = count($mensaje);
+        return $comentariosTotales;
+    }
+
+    public function SaltosDeLinea(){
+        
     }
 }

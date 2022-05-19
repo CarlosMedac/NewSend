@@ -43,7 +43,7 @@
                         {% for comentarios in comentarios %}
                             <div class="respuesta">
                                 <div class="perfil">
-                                    <div data-bs-toggle="modal" data-bs-target="#Modalimg{{usuarioLogueado}}" class="foto_perfil" style="background-image: url(../uploads/img/perfil_defecto.png);margin-top:0;">
+                                    <div data-bs-toggle="modal" data-bs-target="#Modalimg{{usuarioLogueadoId}}" class="foto_perfil" style="background-image: url(../uploads/img/perfil_defecto.png);margin-top:0;">
                                         <input type="text" value="uploads/img/perfil_defecto.png" id="src" hidden>
                                     </div>   
                                     {% include 'modals/modalimgPerfil.html.twig' %}
