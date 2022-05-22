@@ -53,14 +53,16 @@ class MensajeController extends AbstractController
                 return $this->redirectToRoute("mensaje",['id'=>$id]);
             }
             $comentarios = $em->getRepository(Respuesta::class)->findBy(array('codmensaje'=>$id));
+            $comentariosTotales = count($comentarios);
 
             
             }
             $verMensaje = $em->getRepository(Mensajes::class)->findBy(array('id'=>$id), array('fechapublicacion'=>'desc'));
             return $this->render('mensaje/index.html.twig', [
                 'mensajes' => $verMensaje,
-                'usuarioLogueado' => $userId,
+                'usuarioLogueadoId' => $userId,
                 'comentarios' => $comentarios,
+                'comentariosTotales' => $comentariosTotales,
                 'formulario' => $form->createView()
             ]);
 

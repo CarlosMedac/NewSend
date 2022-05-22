@@ -1,10 +1,14 @@
 var mypage = 1;
+var mypageperfil = 1;
 mycontent(mypage);
+mycontentPerfil(mypageperfil);
 
 $(window).scroll(function (){
     if($(window).scrollTop() + $(window).height() >= $(document).height()){
         mypage++;
+        mypageperfil++;
         mycontent(mypage);
+        mycontentPerfil(mypage);
     }
 })
 function mycontent(mypage) {
@@ -14,12 +18,35 @@ function mycontent(mypage) {
         url: "/home",
         data: {"page":mypage},
         success: function (data) {
-            if(data.length<100){
+            if(data.length<600){
                 $('#loading').text('No hay mas mensajes')
             }else{
                 $('.mensaje').animate({scrollTop: $('#loading').offsetTop}, 5000, 'easeOutBounce');
             $('#ani_img').hide();
             $(".put_mess").append(data);
+            }
+        },
+         error: function (xhr,responseText, ajaxOptions, thrownError) {
+            console.log(xhr.responseText);
+            console.log(thrownError);
+            console.log(ajaxOptions);
+          }
+        
+    });
+}
+function mycontentPerfil(mypage) {
+    $('#ani_img_perfil').show();
+    $.ajax({
+        type: 'POST',
+        url: "/perfil/"+$('#cod_user').val(),
+        data: {"page":mypage},
+        success: function (data) {
+            if(data.length<600){
+                $('#loading').text('No hay mas mensajes')
+            }else{
+                $('.mensaje').animate({scrollTop: $('#loading').offsetTop}, 5000, 'easeOutBounce');
+            $('#ani_img_perfil').hide();
+            $(".put_messPerfil").append(data);
             }
         },
          error: function (xhr,responseText, ajaxOptions, thrownError) {
@@ -70,21 +97,34 @@ function Eliminar(id) {
     });
 }
 $('#mensaje_imagen').on("change",function(e){
-        let reader = new FileReader();
+    let reader = new FileReader();
 
-        reader.readAsDataURL(e.target.files[0]);
-        reader.onload = function(){
-            let preview = document.getElementById('preview'),
-                    image = document.createElement('img');
-                    image.setAttribute('class','preview-img');
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = function(){
+        let preview = document.getElementById('preview'),
+                image = document.createElement('img');
+                image.setAttribute('class','preview-img');
 
-            image.src = reader.result;
+        image.src = reader.result;
 
-            preview.innerHTML = '';
-            preview.innerHTML += '<button type="reset" id="cancel" class="btn_elimg" onclick="Quitarfoto()"><i class="bi bi-x-lg"></i></button>'
-            preview.append(image);
-            
-        };
+        preview.innerHTML = '';
+        preview.innerHTML += '<button type="reset" id="cancel" class="btn_elimg" onclick="Quitarfoto()"><i class="bi bi-x-lg"></i></button>'
+        preview.append(image);
+        
+    };
+});
+$('#editar_img').on("change",function(e){
+    let reader = new FileReader();
+
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = function(){
+        let preview = document.getElementById('pre_img'),
+                image = document.createElement('img');
+                image.setAttribute('class','preview-img');
+
+        image.src = reader.result;
+        preview.style.backgroundImage="url("+image.src+")";      
+    };
 });
 $('#submitHome').on("click",function(){
     if($('#mensaje_mensaje').val() != "" || $('#mensaje_imagen').val() != "") {
@@ -113,7 +153,7 @@ String.prototype.isEmpty = function() {
 
 
 function irPerfil (idPerfil) {
-    console.log("perfil");
+    window.location.href = "/perfil/"+idPerfil;
 }
 function irMensaje (idMensaje) {
     window.location.href = "/mensaje/"+idMensaje;

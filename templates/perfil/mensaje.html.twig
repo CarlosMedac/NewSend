@@ -1,8 +1,8 @@
 {% for mensajes in mensajes %}
 <div class="mensaje">
     <div class="perfil">
-        <div data-bs-toggle="modal" data-bs-target="#Modalimg{{usuarioLogueadoId}}" class="foto_perfil" style="background-image: url(../uploads/img/perfil_defecto.png)">
-            <input type="text" value="uploads/img/perfil_defecto.png" id="src" hidden>
+        <div data-bs-toggle="modal" data-bs-target="#Modalimg{{usuarioId}}" class="foto_perfil" style="background-image: url(../uploads/img/perfil_defecto.png)">
+            <input type="text" value="../uploads/img/perfil_defecto.png" id="src" hidden>
         </div>   
         {% include 'modals/modalimgPerfil.html.twig' %}
         <div class="aux" style="height: 77%;" onclick="irMensaje({{mensajes.id}})"></div>
@@ -37,13 +37,13 @@
                             <div class="icoComentario"><i style="color:#9865C6" class="bi bi-chat"></i></div><div class="likeTotales">{{ComentariosTotales(mensajes.id)}}</div>
                         </div>
                     </div>
-                   {% set likes = LikeUsuario(usuarioLogueadoId,mensajes.id) %}
+                   {% set likes = LikeUsuario(usuarioLogueado,mensajes.id) %}
                    {% if likes %}
-                    <div class="heart" id='like{{mensajes.id}}' onclick="QuitarLike({{mensajes.id}},{{usuarioLogueadoId}})">
+                    <div class="heart" id='like{{mensajes.id}}' onclick="QuitarLike({{mensajes.id}},{{usuarioId}})">
                         <div class="corazon"><i class="bi bi-heart-fill"></i></div><div class="likeTotales">{{LikesTotales(mensajes.id)}}</div>
                     </div>
                     {% else %}
-                    <div class="heart" id='like{{mensajes.id}}'  onclick="Like({{mensajes.id}},{{usuarioLogueadoId}})">
+                    <div class="heart" id='like{{mensajes.id}}'  onclick="Like({{mensajes.id}},{{usuarioId}})">
                         <div class="corazon"><i id="nolike" class="bi bi-heart"></i></div><div class="likeTotales">{{LikesTotales(mensajes.id)}}</div>
                     </div>
                     {% endif %}

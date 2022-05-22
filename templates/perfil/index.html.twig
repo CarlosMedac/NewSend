@@ -6,14 +6,41 @@
         </div>  
         <div class="home">
             <div class="br-arr"><h3 class="h3-arr">{{pagina}}</h3></div>
-            <input id="cod_user" type="text" value="{{usuarioLogueadoId}}" hidden/>
-            <div class="put_mess">
+            <div class="cabecera"> 
+                <div class="foto_perfil_perfil" style="margin-left: 60px;margin-right: 10px;background-image: url(../uploads/img/perfil_defecto.png)"></div>
+                <input id="cod_user" type="text" value="{{usuarioId}}" hidden/>
+                <div>
+                    <div class="cab_nom">
+                        <div class="nombre_perfil">
+                            <h2 class="estilos_nombre">{{user.username}}</h2>
+                        </div>
+                        <div class="editar_perfil">
+                        {% if usuarioLogueadoId == user.id %}
+                             <a href="{{
+                                        path(
+                                        'editar',
+                                        {'id' : usuarioLogueadoId}
+                                        )}}">Editar perfil</a>
+                        {% else %}
+                             <a>Seguir</a>
+                        {% endif %}
+                        </div> 
+                    </div> 
+                    <div class="informacion">
+                        <div class="num_publi"><div class="num">{{totalMensajes}}</div> sends</div>
+                        <div class="num_seguidores"><div class="num">{{seguidores}}</div> seguidores</div>
+                        <div class="num_seguidos"><div class="num">{{seguidos}}</div> seguidos</div>
+                    </div>
+                    <div class="descripcion_perfil">{{user.description|nl2br}}</div>
+                </div>
+            </div>
+            <div class="put_messPerfil">
                 {% if mensajes != " "%}
-                     {% include 'home/mensaje.html.twig' %}              
+                     {% include 'perfil/mensaje.html.twig' %}              
                 {% endif %}
             </div>
             <div class="text-center" id="loading">
-                <img src="uploads/img/ajax-loader.gif" id="ani_img"/>
+                <img src="../uploads/img/ajax-loader.gif" id="ani_img_perfil"/>
             </div>
             <div class="br-abj">
                 <button class="crear_mensaje" data-bs-toggle="modal" data-bs-target="#Modal1">
