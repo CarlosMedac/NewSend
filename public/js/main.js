@@ -18,6 +18,7 @@ function mycontent(mypage) {
         url: "/home",
         data: {"page":mypage},
         success: function (data) {
+            // console.log(data);
             if(data.length<600){
                 $('#loading').text('No hay mas mensajes')
             }else{
@@ -57,7 +58,30 @@ function mycontentPerfil(mypage) {
         
     });
 }
-
+function CambiarPass(idUsuario) {
+    console.log(idUsuario);
+    var nombre = $('#editar_username').val();
+    var foto = $('#editar_img').val();
+    var descripcion = $('#editar_description').val();
+    var email = $('#editar_email').val();
+    var pass = $('#editar_password').val();
+    console.log(nombre);
+    console.log(foto);
+    console.log(descripcion);
+    console.log(email);
+    console.log(pass);
+    // $.ajax({
+    //     type: 'POST',
+    //     url: "/Like",
+    //     data: ({idMensaje: idMensaje,idUsuario: idUsuario}),
+    //     async: true,
+    //     dataType: "json",
+    //     success: function (data) {
+    //         $('#like'+data.mensaje).html('<div class="corazon"><i class="bi bi-heart-fill"></i></div><div class="likeTotales">'+data.total+'</div>');
+    //         $('#like'+data.mensaje).attr("onclick","QuitarLike("+data.mensaje+","+data.usuario+")");
+    //     }
+    // });
+}
 function Like(idMensaje,idUsuario) {
     $.ajax({
         type: 'POST',
@@ -66,6 +90,7 @@ function Like(idMensaje,idUsuario) {
         async: true,
         dataType: "json",
         success: function (data) {
+            console.log(data);
             $('#like'+data.mensaje).html('<div class="corazon"><i class="bi bi-heart-fill"></i></div><div class="likeTotales">'+data.total+'</div>');
             $('#like'+data.mensaje).attr("onclick","QuitarLike("+data.mensaje+","+data.usuario+")");
         }

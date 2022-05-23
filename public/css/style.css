@@ -469,4 +469,43 @@ img{
 .editar_nombreInput {
     margin-left: 50px;
     width: 300px;
+    border: solid 0.5px #DBDBDB;
+}
+.editar_descripcion {
+    display: flex;
+    margin-top: 40px;
+    margin-left: 70px;
+}
+.editar_descripcionInput {
+    margin-left: 46px;
+    width: 300px;
+    resize:none;
+    height: 80px;
+    border: solid 0.5px #DBDBDB;
+}
+.editar_email {
+    display: flex;
+    margin-top: 40px;
+    margin-left: 70px;
+}
+.editar_emailInput {
+    margin-left: 70px;
+    width: 300px;
+    border: solid 0.5px #DBDBDB;
+}
+.editar_pass {
+    display: flex;
+    margin-top: 40px;
+    margin-left: 70px;
+}
+.editar_passInput {
+    margin-left: 27px;
+    width: 300px;
+    border: solid 0.5px #DBDBDB;
+}
+.editar_buton {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 60px;
+    margin-right: 160px;
 }

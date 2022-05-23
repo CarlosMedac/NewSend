@@ -5,6 +5,7 @@ namespace App\Twig;
 use App\Entity\Likes;
 use App\Entity\Mensajes;
 use App\Entity\Respuesta;
+use App\Entity\User;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Form\FormRegistryInterface;
 use Twig\Extension\AbstractExtension;
@@ -36,6 +37,7 @@ class MiExtension extends AbstractExtension
             new TwigFunction('LikeUsuario', [$this, 'LikeUsuario']),
             new TwigFunction('LikesTotales', [$this, 'LikesTotales']),
             new TwigFunction('ComentariosTotales', [$this, 'ComentariosTotales']),
+            new TwigFunction('UserLogin', [$this, 'UserLogin']),
         ];
     }
 
@@ -70,7 +72,12 @@ class MiExtension extends AbstractExtension
         return $comentariosTotales;
     }
 
-    public function SaltosDeLinea(){
-        
+    public function UserLogin($codUser)
+    {
+        $em = $this->doctrine->getManager();
+        $user = $em->getRepository(User::class)->findBy(array('id'=>$codUser));
+        return $user[0]-> getImg();
     }
+
+   
 }

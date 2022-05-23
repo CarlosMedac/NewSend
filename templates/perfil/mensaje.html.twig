@@ -1,9 +1,16 @@
 {% for mensajes in mensajes %}
+{% set userImg = UserLogin(mensajes.coduser) %}
 <div class="mensaje">
     <div class="perfil">
-        <div data-bs-toggle="modal" data-bs-target="#Modalimg{{usuarioId}}" class="foto_perfil" style="background-image: url(../uploads/img/perfil_defecto.png)">
-            <input type="text" value="../uploads/img/perfil_defecto.png" id="src" hidden>
-        </div>   
+         {% if userImg == "" %}
+            <div data-bs-toggle="modal" data-bs-target="#Modalimg{{usuarioLogueadoId}}" class="foto_perfil" style="background-image: url(../uploads/img/perfil_defecto.png)">
+                <input type="text" value="uploads/img/perfil_defecto.png" id="src" hidden>
+            </div>   
+        {% else %}
+            <div data-bs-toggle="modal" data-bs-target="#Modalimg{{usuarioLogueadoId}}" class="foto_perfil" style="background-image: url(../uploads/img/{{userImg}})">
+                <input type="text" value="uploads/img/{{userImg}}" id="src" hidden>
+            </div>
+        {% endif %}
         {% include 'modals/modalimgPerfil.html.twig' %}
         <div class="aux" style="height: 77%;" onclick="irMensaje({{mensajes.id}})"></div>
     </div>
@@ -37,7 +44,7 @@
                             <div class="icoComentario"><i style="color:#9865C6" class="bi bi-chat"></i></div><div class="likeTotales">{{ComentariosTotales(mensajes.id)}}</div>
                         </div>
                     </div>
-                   {% set likes = LikeUsuario(usuarioLogueado,mensajes.id) %}
+                   {% set likes = LikeUsuario(usuarioLogueadoId,mensajes.id) %}
                    {% if likes %}
                     <div class="heart" id='like{{mensajes.id}}' onclick="QuitarLike({{mensajes.id}},{{usuarioId}})">
                         <div class="corazon"><i class="bi bi-heart-fill"></i></div><div class="likeTotales">{{LikesTotales(mensajes.id)}}</div>

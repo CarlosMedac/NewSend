@@ -58,34 +58,6 @@ class PerfilController extends AbstractController
         $follow = $em->getRepository(Seguir::class)->findBy(array('coduser'=>$userId));
         $totalSeguidos = count($follow);
 
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()) {
-           
-            $imagen = $form->get('imagen')->getData(); 
-
-            if ($imagen) {
-                $originalFilename = pathinfo($imagen->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename.'-'.uniqid().'.'.$imagen->guessExtension();
-
-                try {
-                    $imagen->move(
-                        $this->getParameter('img_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    throw new Exception("No se ha podido cargar la imagen".$e);
-                }
-
-                $mensaje->setImagen($newFilename);
-            }
-
-            $mensaje->setCoduser($userId);
-            $mensaje->setNombreUser($username);
-            $em->persist($mensaje);
-            $em->flush();
-            return $this->redirectToRoute("perfil");
-        }
 
         if ($request->isXmlHttpRequest()) {
             try {
