@@ -14,16 +14,17 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+
 class EditarType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
+    public function buildForm(FormBuilderInterface $builder, array $options,): void
     {
         $builder
             ->add('username', TextType::class, ['label' => false])
-            ->add('password' , PasswordType::class)
+            // ->add('password' , PasswordType::class, ['label' => false])
             ->add('img', FileType::class, ['label' => false ,'mapped' => false,'required' => false])
-            ->add('email' ,EmailType::class)
-            ->add('description', TextareaType::class, ['label' => ' ' ,'required' => false])
+            ->add('email' ,EmailType::class, ['label' => false])
+            ->add('description', TextareaType::class, ['label' => false ,'required' => false])
             ->add('editar', SubmitType::class)
         ;
     }

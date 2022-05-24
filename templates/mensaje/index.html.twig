@@ -3,7 +3,9 @@
 {% block title %}Hello MensajeController!{% endblock %}
 
 {% block body %}
+{% set userLoguedImg = UserLogin(usuarioLogueadoId) %}
 <div class="body">
+  <input id="cod_user" type="text" value="{{usuarioLogueadoId}}" hidden/>
         <div class="nav">
             {% include 'home/nav.html.twig' %}
         </div>  
@@ -17,7 +19,15 @@
                                 {{ form_errors(formulario) }}
                             </div>
                             <div class="crear_comentario">
-                                    <div class="foto_perfil" style="margin-right: 10px;background-image: url(../uploads/img/perfil_defecto.png)"></div>
+                                    {% if userLoguedImg == "" %}
+                                        <div data-bs-toggle="modal" data-bs-target="#Modalimg{{usuarioLogueadoId}}" class="foto_perfil" style="margin-right: 10px;background-image: url(../uploads/img/perfil_defecto.png)">
+                                            <input type="text" value="uploads/img/perfil_defecto.png" id="src" hidden>
+                                        </div>   
+                                    {% else %}
+                                        <div data-bs-toggle="modal" data-bs-target="#Modalimg{{usuarioLogueadoId}}" class="foto_perfil" style="margin-right: 10px;background-image: url(../uploads/img/{{userLoguedImg}})">
+                                            <input type="text" value="uploads/img/{{userLoguedImg}}" id="src" hidden>
+                                        </div>
+                                    {% endif %}
                                     {{ form_row(formulario.respuesta, {'attr': {'class': 'mensaje_texto','maxlength': '255','placeholder':'Escribe algo' }} ) }}
                                     {{form_row(formulario.responder,{'attr': {'class': 'boton_comentar'}})}}
                             </div>
@@ -41,11 +51,18 @@
                         {{ form_end(formulario) }}
                         <div>
                         {% for comentarios in comentarios %}
+                        {% set userComImg = UserLogin(comentarios.coduser) %}
                             <div class="respuesta">
                                 <div class="perfil">
-                                    <div data-bs-toggle="modal" data-bs-target="#Modalimg{{usuarioLogueadoId}}" class="foto_perfil" style="background-image: url(../uploads/img/perfil_defecto.png);margin-top:0;">
-                                        <input type="text" value="uploads/img/perfil_defecto.png" id="src" hidden>
-                                    </div>   
+                                    {% if userComImg == "" %}
+                                        <div data-bs-toggle="modal" data-bs-target="#Modalimg{{usuarioLogueadoId}}" class="foto_perfil" style="background-image: url(../uploads/img/perfil_defecto.png);margin-top:0;">
+                                            <input type="text" value="uploads/img/perfil_defecto.png" id="src" hidden>
+                                        </div>   
+                                    {% else %}
+                                        <div data-bs-toggle="modal" data-bs-target="#Modalimg{{usuarioLogueadoId}}" class="foto_perfil" style="background-image: url(../uploads/img/{{userComImg}});margin-top:0;">
+                                            <input type="text" value="uploads/img/{{userComImg}}" id="src" hidden>
+                                        </div>
+                                    {% endif %}
                                     {% include 'modals/modalimgPerfil.html.twig' %}
                                 </div>
                                 <div class="contenido">

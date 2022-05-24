@@ -7,10 +7,7 @@
         <div class="home">
             <div class="br-arr"><h3 class="h3-arr">{{pagina}}</h3></div>
             <div class="cabecera"> 
-                
                 <input id="cod_user" type="text" value="{{usuarioId}}" hidden/>
-                    <div class="informacion"></div>
-                    <div class="descripcion_perfil">{{user.description|nl2br}}</div>
             </div>
             <div class="formulario_editar">
                 {{ form_start(formulario, {'attr': {'id': 'formhome'}})}}
@@ -19,7 +16,11 @@
                             </div>
                             <div>
                                 <div class="div_img">
+                                {% if img == "" %}
                                     <div class="foto_perfil_editar" id="pre_img" style="margin-left: 60px;margin-right: 10px;background-image: url(../../uploads/img/perfil_defecto.png)"></div>
+                                {% else %}
+                                    <div class="foto_perfil_editar" id="pre_img" style="margin-left: 60px;margin-right: 10px;background-image: url(../../uploads/img/{{img}})"></div>
+                                {% endif %}
                                     <div class="imagenformulario" style="margin-left: 50px;">
                                             <div class="cab_nom" style="margin-top: 35px;margin-left: 0px;">
                                                 <div class="nombre_perfil">
@@ -41,15 +42,26 @@
                                     {{ form_row(formulario.username, {'attr': {'class': 'editar_nombreInput'}} ) }}                                
                                 </div>
                                 <div class="editar_descripcion">
-                                    {{ form_row(formulario.description, {'attr': {'class': 'mensaje_texto','maxlength': '255','placeholder':'Escribe algo' }} ) }}
+                                    <label for="editar_description">
+                                        Biografía
+                                    </label>
+                                    {{ form_row(formulario.description, {'attr': {'class': 'editar_descripcionInput','maxlength': '100','placeholder':'Escribe tu biografia' }} ) }}
                                 </div>
                                 <div class="editar_email">
+                                    <label for="editar_email">
+                                        Email
+                                    </label>
                                     {{ form_row(formulario.email, {'attr': {'class': 'editar_emailInput'}} ) }}
                                 </div>
-                                <div class="editar_pass">
+                                {# <div class="editar_pass">
+                                <label for="editar_password">
+                                        Contraseña
+                                </label>
                                     {{ form_row(formulario.password, {'attr': {'class': 'editar_passInput'}} ) }}
+                                </div> #}
+                                <div class="editar_buton">
+                                    <button id="submitEditar" type="button" class="boton_guardar" onclick="Editar({{usuarioId}})">Editar</button>
                                 </div>
-                                <button id="submitHome" type="button" class="boton_guardar">Editar</button>
                             </div>     
                 {{ form_end(formulario) }}
             </div>

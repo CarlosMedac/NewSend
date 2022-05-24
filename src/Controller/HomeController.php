@@ -91,6 +91,7 @@ class HomeController extends AbstractController
                 $mensajes = $this->render('home/mensaje.html.twig', array(
                                 'mensajes' => $verMensaje,
                                 'usuarioLogueadoId' => $userId,
+                                'user' => $user,
                             ));
                             
                 return $mensajes;

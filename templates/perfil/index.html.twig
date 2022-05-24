@@ -7,7 +7,11 @@
         <div class="home">
             <div class="br-arr"><h3 class="h3-arr">{{pagina}}</h3></div>
             <div class="cabecera"> 
-                <div class="foto_perfil_perfil" style="margin-left: 60px;margin-right: 10px;background-image: url(../uploads/img/perfil_defecto.png)"></div>
+                    {% if user.img == "" %}
+                       <div class="foto_perfil_perfil" style="margin-left: 60px;margin-right: 10px;background-image: url(../../uploads/img/perfil_defecto.png)"></div>
+                    {% else %}
+                       <div class="foto_perfil_perfil" style="margin-left: 60px;margin-right: 10px;background-image: url(../../uploads/img/{{user.img}})"></div>
+                    {% endif %}
                 <input id="cod_user" type="text" value="{{usuarioId}}" hidden/>
                 <div>
                     <div class="cab_nom">
