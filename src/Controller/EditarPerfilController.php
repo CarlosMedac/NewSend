@@ -4,14 +4,10 @@ namespace App\Controller;
 
 
 use App\Entity\Likes;
-use App\Entity\Mensajes;
-use App\Entity\Seguir;
 use App\Entity\User;
 use App\Form\EditarType;
-use App\Form\MensajeType;
-use App\Repository\MensajesRepository;
-use Doctrine\DBAL\Types\TextType;
-use Doctrine\ORM\Query;
+use App\Security\LoginFormAuthenticator;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -23,7 +19,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Security as CoreSecurity;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 class EditarPerfilController extends AbstractController
@@ -34,23 +33,12 @@ class EditarPerfilController extends AbstractController
         /** @var User $userLogued */
         $userLogued = $this->getUser();
         if(!empty($userLogued)){
-            $userLoguedId   = $userLogued->getId();
             $userLoguedname = $userLogued->getUserIdentifier();
             $biografia      = $userLogued->getDescription();
             $email          = $userLogued->getEmail();
-            $img            = $userLogued->getImg();
         }
 
         $em = $doctrine->getManager();
-        $user = $em->getRepository(User::class)->findBy(array('id'=>$id));
-        // var_dump($user);
-        // exit;
-        if(!empty($user)){
-            foreach ($user as $user) {
-                $userId = $user->getId();
-                $username = $user->getUserIdentifier();
-            } 
-        }
 
         $userForm = new User();
         $form = $this->createForm(EditarType::class,$userForm);
@@ -63,23 +51,9 @@ class EditarPerfilController extends AbstractController
         $form->add('email', TypeTextType::class, array(
             'data' => $email, 'label' => false,
         ));
-        
-        $query = new Query($em);
-        //Mensajes
-        $verMensaje = $em->getRepository(Mensajes::class)->findBy(array("coduser"=>$userId), array('fechapublicacion'=>'desc'));
-        $totalMensajes = count($verMensaje);
-        
-        //Seguidores
-        $seguidores = $em->getRepository(Seguir::class)->findBy(array("codseguido"=>$userId));
-        $totalSeguidores = count($seguidores);
-        
-        //Seguidos
-        $follow = $em->getRepository(Seguir::class)->findBy(array('coduser'=>$userId));
-        $totalSeguidos = count($follow);
 
         $form->handleRequest($request);
         
-        // exit;
         if($form->isSubmitted() && $form->isValid()) {
             $nombre      = $form->get('username')->getData();
             $descripcion = $form->get('description')->getData();
@@ -87,6 +61,7 @@ class EditarPerfilController extends AbstractController
             $imagen      = $form->get('img')->getData(); 
 
             if ($imagen) {
+
                 $originalFilename = pathinfo($imagen->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFilename = $slugger->slug($originalFilename);
                 $newFilename = $safeFilename.'-'.uniqid().'.'.$imagen->guessExtension();
@@ -100,54 +75,70 @@ class EditarPerfilController extends AbstractController
                     throw new Exception("No se ha podido cargar la imagen".$e);
                 }
 
-                $user->setImg($newFilename);
+                $userLogued->setImg($newFilename);
             }
 
-            $user->setUsername($nombre);
-            $user->setDescription($descripcion);
-            $user->setEmail($email);
+            $userLogued->setUsername($nombre);
+            $userLogued->setDescription($descripcion);
+            $userLogued->setEmail($email);
 
             $em->flush();
             return $this->redirectToRoute("perfil", array('id' => $id));
         }
          return $this->render('editar_perfil/index.html.twig', array(
-             'pagina'            => 'Perfil',
-             'mensajes'          => " ",
+             'pagina'            => 'Editar',
              'formulario'        => $form->createView(),
-             'user'              => $user,
-             'usuarioLogueadoId' => $userLoguedId,
-             'usuarioId'         => $userId,
-             'totalMensajes'     => $totalMensajes,
-             'seguidores'        => $totalSeguidores,
-             'seguidos'          => $totalSeguidos,
-             'biografia'         => $biografia,
-             'img'               => $img,
+             'user'              => $userLogued,
          ));
     }
 
     /**
-     * @Route("/Editar", name="Editar")
+     * @Route("/checkPass", name="checkPass")
      */
-    public function Like(Request $request,  ManagerRegistry $doctrine){
+    public function checkPass(Request $request, UserInterface $user, EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager, UserPasswordEncoderInterface $passwordEncoder){
         if ($request->isXmlHttpRequest()) {
+            $pass= [];
+            $pass['password'] = $request->request->get('pass');
+            $seguridad = new LoginFormAuthenticator($entityManager,$urlGenerator, $csrfTokenManager, $passwordEncoder);
             try {
-                $Likes = new Likes();
-                $em = $doctrine->getManager();
-                $idMensaje = $request->request->get('idMensaje');
-                $idUsuario = $request->request->get('idUsuario');
-                $Likes->setCodigoMensaje($idMensaje);
-                $Likes->setCodigoUser($idUsuario);
-                $em->persist($Likes);
-                $em->flush();
-                $mensaje = $em->getRepository(Likes::class)->findBy(array('codigoMensaje'=>$idMensaje));
-                $liketotal = count($mensaje);
-                return new JsonResponse(['confirmado'=>'OK','mensaje'=>$idMensaje,'usuario'=>$idUsuario,'total'=>$liketotal]);
+                $valid=$seguridad->checkCredentials($pass,$user);
+                if ($valid) {
+                    return new JsonResponse(['confirmado'=>$valid]);
+                } else {
+                    return new JsonResponse(['confirmado'=>$valid]);
+                }  
             } catch (Exception $e){
                 return new JsonResponse(['confirmado'=>$e]);
-            }
-            
+            }   
         } else {
             return new JsonResponse(['confirmado'=>"KO"]);
         }
     }
+
+    /**
+     * @Route("/changePass", name="changePass")
+     */
+    public function changePass(Request $request, ManagerRegistry $doctrine, EntityManagerInterface $entityManager, UserPasswordEncoderInterface $passwordEncoder){
+        if ($request->isXmlHttpRequest()) {
+            try{
+                    $pass = $request->request->get('pass');
+                    $id = $request->request->get('id');
+                    $em = $doctrine->getManager();
+                    
+                    $user = $em->getRepository(User::class)->findBy(array('id'=>$id));
+                    foreach ($user as $user) {
+                        //Para Hacer que no sea un array
+                    }
+                    $user->setPassword($passwordEncoder->encodePassword($user,$pass));
+                    $em->persist($user);
+                    $em->flush();  
+                    return new JsonResponse(['confirmado'=>'OK']);
+            } catch (Exception $e){
+                return new JsonResponse(['confirmado'=>'No se ha hecho']);
+            }   
+        } else {
+            return new JsonResponse(['confirmado'=>"KO"]);
+        }
+    }
+
 }

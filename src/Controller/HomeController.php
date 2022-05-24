@@ -32,14 +32,14 @@ class HomeController extends AbstractController
         $username = $user->getUserIdentifier();
         }
         
-        $mensaje = new Mensajes();
-        $form = $this->createForm(MensajeType::class,$mensaje);
         $em = $doctrine->getManager();
         $query = new Query($em);
-        $verMensaje = $em->getRepository(Mensajes::class)->findBy(array(), array('fechapublicacion'=>'desc'));
-        $form->handleRequest($request);
-        
         $follow = $em->getRepository(Seguir::class)->findBy(array('coduser'=>$userId));
+
+        $mensaje = new Mensajes();
+        $form = $this->createForm(MensajeType::class,$mensaje);
+        $form->handleRequest($request);
+
         if($form->isSubmitted() && $form->isValid()) {
            
             $imagen = $form->get('imagen')->getData(); 
@@ -75,9 +75,9 @@ class HomeController extends AbstractController
                 $posi= (($numpage-1)*$prepage);
                 $consulta = 'SELECT u
                 FROM App\Entity\Mensajes u ';
+                $consulta = $consulta.' WHERE '; 
                 if (!empty($follow)) {
-                    $consulta = $consulta.' WHERE '; 
-                    foreach ($follow as $k => $follow) {
+                    foreach ($follow as $follow) {
                             $consulta = $consulta.' u.coduser = '.$follow->getCodseguido().' OR ';
                     }
                 }
@@ -90,7 +90,6 @@ class HomeController extends AbstractController
     
                 $mensajes = $this->render('home/mensaje.html.twig', array(
                                 'mensajes' => $verMensaje,
-                                'usuarioLogueadoId' => $userId,
                                 'user' => $user,
                             ));
                             
@@ -102,15 +101,14 @@ class HomeController extends AbstractController
        } else {
             return $this->render('home/home.html.twig', array(
                 'pagina' => 'Inicio',
-                'mensajes' => $verMensaje,
                 'mensajes' => " ",
                 'formulario' => $form->createView(),
-                'usuarioLogueadoId' => $userId,
+                'user' => $user,
+
             ));
         }
 
 }
-    
 
     /**
      * @Route("/Eliminar", name="Eliminar")

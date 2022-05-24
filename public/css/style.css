@@ -352,10 +352,8 @@ img{
 }
 .respuesta {
     display: flex;
-    margin-top: 1vh;
-    padding-bottom: 3vh;
     border-bottom: solid 1px #ece0f7;
-    min-height: 10vh;
+    min-height: 80px;
 }
 
 .texto {
@@ -372,7 +370,7 @@ img{
 }
 .cab_nom {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     margin-top: 4vh;
     margin-left: 45px;
 }
@@ -497,15 +495,41 @@ img{
     display: flex;
     margin-top: 40px;
     margin-left: 70px;
+    align-items: center;
+}
+.editar_pass label{
+    width: 150px;
+    font-size: medium;
 }
 .editar_passInput {
     margin-left: 27px;
     width: 300px;
     border: solid 0.5px #DBDBDB;
+    max-height: 30px;
 }
 .editar_buton {
     display: flex;
     flex-direction: row-reverse;
     margin-top: 60px;
     margin-right: 160px;
+}
+.toast-warning{
+    background-color: #9a7cb6 !important;
+}  
+.toast-success{
+    background-color: #9a7cb6 !important;
+} 
+.toast-error{
+    background-color: #9a7cb6 !important;
+}   
+.cerrarSesion {
+    padding: 8px 10px 6px 8px;
+    border-radius: 50%;
+    margin-left: 15px;
+}
+.cerrarSesion i{
+    color: black;
+}
+.cerrarSesion i:hover{
+    color: #c09ce2;
 }

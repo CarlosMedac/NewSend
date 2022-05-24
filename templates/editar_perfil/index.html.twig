@@ -1,14 +1,13 @@
 {% extends "base.html.twig" %}
 {% block body %}
+<link rel="stylesheet" type="text/css" href="../../css/toast.css"/>
     <div class="body">
         <div class="nav">
             {% include 'home/nav.html.twig' %}
         </div>  
         <div class="home">
+            <input id="cod_user" type="text" value="{{user.Id}}" hidden/>
             <div class="br-arr"><h3 class="h3-arr">{{pagina}}</h3></div>
-            <div class="cabecera"> 
-                <input id="cod_user" type="text" value="{{usuarioId}}" hidden/>
-            </div>
             <div class="formulario_editar">
                 {{ form_start(formulario, {'attr': {'id': 'formhome'}})}}
                             <div class="my-custom-class-for-errors">
@@ -16,10 +15,10 @@
                             </div>
                             <div>
                                 <div class="div_img">
-                                {% if img == "" %}
+                                {% if user.img == "" %}
                                     <div class="foto_perfil_editar" id="pre_img" style="margin-left: 60px;margin-right: 10px;background-image: url(../../uploads/img/perfil_defecto.png)"></div>
                                 {% else %}
-                                    <div class="foto_perfil_editar" id="pre_img" style="margin-left: 60px;margin-right: 10px;background-image: url(../../uploads/img/{{img}})"></div>
+                                    <div class="foto_perfil_editar" id="pre_img" style="margin-left: 60px;margin-right: 10px;background-image: url(../../uploads/img/{{user.img}})"></div>
                                 {% endif %}
                                     <div class="imagenformulario" style="margin-left: 50px;">
                                             <div class="cab_nom" style="margin-top: 35px;margin-left: 0px;">
@@ -53,15 +52,35 @@
                                     </label>
                                     {{ form_row(formulario.email, {'attr': {'class': 'editar_emailInput'}} ) }}
                                 </div>
-                                {# <div class="editar_pass">
-                                <label for="editar_password">
-                                        Contraseña
-                                </label>
-                                    {{ form_row(formulario.password, {'attr': {'class': 'editar_passInput'}} ) }}
-                                </div> #}
                                 <div class="editar_buton">
-                                    <button id="submitEditar" type="button" class="boton_guardar" onclick="Editar({{usuarioId}})">Editar</button>
+                                    {{ form_row(formulario.editar, {'attr': {'class': 'boton_guardar'}} ) }}
                                 </div>
+                                <div style="display: flex;flex-direction: column;align-items: flex-start;margin-top: 60px;margin-left: 80px;">
+                                    <div>Cambiar contraseña</div>
+                                    <div class="Aux" style="border:solid #ece0f7 0.5px;width: 80%;"></div>
+                                </div>
+                                <div class="editar_pass">
+                                    <label for="editar_pass">
+                                        Contraseña Antigua
+                                    </label>
+                                    <input id="editar_pass1" class="editar_passInput" type="password"/> 
+                                </div>
+                                <div class="editar_pass">
+                                    <label for="editar_pass">
+                                        Contraseña nueva
+                                    </label>
+                                    <input id="editar_pass2" class="editar_passInput" type="password"/> 
+                                </div>
+                                <div class="editar_pass">
+                                    <label for="editar_pass">
+                                        Confirmar nueva contraseña
+                                    </label>
+                                    <input id="editar_pass3" class="editar_passInput" type="password"/> 
+                                </div>
+                                <div class="editar_pass">
+                                    <input id="button_pass" onclick="checkPass({{user.Id}})" class="boton_guardar" type="button" value="Guardar"/> 
+                                </div>
+
                             </div>     
                 {{ form_end(formulario) }}
             </div>

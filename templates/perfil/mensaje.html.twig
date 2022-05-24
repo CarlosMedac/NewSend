@@ -3,11 +3,11 @@
 <div class="mensaje">
     <div class="perfil">
          {% if userImg == "" %}
-            <div data-bs-toggle="modal" data-bs-target="#Modalimg{{usuarioLogueadoId}}" class="foto_perfil" style="background-image: url(../uploads/img/perfil_defecto.png)">
+            <div data-bs-toggle="modal" data-bs-target="#Modalimg{{mensajes.coduser}}" class="foto_perfil" style="background-image: url(../uploads/img/perfil_defecto.png)">
                 <input type="text" value="uploads/img/perfil_defecto.png" id="src" hidden>
             </div>   
         {% else %}
-            <div data-bs-toggle="modal" data-bs-target="#Modalimg{{usuarioLogueadoId}}" class="foto_perfil" style="background-image: url(../uploads/img/{{userImg}})">
+            <div data-bs-toggle="modal" data-bs-target="#Modalimg{{mensajes.coduser}}" class="foto_perfil" style="background-image: url(../uploads/img/{{userImg}})">
                 <input type="text" value="uploads/img/{{userImg}}" id="src" hidden>
             </div>
         {% endif %}

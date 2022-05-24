@@ -1,9 +1,13 @@
-<div class="modal fade modalimg" id="Modalimg{{usuarioLogueadoId}}" tabindex="-1" role="dialog" aria-labelledby="Modal1" aria-hidden="true">
+<div class="modal fade modalimg" id="Modalimg{{mensajes.coduser}}" tabindex="-1" role="dialog" aria-labelledby="Modal1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 600px;">
                 <div class="modal-content" style="background-color: unset;border: none;">
                         <div class="modal-body" id="modalImgfondo" style="padding:0;">
                              <div class="imagen1">
-                                <img src="../uploads/img/perfil_defecto.png" class="img_modal_perfil"/>
+                                {% if userImg == "" %}
+                                    <img src="../../uploads/img/perfil_defecto.png" class="img_modal_perfil"/>
+                                {% else %}
+                                    <img src="../../uploads/img/{{userImg}}" class="img_modal_perfil"/>
+                                {% endif %}
                             </div>
                         </div>
                 </div>

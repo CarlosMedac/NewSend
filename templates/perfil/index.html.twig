@@ -6,36 +6,40 @@
         </div>  
         <div class="home">
             <div class="br-arr"><h3 class="h3-arr">{{pagina}}</h3></div>
+            {% set userImg = UserLogin(usuario.Id) %}
             <div class="cabecera"> 
-                    {% if user.img == "" %}
+                    {% if userImg == "" %}
                        <div class="foto_perfil_perfil" style="margin-left: 60px;margin-right: 10px;background-image: url(../../uploads/img/perfil_defecto.png)"></div>
                     {% else %}
-                       <div class="foto_perfil_perfil" style="margin-left: 60px;margin-right: 10px;background-image: url(../../uploads/img/{{user.img}})"></div>
+                       <div class="foto_perfil_perfil" style="margin-left: 60px;margin-right: 10px;background-image: url(../../uploads/img/{{userImg}})"></div>
                     {% endif %}
-                <input id="cod_user" type="text" value="{{usuarioId}}" hidden/>
+                <input id="cod_user" type="text" value="{{usuario.Id}}" hidden/>
                 <div>
                     <div class="cab_nom">
                         <div class="nombre_perfil">
-                            <h2 class="estilos_nombre">{{user.username}}</h2>
+                            <h2 class="estilos_nombre">{{usuario.username}}</h2>
                         </div>
                         <div class="editar_perfil">
-                        {% if usuarioLogueadoId == user.id %}
+                        {% if user.Id == usuario.id %}
                              <a href="{{
                                         path(
                                         'editar',
-                                        {'id' : usuarioLogueadoId}
+                                        {'id' : user.Id}
                                         )}}">Editar perfil</a>
                         {% else %}
                              <a>Seguir</a>
                         {% endif %}
                         </div> 
+                        <div title="cerrar sesion" class="cerrarSesion">
+                            <a href="/logout"><i class="bi bi-box-arrow-left"></i></a>
+                        </div>
                     </div> 
                     <div class="informacion">
                         <div class="num_publi"><div class="num">{{totalMensajes}}</div> sends</div>
                         <div class="num_seguidores"><div class="num">{{seguidores}}</div> seguidores</div>
                         <div class="num_seguidos"><div class="num">{{seguidos}}</div> seguidos</div>
                     </div>
-                    <div class="descripcion_perfil">{{user.description|nl2br}}</div>
+                    <div class="descripcion_perfil">{{usuario.description|nl2br}}</div>
                 </div>
             </div>
             <div class="put_messPerfil">
@@ -62,7 +66,15 @@
                                 {{ form_errors(formulario) }}
                             </div>
                             <div class="mensaje_arriba">
-                                    <div class="foto_perfil" style="margin-left: 0;margin-right: 10px;background-image: url(uploads/img/perfil_defecto.png)"></div>
+                                    {% if user.img == "" %}
+                                    <div class="foto_perfil" style="margin-left: 0;margin-right: 10px;background-image: url(../../uploads/img/perfil_defecto.png)">
+                                        <input type="text" value="uploads/img/perfil_defecto.png" id="src" hidden>
+                                    </div>   
+                                    {% else %}
+                                        <div class="foto_perfil" style="margin-left: 0;margin-right: 10px;background-image: url(../../uploads/img/{{user.img}})">
+                                            <input type="text" value="uploads/img/{{user.img}}" id="src" hidden>
+                                        </div>
+                                    {% endif %}
                                     {{ form_row(formulario.mensaje, {'attr': {'class': 'mensaje_texto','maxlength': '255','placeholder':'Escribe algo' }} ) }}
                             </div>
                             <div class="row">
