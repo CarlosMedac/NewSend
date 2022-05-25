@@ -31,13 +31,13 @@ class MensajeController extends AbstractController
             if(!empty($user)) {
             $userId = $user->getId();
             $username = $user->getUserIdentifier();
+            }
 
             $em = $doctrine->getManager();
-
+ 
             $respuesta = new Respuesta();
             $form = $this->createForm(ComentariosType::class,$respuesta);
             $form->handleRequest($request);
-            
             
             if($form->isSubmitted() && $form->isValid()) {
         
@@ -53,16 +53,12 @@ class MensajeController extends AbstractController
                 return $this->redirectToRoute("mensaje",['id'=>$id]);
             }
             $comentarios = $em->getRepository(Respuesta::class)->findBy(array('codmensaje'=>$id));
-            $comentariosTotales = count($comentarios);
 
-            
-            }
             $verMensaje = $em->getRepository(Mensajes::class)->findBy(array('id'=>$id), array('fechapublicacion'=>'desc'));
             return $this->render('mensaje/index.html.twig', [
                 'mensajes' => $verMensaje,
-                'usuarioLogueadoId' => $userId,
+                'user'      => $user,
                 'comentarios' => $comentarios,
-                'comentariosTotales' => $comentariosTotales,
                 'formulario' => $form->createView()
             ]);
 

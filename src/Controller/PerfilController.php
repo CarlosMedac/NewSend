@@ -44,7 +44,8 @@ class PerfilController extends AbstractController
 
         $mensaje = new Mensajes();
         $form = $this->createForm(MensajeType::class,$mensaje);
-        
+        $form->handleRequest($request);
+
         $query = new Query($em);
         //Mensajes
         $verMensaje = $em->getRepository(Mensajes::class)->findBy(array("coduser"=>$userId), array('fechapublicacion'=>'desc'));
@@ -57,6 +58,35 @@ class PerfilController extends AbstractController
         //Seguidos
         $follow = $em->getRepository(Seguir::class)->findBy(array('coduser'=>$userId));
         $totalSeguidos = count($follow);
+       
+        
+        if($form->isSubmitted() && $form->isValid()) {
+           
+            $imagen = $form->get('imagen')->getData(); 
+
+            if ($imagen) {
+                $originalFilename = pathinfo($imagen->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$imagen->guessExtension();
+
+                try {
+                    $imagen->move(
+                        $this->getParameter('img_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    throw new Exception("No se ha podido cargar la imagen".$e);
+                }
+
+                $mensaje->setImagen($newFilename);
+            }
+
+            $mensaje->setCoduser($userId);
+            $mensaje->setNombreUser($username);
+            $em->persist($mensaje);
+            $em->flush();
+            return $this->redirectToRoute("perfil", array('id' => $id));
+        }
 
 
         if ($request->isXmlHttpRequest()) {
@@ -90,9 +120,8 @@ class PerfilController extends AbstractController
                 'pagina' => 'Perfil',
                 'mensajes' => " ",
                 'formulario' => $form->createView(),
-                'user' => $user,
-                'usuarioLogueadoId' => $userLoguedId,
-                'usuarioId' => $userId,
+                'user' => $userLogued,
+                'usuario' => $user,
                 'totalMensajes' =>$totalMensajes,
                 'seguidores' =>$totalSeguidores,
                 'seguidos' =>$totalSeguidos,

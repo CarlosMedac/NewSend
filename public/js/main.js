@@ -18,8 +18,7 @@ function mycontent(mypage) {
         url: "/home",
         data: {"page":mypage},
         success: function (data) {
-            // console.log(data);
-            if(data.length<600){
+            if(data.length<2000){
                 $('#loading').text('No hay mas mensajes')
             }else{
                 $('.mensaje').animate({scrollTop: $('#loading').offsetTop}, 5000, 'easeOutBounce');
@@ -42,7 +41,7 @@ function mycontentPerfil(mypage) {
         url: "/perfil/"+$('#cod_user').val(),
         data: {"page":mypage},
         success: function (data) {
-            if(data.length<600){
+            if(data.length<2000){
                 $('#loading').text('No hay mas mensajes')
             }else{
                 $('.mensaje').animate({scrollTop: $('#loading').offsetTop}, 5000, 'easeOutBounce');
@@ -58,29 +57,63 @@ function mycontentPerfil(mypage) {
         
     });
 }
-function CambiarPass(idUsuario) {
-    console.log(idUsuario);
-    var nombre = $('#editar_username').val();
-    var foto = $('#editar_img').val();
-    var descripcion = $('#editar_description').val();
-    var email = $('#editar_email').val();
-    var pass = $('#editar_password').val();
-    console.log(nombre);
-    console.log(foto);
-    console.log(descripcion);
-    console.log(email);
-    console.log(pass);
-    // $.ajax({
-    //     type: 'POST',
-    //     url: "/Like",
-    //     data: ({idMensaje: idMensaje,idUsuario: idUsuario}),
-    //     async: true,
-    //     dataType: "json",
-    //     success: function (data) {
-    //         $('#like'+data.mensaje).html('<div class="corazon"><i class="bi bi-heart-fill"></i></div><div class="likeTotales">'+data.total+'</div>');
-    //         $('#like'+data.mensaje).attr("onclick","QuitarLike("+data.mensaje+","+data.usuario+")");
-    //     }
-    // });
+function checkPass(idUsuario) {
+    toastr.options = {
+        'icon': false,
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-bottom-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "4000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+    var pass1 = $('#editar_pass1').val();
+    var pass2 = $('#editar_pass2').val();
+    var pass3 = $('#editar_pass3').val();
+    if (pass2 == pass3) {
+        $.ajax({
+            type: 'POST',
+            url: "/checkPass",
+            data: ({pass: pass1}),
+            async: true,
+            dataType: "json",
+            success: function (data) {
+                if (data.confirmado) {
+                    $.ajax({
+                        type: 'POST',
+                        url: "/changePass",
+                        data: ({pass : pass3 , id : idUsuario}),
+                        async: true,
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.confirmado) {
+                                toastr["success"]("Contraseña guardada");
+                                $('#editar_pass1').val('');
+                                $('#editar_pass2').val('');
+                                $('#editar_pass3').val('');
+                            } else {
+                                toastr["error"]("No se ha podido guardar la contraseña");
+                            }
+                        }
+                    });
+                } else {
+                    toastr["warning"]("La contraseña introducida es incorrecta");
+                }
+            }
+        });
+    } else {
+        toastr["warning"]("Las contraseñas no coinciden");
+    }
+    
 }
 function Like(idMensaje,idUsuario) {
     $.ajax({
@@ -90,7 +123,6 @@ function Like(idMensaje,idUsuario) {
         async: true,
         dataType: "json",
         success: function (data) {
-            console.log(data);
             $('#like'+data.mensaje).html('<div class="corazon"><i class="bi bi-heart-fill"></i></div><div class="likeTotales">'+data.total+'</div>');
             $('#like'+data.mensaje).attr("onclick","QuitarLike("+data.mensaje+","+data.usuario+")");
         }

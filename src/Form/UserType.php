@@ -17,13 +17,9 @@ class UserType extends AbstractType
     {
         $builder
         ->add('username')
-        // ->add('roles') Comentado ya que no queremos que se asignen los roles desde el formulario
         ->add('email',EmailType::class )
         ->add('password', PasswordType::class)
-           //->add('img')
-            
-            //->add('description')
-            ->add('registrar', SubmitType::class)
+        ->add('registrar', SubmitType::class)
 
         ;
     }

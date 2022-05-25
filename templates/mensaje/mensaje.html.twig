@@ -3,12 +3,12 @@
 <div class="mensaje">
     <div class="perfil">
         {% if userImg == "" %}
-            <div data-bs-toggle="modal" data-bs-target="#Modalimg{{usuarioLogueadoId}}" class="foto_perfil" style="background-image: url(../uploads/img/perfil_defecto.png)">
-                <input type="text" value="uploads/img/perfil_defecto.png" id="src" hidden>
+            <div data-bs-toggle="modal" data-bs-target="#Modalimg{{mensajes.coduser}}" class="foto_perfil" style="background-image: url(../../uploads/img/perfil_defecto.png)">
+                <input type="text" value="../../uploads/img/perfil_defecto.png" id="src" hidden>
             </div>   
         {% else %}
-            <div data-bs-toggle="modal" data-bs-target="#Modalimg{{usuarioLogueadoId}}" class="foto_perfil" style="background-image: url(../uploads/img/{{userImg}})">
-                <input type="text" value="uploads/img/{{userImg}}" id="src" hidden>
+            <div data-bs-toggle="modal" data-bs-target="#Modalimg{{mensajes.coduser}}" class="foto_perfil" style="background-image: url(../../uploads/img/{{userImg}})">
+                <input type="text" value="../../uploads/img/{{userImg}}" id="src" hidden>
             </div>
         {% endif %}
         {% include 'modals/modalimgPerfil.html.twig' %}
@@ -32,8 +32,8 @@
             <div class="texto">{{ mensajes.mensaje }} </div>
                 {% if mensajes.imagen !="" %}
                     <div class="imagen" id="imagenclick">
-                        <img data-bs-toggle="modal" data-bs-target="#Modalimg{{mensajes.id}}" src="../uploads/img/{{mensajes.imagen}}" class="img_mensaje" />
-                        <input type="text" value="../uploads/img/{{mensajes.imagen}}" id="src" hidden>
+                        <img data-bs-toggle="modal" data-bs-target="#Modalimg{{mensajes.id}}" src="../../uploads/img/{{mensajes.imagen}}" class="img_mensaje" />
+                        <input type="text" value="../../uploads/img/{{mensajes.imagen}}" id="src" hidden>
                     </div>
                     {% include 'modals/modalimg.html.twig' %}
                 {% endif %}
@@ -42,7 +42,7 @@
 </div>
 {% endfor %}
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="../js/img.js"></script>
+<script src="../../js/img.js"></script>
 
 
   
