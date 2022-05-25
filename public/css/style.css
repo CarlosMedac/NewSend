@@ -114,35 +114,35 @@ a{
     pointer-events:none !important;
 }
 
-.mensaje{
+.mensaje {
     min-height: 10vh;
     border-bottom: solid #ece0f7 0.5px;
     display: flex;
     cursor: pointer;
 }
-.mensaje:hover{
+.mensaje:hover {
     background-color: #fcf9fc;
 }
-.img_mensaje{
+.img_mensaje {
     max-width: 70%;
     border-radius: 10px;
 }
-.foto_perfil{
-    margin-top: 20px;
+.foto_perfil {
+    cursor: pointer;
+    margin-top: 32px;
     margin-left: 20px;
     height: 50px;
     width: 50px;
-    /* los siguientes valores son independientes del tamaño del círculo */
     background-repeat: no-repeat;
     background-position: 50%;
     border-radius: 50%;
     background-size: 120% auto;
 }
-.contenido{
+.contenido {
     display: flex;
     flex-direction: column;
 }
-.men_cabecera{
+.men_cabecera {
     display: flex;
     align-items: flex-end;
     padding: 18px 20px 5px 0px;
@@ -163,6 +163,7 @@ img{
 .nombre{
     font-size: 20px;
     margin-left: 17px;
+    cursor: pointer;
 }
 .nombre b:hover {
     text-decoration: underline;
@@ -179,6 +180,9 @@ img{
     background-color: transparent;
     padding: 10px;
     border-radius: 50%;
+}
+.opciones i{
+    color: #9a7cb6;
 }
 .opciones:hover{
     background-color: #f3f3f3;
@@ -230,12 +234,14 @@ img{
     color: #7f5aa1;
     padding: 10px;
     border-radius: 50%;
+    margin-top: 2px;
 }
 .subir_img:hover{
     background-color: #f3e8ff;
 }
 .subir_img i{
     font-size: 20px;
+    color: #9a7cb6;
 }
 .separador{
     border-top: solid 1px #ebdef8;
@@ -284,6 +290,7 @@ img{
 
 .interaccion {
     display: flex;
+    align-items: center;
     margin-bottom: 1vh;
 }
 .interaccion i {
@@ -299,7 +306,7 @@ img{
     margin-right: 10vh;
 }
 .icoComentario {
-    padding: 6px 6px 3px 6px;
+    padding: 6px 6px 6px 6px;
     border-radius: 50%;
 }
 .icoComentario:hover {
@@ -319,8 +326,8 @@ img{
     color: #FCB7F8;
     cursor: pointer;
 }
-.corazon{
-    padding: 6px 6px 2px 6px;
+.corazon {
+    padding: 6px 6px 4px 6px;
     border-radius: 50%;
 }
 .corazon:hover {
@@ -383,6 +390,7 @@ img{
     background-position: 50%;
     border-radius: 50%;
     background-size: 120% auto;
+    cursor: pointer;
 }
 .nombre_perfil {
     max-width: 25vh;
@@ -532,4 +540,29 @@ img{
 }
 .cerrarSesion i:hover{
     color: #c09ce2;
+}
+.follow {
+    cursor: pointer;
+}
+.unfollow {
+    width: 60px;
+    padding: 5px 22px 5px 22px !important;
+    cursor: pointer;
+}
+.follow {
+    width: 60px;
+    padding: 5px 22px 5px 22px !important;
+    cursor: pointer;
+}
+.unfollow i{
+    color: #262626;
+    font-size: medium;
+}
+.follow i{
+    color: #262626;
+    font-size: medium;
+}
+#ani_img_seguir{
+    width: 20px;
+    height: 20px;
 }

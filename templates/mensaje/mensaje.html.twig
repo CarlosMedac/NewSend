@@ -3,29 +3,32 @@
 <div class="mensaje">
     <div class="perfil">
         {% if userImg == "" %}
-            <div data-bs-toggle="modal" data-bs-target="#Modalimg{{mensajes.coduser}}" class="foto_perfil" style="background-image: url(../../uploads/img/perfil_defecto.png)">
+            <div onclick="irPerfil({{mensajes.coduser}})" class="foto_perfil" style="background-image: url(../../uploads/img/perfil_defecto.png)">
                 <input type="text" value="../../uploads/img/perfil_defecto.png" id="src" hidden>
             </div>   
         {% else %}
-            <div data-bs-toggle="modal" data-bs-target="#Modalimg{{mensajes.coduser}}" class="foto_perfil" style="background-image: url(../../uploads/img/{{userImg}})">
+            <div onclick="irPerfil({{mensajes.coduser}})" class="foto_perfil" style="background-image: url(../../uploads/img/{{userImg}})">
                 <input type="text" value="../../uploads/img/{{userImg}}" id="src" hidden>
             </div>
         {% endif %}
-        {% include 'modals/modalimgPerfil.html.twig' %}
         <div class="aux" style="height: 77%;"></div>
     </div>
     <div class="contenido">
-        <div class="men_cabecera" onclick="irPerfil({{mensajes.coduser}})">
-            <div class="nombre"><b>{{mensajes.nombreuser}}</b></div>
+        <div class="men_cabecera">
+            <div class="nombre" onclick="irPerfil({{mensajes.coduser}})"><b>{{mensajes.nombreuser}}</b></div>
             <div class="tiempo">{{mensajes.fechapublicacion | date('Y-m-d') }}</div>
             <div class="dropdown show">
                 <button class="opciones" href="#" role="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i id="puntitos" class="bi bi-three-dots"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-                        <button class="dropdown-item" onclick="Eliminar({{mensajes.id}})">Eliminar</button>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <button class="dropdown-item" onclick="irPerfil({{mensajes.coduser}})">Ir perfil</button>
+                        {% if user.Id == mensajes.coduser %}
+                            <button class="dropdown-item" onclick="Eliminar({{mensajes.id}})">Eliminar</button>
+                        {% endif %}
+                        {% if user.Id != mensajes.coduser %}
+                            <a class="dropdown-item" onclick="DejarSeguir({{user.id}},{{mensajes.coduser}},true)">Dejar de seguir</a>
+                        {% endif %}
                 </div>
             </div>
         </div>

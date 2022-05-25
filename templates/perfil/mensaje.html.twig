@@ -3,15 +3,14 @@
 <div class="mensaje">
     <div class="perfil">
          {% if userImg == "" %}
-            <div data-bs-toggle="modal" data-bs-target="#Modalimg{{mensajes.coduser}}" class="foto_perfil" style="background-image: url(../uploads/img/perfil_defecto.png)">
-                <input type="text" value="uploads/img/perfil_defecto.png" id="src" hidden>
+            <div class="foto_perfil" style="background-image: url(../../uploads/img/perfil_defecto.png)">
+                <input type="text" value="../../uploads/img/perfil_defecto.png" id="src" hidden>
             </div>   
         {% else %}
-            <div data-bs-toggle="modal" data-bs-target="#Modalimg{{mensajes.coduser}}" class="foto_perfil" style="background-image: url(../uploads/img/{{userImg}})">
-                <input type="text" value="uploads/img/{{userImg}}" id="src" hidden>
+            <div class="foto_perfil" style="background-image: url(../../uploads/img/{{userImg}})">
+                <input type="text" value="../../uploads/img/{{userImg}}" id="src" hidden>
             </div>
         {% endif %}
-        {% include 'modals/modalimgPerfil.html.twig' %}
         <div class="aux" style="height: 77%;" onclick="irMensaje({{mensajes.id}})"></div>
     </div>
     <div class="contenido">
@@ -23,10 +22,7 @@
                     <i id="puntitos" class="bi bi-three-dots"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-                        <button class="dropdown-item" onclick="irPerfil({{mensajes.coduser}})">Ir perfil</button>
                         <button class="dropdown-item" onclick="Eliminar({{mensajes.id}})">Eliminar</button>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </div>
         </div>
@@ -47,11 +43,11 @@
                    {% set likes = LikeUsuario(usuarioLogueadoId,mensajes.id) %}
                    {% if likes %}
                     <div class="heart" id='like{{mensajes.id}}' onclick="QuitarLike({{mensajes.id}},{{usuarioId}})">
-                        <div class="corazon"><i class="bi bi-heart-fill"></i></div><div class="likeTotales">{{LikesTotales(mensajes.id)}}</div>
+                        <div class="corazon" id="corazon{{mensajes.id}}"><i class="bi bi-heart-fill"></i></div><div class="likeTotales">{{LikesTotales(mensajes.id)}}</div>
                     </div>
                     {% else %}
                     <div class="heart" id='like{{mensajes.id}}'  onclick="Like({{mensajes.id}},{{usuarioId}})">
-                        <div class="corazon"><i id="nolike" class="bi bi-heart"></i></div><div class="likeTotales">{{LikesTotales(mensajes.id)}}</div>
+                        <div class="corazon" id="corazon{{mensajes.id}}"><i id="nolike" class="bi bi-heart"></i></div><div class="likeTotales">{{LikesTotales(mensajes.id)}}</div>
                     </div>
                     {% endif %}
                 </div>

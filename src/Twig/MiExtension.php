@@ -5,6 +5,7 @@ namespace App\Twig;
 use App\Entity\Likes;
 use App\Entity\Mensajes;
 use App\Entity\Respuesta;
+use App\Entity\Seguir;
 use App\Entity\User;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Form\FormRegistryInterface;
@@ -38,6 +39,7 @@ class MiExtension extends AbstractExtension
             new TwigFunction('LikesTotales', [$this, 'LikesTotales']),
             new TwigFunction('ComentariosTotales', [$this, 'ComentariosTotales']),
             new TwigFunction('UserLogin', [$this, 'UserLogin']),
+            new TwigFunction('FollowUsuario', [$this, 'FollowUsuario']),
         ];
     }
 
@@ -55,6 +57,18 @@ class MiExtension extends AbstractExtension
         }
         return $comprobar;
     }
+
+    public function FollowUsuario($userLogued,$idseguir)
+    {
+        $comprobar = FALSE;
+        $em = $this->doctrine->getManager();
+        $seguir = $em->getRepository(Seguir::class)->findBy(array('coduser' => $userLogued, 'codseguido' => $idseguir));
+        if (empty($seguir)) {
+            $comprobar = TRUE;
+        }
+        return $comprobar;
+    }
+
 
     public function LikesTotales($codMensaje)
     {

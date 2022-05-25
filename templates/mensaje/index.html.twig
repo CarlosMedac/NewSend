@@ -35,11 +35,11 @@
                             <div class="respuesta" style="margin-top:25px;">
                                 <div class="perfil">
                                     {% if userComImg == "" %}
-                                        <div data-bs-toggle="modal" data-bs-target="#Modalimg{{comentarios.coduser}}" class="foto_perfil" style="background-image: url(../../uploads/img/perfil_defecto.png);margin-top:0;">
+                                        <div onclick="irPerfil({{comentarios.coduser}})" class="foto_perfil" style="background-image: url(../../uploads/img/perfil_defecto.png);margin-top:0;">
                                             <input type="text" value="../../uploads/img/perfil_defecto.png" id="src" hidden>
                                         </div>   
                                     {% else %}
-                                        <div data-bs-toggle="modal" data-bs-target="#Modalimg{{comentarios.coduser}}" class="foto_perfil" style="background-image: url(../../uploads/img/{{userComImg}});margin-top:0;">
+                                        <div onclick="irPerfil({{comentarios.coduser}})" class="foto_perfil" style="background-image: url(../../uploads/img/{{userComImg}});margin-top:0;">
                                             <input type="text" value="../../uploads/img/{{userComImg}}" id="src" hidden>
                                         </div>
                                     {% endif %}

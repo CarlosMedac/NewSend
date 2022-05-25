@@ -4,7 +4,7 @@ mycontent(mypage);
 mycontentPerfil(mypageperfil);
 
 $(window).scroll(function (){
-    if($(window).scrollTop() + $(window).height() >= $(document).height()){
+    if(document.body.scrollHeight - window.innerHeight === window.scrollY){
         mypage++;
         mypageperfil++;
         mycontent(mypage);
@@ -113,7 +113,49 @@ function checkPass(idUsuario) {
     } else {
         toastr["warning"]("Las contraseñas no coinciden");
     }
-    
+}
+function Seguir(userLogued,idseguir) {
+    $.ajax({
+        type: 'POST',
+        url: "/follow",
+        data: ({userLogued: userLogued,idseguir: idseguir}),
+        async: true,
+        dataType: "json",
+        beforeSend: function ( xhr ) {
+            $('#seguir').html('<img src="../../uploads/img/ajax-loader.gif" id="ani_img_seguir"/>');
+         },
+        success: function (data) {
+            $('#seguir').html('<i class="bi bi-person-check-fill"></i>');
+            var numSeguidores = $('#seguidores').text();
+            $('#seguidores').html(parseInt(numSeguidores)+1);
+            $('#seguir').attr('onclick','DejarSeguir('+userLogued+','+idseguir+')');
+        }
+    });
+}
+
+function DejarSeguir(userLogued,idseguir,home) {
+    $.ajax({
+        type: 'POST',
+        url: "/unfollow",
+        data: ({userLogued: userLogued,idseguir: idseguir}),
+        async: true,
+        dataType: "json",    
+        beforeSend: function ( xhr ) {
+            if (home != true) {
+                $('#seguir').html('<img src="../../uploads/img/ajax-loader.gif" id="ani_img_seguir"/>');
+            }
+         },
+        success: function (data) {
+            if (home) {
+                window.location.reload();
+            } else {
+            $('#seguir').html('Seguir');
+            var numSeguidores = $('#seguidores').text();
+            $('#seguidores').html(parseInt(numSeguidores)-1);
+            $('#seguir').attr('onclick','Seguir('+userLogued+','+idseguir+')');
+            }  
+        }
+    });
 }
 function Like(idMensaje,idUsuario) {
     $.ajax({
@@ -122,6 +164,9 @@ function Like(idMensaje,idUsuario) {
         data: ({idMensaje: idMensaje,idUsuario: idUsuario}),
         async: true,
         dataType: "json",
+        beforeSend: function () {
+            $('#corazon'+idMensaje).html('<i class="bi bi-heart-fill"></i>');
+         },
         success: function (data) {
             $('#like'+data.mensaje).html('<div class="corazon"><i class="bi bi-heart-fill"></i></div><div class="likeTotales">'+data.total+'</div>');
             $('#like'+data.mensaje).attr("onclick","QuitarLike("+data.mensaje+","+data.usuario+")");
@@ -135,8 +180,11 @@ function QuitarLike(idMensaje,idUsuario) {
         data: ({idMensaje: idMensaje,idUsuario: idUsuario}),
         async: true,
         dataType: "json",
+        beforeSend: function () {
+            $('#corazon'+idMensaje).html('<i id="nolike" class="bi bi-heart"></i>');
+         },
         success: function (data) {
-            $('#like'+data.mensaje).html('<div class="corazon"><i id="nolike" class="bi bi-heart"></i></div><div class="likeTotales">'+data.total+'</div>');
+            $('#like'+data.mensaje).html('<div class="corazon" id="corazon'+idMensaje+'"><i id="nolike" class="bi bi-heart"></i></div><div class="likeTotales">'+data.total+'</div>');
             $('#like'+data.mensaje).attr("onclick","Like("+data.mensaje+","+data.usuario+")");
         }
     });

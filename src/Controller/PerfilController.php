@@ -6,6 +6,7 @@ use App\Entity\Mensajes;
 use App\Entity\Seguir;
 use App\Entity\User;
 use App\Form\MensajeType;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 use Exception;
@@ -128,5 +129,51 @@ class PerfilController extends AbstractController
             ));
         }
 
+    }
+
+
+    /**
+     * @Route("/follow", name="follow")
+     */
+    public function follow(Request $request, ManagerRegistry $doctrine, EntityManagerInterface $entityManager){
+        if ($request->isXmlHttpRequest()) {
+            try{
+                    $userLogued = $request->request->get('userLogued');
+                    $idseguir = $request->request->get('idseguir');
+                    $em = $doctrine->getManager();
+                    $seguir = new Seguir();
+                    $seguir->setCoduser($userLogued);
+                    $seguir->setCodseguido($idseguir);
+                    $em->persist($seguir);
+                    $em->flush();  
+                    return new JsonResponse(['confirmado'=>'OK']);
+            } catch (Exception $e){
+                return new JsonResponse(['confirmado'=>'No se ha hecho']);
+            }   
+        } else {
+            return new JsonResponse(['confirmado'=>"KO"]);
+        }
+    }
+
+    /**
+     * @Route("/unfollow", name="unfollow")
+     */
+    public function unfollow(Request $request, ManagerRegistry $doctrine, EntityManagerInterface $entityManager){
+        if ($request->isXmlHttpRequest()) {
+            try{
+                    $userLogued = $request->request->get('userLogued');
+                    $idseguir = $request->request->get('idseguir');
+                    $em = $doctrine->getManager();
+                    $seguir = $doctrine->getRepository(Seguir::class)->findBy(array('coduser' => $userLogued, 'codseguido' => $idseguir));
+                    foreach ($seguir as $seguir) {};
+                    $em->remove($seguir);
+                    $em->flush();
+                    return new JsonResponse(['confirmado'=>'Eliminado']);
+            } catch (Exception $e){
+                return new JsonResponse(['confirmado'=>$idseguir]);
+            }   
+        } else {
+            return new JsonResponse(['confirmado'=>"KO"]);
+        }
     }
 }

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\SeguirRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=SeguirRepository::class)
@@ -13,7 +14,7 @@ class Seguir
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer",)
      */
     private $id;
 
