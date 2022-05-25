@@ -1,0 +1,6 @@
+.tarjetaUsuario{
+    min-height: 10vh;
+    border-bottom: solid #ece0f7 0.5px;
+    display: flex;
+    cursor: pointer;
+}

@@ -6,9 +6,10 @@
         </div>  
         <div class="home">
             <div class="br-arr"><h3 class="h3-arr">{{pagina}}</h3></div>
+            <input id="cod_user" type="text" value="{{usuarioLogueadoId}}" hidden/>
             <div class="put_mess">
                 {% if mensajes != " "%}
-                     {% include 'home/mensaje.html.twig' %}
+                     {% include 'home/mensaje.html.twig' %}              
                 {% endif %}
             </div>
             <div class="text-center" id="loading">

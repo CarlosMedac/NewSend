@@ -1,0 +1,39 @@
+.tarjetaUsuario{
+    min-height: 10vh;
+    border-bottom: solid #ece0f7 0.5px;
+    display: flex;
+    cursor: pointer;
+}
+#formBUSQUEDA{
+    width: 50%;
+    display: flex;
+}
+.barraBusqueda{
+    width: 65%;
+    background-color: #7f5aa1;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    color:white
+}
+.parteSuperior{
+    width: 100%;
+}
+i{
+    color:white
+}
+.required{
+    display: none;
+}
+#barra_busqueda_username{
+    display: flex;
+    width: 300px;
+    margin-top: 32%;
+    height: 50px;
+    border: none;
+    font-size: 10pt;
+    float: left;
+    color: #63717f;
+    padding-left: 45px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+}
