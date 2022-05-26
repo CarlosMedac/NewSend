@@ -35,83 +35,83 @@ $( "#formBUSQUEDA" ).keyup(function() {
   function visitarPerfil(idPerfil) {
     window.location.href = "/perfil/"+idPerfil;
 }
-function DejarSeguir(userLogued,idseguir) {
-    $.ajax({
-        type: 'POST',
-        url: "/unfollow",
-        data: ({userLogued: userLogued,idseguir: idseguir}),
-        async: true,
-        dataType: "json",    
-        beforeSend: function ( xhr ) {
+// function DejarSeguir(userLogued,idseguir) {
+//     $.ajax({
+//         type: 'POST',
+//         url: "/unfollow",
+//         data: ({userLogued: userLogued,idseguir: idseguir}),
+//         async: true,
+//         dataType: "json",    
+//         beforeSend: function ( xhr ) {
             
-            $('[name='+idseguir+']').html('<img src="../../uploads/img/ajax-loader.gif" id="ani_img_seguir"/>');
+//             $('[name='+idseguir+']').html('<img src="../../uploads/img/ajax-loader.gif" id="ani_img_seguir"/>');
             
-         },
-        success: function (data) {
-            var textoBuscador= $("#barra_busqueda_username").val();
+//          },
+//         success: function (data) {
+//             var textoBuscador= $("#barra_busqueda_username").val();
             
-        $.ajax({
-            type: 'POST',
-            url: "/buscador",
-            data: {"userSolicitado":textoBuscador},
-            success: function (data) {
-                console.log( data );
-                console.log("Ajax Success :)"); 
-                if(data !=""){
-                    $("#usuariosEncontrados").html("");
+//         $.ajax({
+//             type: 'POST',
+//             url: "/buscador",
+//             data: {"userSolicitado":textoBuscador},
+//             success: function (data) {
+//                 console.log( data );
+//                 console.log("Ajax Success :)"); 
+//                 if(data !=""){
+//                     $("#usuariosEncontrados").html("");
                 
-                }         
-                $('#usuariosEncontrados').append(data);
+//                 }         
+//                 $('#usuariosEncontrados').append(data);
 
 
-            },
-             error: function (xhr,responseText, ajaxOptions, thrownError) {
-                console.log(xhr.responseText);
-                console.log(thrownError);
-                console.log(ajaxOptions);
-              }
+//             },
+//              error: function (xhr,responseText, ajaxOptions, thrownError) {
+//                 console.log(xhr.responseText);
+//                 console.log(thrownError);
+//                 console.log(ajaxOptions);
+//               }
           
-        });
-        }
-    });
-}
+//         });
+//         }
+//     });
+// }
 
-function Seguir(userLogued,idseguir) {
-    $.ajax({
-        type: 'POST',
-        url: "/follow",
-        data: ({userLogued: userLogued,idseguir: idseguir}),
-        async: true,
-        dataType: "json",
-        beforeSend: function ( xhr ) {
-            $('[name='+idseguir+']').html('<img src="../../uploads/img/ajax-loader.gif" id="ani_img_seguir"/>');
-         },
-        success: function (data) {
-            var textoBuscador= $("#barra_busqueda_username").val();
+// function Seguir(userLogued,idseguir) {
+//     $.ajax({
+//         type: 'POST',
+//         url: "/follow",
+//         data: ({userLogued: userLogued,idseguir: idseguir}),
+//         async: true,
+//         dataType: "json",
+//         beforeSend: function ( xhr ) {
+//             $('[name='+idseguir+']').html('<img src="../../uploads/img/ajax-loader.gif" id="ani_img_seguir"/>');
+//          },
+//         success: function (data) {
+//             var textoBuscador= $("#barra_busqueda_username").val();
 
-        $.ajax({
-            type: 'POST',
-            url: "/buscador",
-            data: {"userSolicitado":textoBuscador},
-            success: function (data) {
-                console.log( data );
-                console.log("Ajax Success :)"); 
-                if(data !=""){
-                    $("#usuariosEncontrados").html("");
+//         $.ajax({
+//             type: 'POST',
+//             url: "/buscador",
+//             data: {"userSolicitado":textoBuscador},
+//             success: function (data) {
+//                 console.log( data );
+//                 console.log("Ajax Success :)"); 
+//                 if(data !=""){
+//                     $("#usuariosEncontrados").html("");
                 
-                }         
-                $('#usuariosEncontrados').append(data);
+//                 }         
+//                 $('#usuariosEncontrados').append(data);
 
 
-            },
-             error: function (xhr,responseText, ajaxOptions, thrownError) {
-                console.log(xhr.responseText);
-                console.log(thrownError);
-                console.log(ajaxOptions);
-              }
+//             },
+//              error: function (xhr,responseText, ajaxOptions, thrownError) {
+//                 console.log(xhr.responseText);
+//                 console.log(thrownError);
+//                 console.log(ajaxOptions);
+//               }
           
-        });
+//         });
     
-        }
-    });
-}
+//         }
+//     });
+// }
