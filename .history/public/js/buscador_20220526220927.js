@@ -38,7 +38,7 @@ $( "#formBUSQUEDA" ).keyup(function() {
   function visitarPerfil(idPerfil) {
     window.location.href = "/perfil/"+idPerfil;
 }
-function DejarSeguirBuscador(userLogued,idseguir) {
+function DejarSeguir(userLogued,idseguir) {
     $.ajax({
         type: 'POST',
         url: "/unfollow",
@@ -79,7 +79,7 @@ function DejarSeguirBuscador(userLogued,idseguir) {
     });
 }
 
-function SeguirBuscador(userLogued,idseguir) {
+function Seguir(userLogued,idseguir) {
     $.ajax({
         type: 'POST',
         url: "/follow",
