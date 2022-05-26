@@ -20,33 +20,38 @@ class Subrespuesta
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $codrespuesta;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     private $codmensaje;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $respuesta;
+    private $respuestasub;
+     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $coduser;
+     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $nombreuser;
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $fechapublicacion;
 
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $imagen;
+    
+    public function __construct()
+    {
+        $this->fechapublicacion= new \DateTime();
+    }
+    
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getCodrespuesta(): ?string
-    {
-        return $this->codrespuesta;
-    }
-
-    public function setCodrespuesta(string $codrespuesta): self
-    {
-        $this->codrespuesta = $codrespuesta;
-
-        return $this;
     }
 
     public function getCodmensaje(): ?string
@@ -61,14 +66,59 @@ class Subrespuesta
         return $this;
     }
 
-    public function getRespuesta(): ?string
+    public function getRespuestaSub(): ?string
     {
-        return $this->respuesta;
+        return $this->respuestasub;
     }
 
-    public function setRespuesta(string $respuesta): self
+    public function setRespuestaSub(string $respuestasub): self
     {
-        $this->respuesta = $respuesta;
+        $this->respuestasub = $respuestasub;
+
+        return $this;
+    }
+    public function getCoduser(): ?string
+    {
+        return $this->coduser;
+    }
+
+    public function setCoduser(string $coduser): self
+    {
+        $this->coduser = $coduser;
+
+        return $this;
+    }
+    public function getNombreUser(): ?string
+    {
+        return $this->nombreuser;
+    }
+
+    public function setNombreUser(string $nombreuser): self
+    {
+        $this->nombreuser = $nombreuser;
+
+        return $this;
+    }
+    public function getFechaPublicacion(): ?\DateTimeInterface
+    {
+        return $this->fechapublicacion;
+    }
+
+    public function setFechaPublicacion(\DateTimeInterface $fechapublicacion): self
+    {
+        $this->fechapublicacion = $fechapublicacion;
+
+        return $this;
+    }
+
+    public function getImagen()
+    {
+        return $this->imagen;
+    }
+
+    public function setImagen(String $imagen)
+    {
+        $this->imagen = $imagen;
 
         return $this;
     }

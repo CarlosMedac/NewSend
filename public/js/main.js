@@ -189,6 +189,38 @@ function QuitarLike(idMensaje,idUsuario) {
         }
     });
 }
+function LikeRespuesta(idMensaje,idUsuario) {
+    $.ajax({
+        type: 'POST',
+        url: "/LikeRespuesta",
+        data: ({idMensaje: idMensaje,idUsuario: idUsuario}),
+        async: true,
+        dataType: "json",
+        beforeSend: function () {
+            $('#corazon'+idMensaje).html('<i class="bi bi-heart-fill"></i>');
+         },
+        success: function (data) {
+            $('#like'+data.mensaje).html('<div class="corazon"><i class="bi bi-heart-fill"></i></div><div class="likeTotales">'+data.total+'</div>');
+            $('#like'+data.mensaje).attr("onclick","QuitarLikeRespuesta("+data.mensaje+","+data.usuario+")");
+        }
+    });
+}
+function QuitarLikeRespuesta(idMensaje,idUsuario) {
+    $.ajax({
+        type: 'POST',
+        url: "/QuitarLikeRespuesta",
+        data: ({idMensaje: idMensaje,idUsuario: idUsuario}),
+        async: true,
+        dataType: "json",
+        beforeSend: function () {
+            $('#corazon'+idMensaje).html('<i id="nolike" class="bi bi-heart"></i>');
+         },
+        success: function (data) {
+            $('#like'+data.mensaje).html('<div class="corazon" id="corazon'+idMensaje+'"><i id="nolike" class="bi bi-heart"></i></div><div class="likeTotales">'+data.total+'</div>');
+            $('#like'+data.mensaje).attr("onclick","LikeRespuesta("+data.mensaje+","+data.usuario+")");
+        }
+    });
+}
 function Eliminar(id) {
     $.ajax({
         type: 'POST',
@@ -202,6 +234,23 @@ function Eliminar(id) {
     });
 }
 $('#mensaje_imagen').on("change",function(e){
+    let reader = new FileReader();
+
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = function(){
+        let preview = document.getElementById('preview'),
+                image = document.createElement('img');
+                image.setAttribute('class','preview-img');
+
+        image.src = reader.result;
+
+        preview.innerHTML = '';
+        preview.innerHTML += '<button type="reset" id="cancel" class="btn_elimg" onclick="Quitarfoto()"><i class="bi bi-x-lg"></i></button>'
+        preview.append(image);
+        
+    };
+});
+$('#comentarios_imagen').on("change",function(e){
     let reader = new FileReader();
 
     reader.readAsDataURL(e.target.files[0]);
@@ -263,6 +312,21 @@ function irPerfil (idPerfil) {
 function irMensaje (idMensaje) {
     window.location.href = "/mensaje/"+idMensaje;
 }
+function IrComentario (idComentario) {
+    window.location.href = "/comentario/"+idComentario;
+}
+function IrHome () {
+    window.location.href = "/home";
+}
 $('.imagen_mensaje').on("click",function(e){
     e.preventDefault();
 });
+
+function mostrarMas(id) {
+    $('#subrespuestas'+id).slideToggle('fast');
+    if ($('#mostrarMasTexto'+id).text() == 'Mostrar menos') {
+        $('#mostrarMasTexto'+id).html('Mostrar respuestas');
+    } else {
+        $('#mostrarMasTexto'+id).html('Mostrar menos');
+    }  
+}

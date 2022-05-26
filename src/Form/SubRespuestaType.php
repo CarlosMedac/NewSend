@@ -2,23 +2,20 @@
 
 namespace App\Form;
 
-use App\Entity\Respuesta;
+use App\Entity\Subrespuesta;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ComentariosType extends AbstractType
+class SubRespuestaType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            // ->add('codrespuesta')
             // ->add('codmensaje')
-            ->add('respuesta', TextareaType::class, ['label' => ' ' ])
-            ->add('imagen', FileType::class, ['label' => false ,'mapped' => false,'required' => false])
+            ->add('respuestasub', TextareaType::class, ['label' => ' ' ])
             ->add('responder', SubmitType::class)
         ;
     }
@@ -26,7 +23,7 @@ class ComentariosType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Respuesta::class,
+            'data_class' => Subrespuesta::class,
         ]);
     }
 }

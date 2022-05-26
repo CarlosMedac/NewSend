@@ -3,9 +3,11 @@
 namespace App\Twig;
 
 use App\Entity\Likes;
+use App\Entity\LikesRespuesta;
 use App\Entity\Mensajes;
 use App\Entity\Respuesta;
 use App\Entity\Seguir;
+use App\Entity\Subrespuesta;
 use App\Entity\User;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Form\FormRegistryInterface;
@@ -38,6 +40,10 @@ class MiExtension extends AbstractExtension
             new TwigFunction('LikeUsuario', [$this, 'LikeUsuario']),
             new TwigFunction('LikesTotales', [$this, 'LikesTotales']),
             new TwigFunction('ComentariosTotales', [$this, 'ComentariosTotales']),
+            new TwigFunction('LikeUsuarioRespuesta', [$this, 'LikeUsuarioRespuesta']),
+            new TwigFunction('ComentariosTotalesRespuesta', [$this, 'ComentariosTotalesRespuesta']),
+            new TwigFunction('ComentariosRespuesta', [$this, 'ComentariosRespuesta']),
+            new TwigFunction('LikesTotalesRespuesta', [$this, 'LikesTotalesRespuesta']),
             new TwigFunction('UserLogin', [$this, 'UserLogin']),
             new TwigFunction('FollowUsuario', [$this, 'FollowUsuario']),
         ];
@@ -84,6 +90,44 @@ class MiExtension extends AbstractExtension
         $mensaje = $em->getRepository(Respuesta::class)->findBy(array('codmensaje'=>$codMensaje));
         $comentariosTotales = count($mensaje);
         return $comentariosTotales;
+    }
+
+    public function LikeUsuarioRespuesta($codUsuario,$codMensaje)
+    {
+        $comprobar = FALSE;
+        $em = $this->doctrine->getManager();
+        $mensaje = $em->getRepository(LikesRespuesta::class)->findBy(array('codigoMensaje'=>$codMensaje));
+        $mensajeUsuario=[];
+        foreach ($mensaje as $k => $mensaje) {
+            $mensajeUsuario[$k]=$mensaje->getCodigoUser();
+        }
+        if (in_array(strval($codUsuario),$mensajeUsuario)) {
+            $comprobar = TRUE;
+        }
+        return $comprobar;
+    }
+
+    public function LikesTotalesRespuesta($codMensaje)
+    {
+        $em = $this->doctrine->getManager();
+        $mensaje = $em->getRepository(LikesRespuesta::class)->findBy(array('codigoMensaje'=>$codMensaje));
+        $likesTotales = count($mensaje);
+        return $likesTotales;
+    }
+
+    public function ComentariosTotalesRespuesta($codMensaje)
+    {
+        $em = $this->doctrine->getManager();
+        $mensaje = $em->getRepository(Subrespuesta::class)->findBy(array('codmensaje'=>$codMensaje));
+        $comentariosTotales = count($mensaje);
+        return $comentariosTotales;
+    }
+
+    public function ComentariosRespuesta($codMensaje)
+    {
+        $em = $this->doctrine->getManager();
+        $mensaje = $em->getRepository(Subrespuesta::class)->findBy(array('codmensaje'=>$codMensaje));
+        return $mensaje;
     }
 
     public function UserLogin($codUser)

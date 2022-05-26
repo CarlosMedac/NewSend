@@ -7,7 +7,7 @@
         </div>  
         <div class="home"> 
             <input id="cod_user" type="text" value="{{user.Id}}" hidden/>
-            <div class="br-arr"><h3 class="h3-arr">Send</h3></div>
+            <div class="br-arr"><div class="atras" onclick="IrHome()"><i class="bi bi-arrow-left"></i></div><h3 class="h3-arr">Send</h3></div>
                 {% if mensajes != " "%}
                      {% include 'mensaje/mensaje.html.twig' %}
                 {% endif %}
@@ -15,47 +15,149 @@
                             <div class="my-custom-class-for-errors">
                                 {{ form_errors(formulario) }}
                             </div>
-                            <div class="crear_comentario">
+                            <div class="mensaje_arriba">
                                     {% if user.img == "" %}
-                                        <div data-bs-toggle="modal" data-bs-target="#Modalimg{{user.Id}}" class="foto_perfil" style="margin-right: 10px;background-image: url(../../uploads/img/perfil_defecto.png)">
+                                        <div class="foto_perfil" style="margin-right: 10px;background-image: url(../../uploads/img/perfil_defecto.png)">
                                             <input type="text" value="../../uploads/img/perfil_defecto.png" id="src" hidden>
                                         </div>   
                                     {% else %}
-                                        <div data-bs-toggle="modal" data-bs-target="#Modalimg{{user.Id}}" class="foto_perfil" style="margin-right: 10px;background-image: url(../../uploads/img/{{user.img}})">
+                                        <div class="foto_perfil" style="margin-right: 10px;background-image: url(../../uploads/img/{{user.img}})">
                                             <input type="text" value="../../uploads/img/{{user.img}}" id="src" hidden>
                                         </div>
                                     {% endif %}
-                                    {{ form_row(formulario.respuesta, {'attr': {'class': 'mensaje_texto','maxlength': '255','placeholder':'Escribe algo' }} ) }}
+                                    {{ form_row(formulario.respuesta, {'attr': {'class': 'mensaje_texto','maxlength': '255','placeholder':'Escribe algo' }} ) }} 
+                            </div>
+                            <div class="row">
+                                    <div id="preview" class="imagen2"></div>
+                                    <div class="aux">
+                                    {# <div class="separador"></div> #}
+                                    </div>
+                                    <div class="btn-send">
+                                    <div class="imagenformulario">
+                                        {{ form_row(formulario.imagen, {'attr': {'style': 'display:none'}}) }}
+                                        <label for="comentarios_imagen">
+                                            <figure class="subir_img">
+                                                    <i class="bi bi-image"></i>
+                                            </figure>
+                                        </label>
+                                    </div>
                                     {{form_row(formulario.responder,{'attr': {'class': 'boton_comentar'}})}}
+                                    </div>
                             </div>
                         {{ form_end(formulario) }}
-                        <div>
+                          
+                        
                         {% for comentarios in comentarios %}
+                        {% set comensub = false %}
+                          {% set comen = ComentariosRespuesta(comentarios.id) %}
+                            {% for comen in comen %}
+                                {% if comen != "" %}
+                                {% set comensub = true %}
+                                {% endif %}
+                            {% endfor %}
                         {% set userComImg = UserLogin(comentarios.coduser) %}
-                            <div class="respuesta" style="margin-top:25px;">
+                        <div class="mensajeCompleto">
+                            {% if comensub == true %}
+                                <div class="mensaje" style="border-bottom:none !important;">
+                                <div class="perfil" style="display: flex;flex-direction: column-reverse;align-items: center;">
+                                <div style="height: 100%;border: solid #DBDBDB 0.5px ;margin-left:20px;"></div>
+                            {% else %}
+                                <div class="mensaje" style="border-top: solid #ece0f7 0.5px;">
                                 <div class="perfil">
-                                    {% if userComImg == "" %}
-                                        <div onclick="irPerfil({{comentarios.coduser}})" class="foto_perfil" style="background-image: url(../../uploads/img/perfil_defecto.png);margin-top:0;">
-                                            <input type="text" value="../../uploads/img/perfil_defecto.png" id="src" hidden>
-                                        </div>   
+                            {% endif %}
+                                        {% if userComImg == "" %}
+                                            <div onclick="irPerfil({{comentarios.coduser}})" class="foto_perfil" style="margin-top: 24px;padding: 20px;background-image: url(../../uploads/img/perfil_defecto.png)">
+                                                <input type="text" value="../../uploads/img/perfil_defecto.png" id="src" hidden>
+                                            </div>   
+                                        {% else %}
+                                            <div onclick="irPerfil({{comentarios.coduser}})" class="foto_perfil" style="margin-top: 24px;padding: 20px;background-image: url(../../uploads/img/{{userComImg}})">
+                                                <input type="text" value="../../uploads/img/{{userComImg}}" id="src" hidden>
+                                            </div>
+                                        {% endif %}
+                                </div>
+                                <div class="aux" style="height: 77%;"></div>
+                                <div class="contenido">
+                                        <div class="men_cabecera" onclick="irPerfil({{comentarios.coduser}})">
+                                            <div class="nombre"><b>{{comentarios.nombreuser}}</b></div>
+                                            <div class="tiempo">{{comentarios.fechapublicacion | date("g:i") }}h</div>
+                                        </div>
+                                        <div class="texto">
+                                            {{comentarios.respuesta}}
+                                        </div>
+                                        {% if comentarios.imagen !="" %}
+                                            <div class="imagen" id="imagenclick">
+                                                <img data-bs-toggle="modal" data-bs-target="#ModalimgComen{{comentarios.id}}" src="../uploads/img/{{comentarios.imagen}}" class="img_mensaje" />
+                                                <input type="text" value="../uploads/img/{{comentarios.imagen}}" id="src" hidden>
+                                            </div>
+                                            {% include 'modals/modalimgComentarios.html.twig' %}
+                                        {% endif %}
+                                    <div class="interaccion">
+                                        <div onclick="IrComentario({{comentarios.id}},{{id}})">
+                                            <div class="interComen">
+                                                <div class="icoComentario"><i style="color:#9865C6" class="bi bi-chat"></i></div><div class="likeTotales">{{ComentariosTotalesRespuesta(comentarios.id)}}</div>
+                                            </div>
+                                        </div>
+                                    {% set likes = LikeUsuarioRespuesta(user.Id,comentarios.id) %}
+                                    {% if likes %}
+                                        <div class="heart" id='like{{comentarios.id}}' onclick="QuitarLikeRespuesta({{comentarios.id}},{{user.Id}})">
+                                            <div class="corazon" id="corazon{{comentarios.id}}"><i class="bi bi-heart-fill"></i></div><div class="likeTotales">{{LikesTotalesRespuesta(comentarios.id)}}</div>
+                                            
+                                        </div>
                                     {% else %}
-                                        <div onclick="irPerfil({{comentarios.coduser}})" class="foto_perfil" style="background-image: url(../../uploads/img/{{userComImg}});margin-top:0;">
-                                            <input type="text" value="../../uploads/img/{{userComImg}}" id="src" hidden>
+                                        <div class="heart" id='like{{comentarios.id}}'  onclick="LikeRespuesta({{comentarios.id}},{{user.Id}})">
+                                            <div class="corazon" id="corazon{{comentarios.id}}"><i id="nolike" class="bi bi-heart"></i></div><div class="likeTotales">{{LikesTotalesRespuesta(comentarios.id)}}</div>
                                         </div>
                                     {% endif %}
+                                    </div>
+                                </div>             
+                            </div>
+                            {% if comensub == true %}
+                                <div class="mostrarMas" onclick="mostrarMas({{comentarios.id}})">
+                                        <div style="border: solid #DBDBDB 0.5px ;margin-left:20px;"></div>
+                                        <div class="mostrarMasTexto" id="mostrarMasTexto{{comentarios.id}}">Mostrar respuestas</div>
                                 </div>
-                                <div class="contenido">
-                                    <div class="men_cabecera" style="padding:0;" onclick="irPerfil({{comentarios.coduser}})">
-                                        <div class="nombre"><b>{{comentarios.nombreuser}}</b></div>
-                                        <div class="tiempo">{{comentarios.fechapublicacion | date("g:i") }}h</div>
-                                    </div>
-                                    <div class="texto">
-                                        {{comentarios.respuesta}}
-                                    </div>
+                            {% endif %}
+                            <div id="subrespuestas{{comentarios.id}}" style="display:none;">
+                            {% set k = 0 %}
+                                    {% for comen in comen %}
+                                        {% set useResImg = UserLogin(comen.coduser) %}
+                                        {% if comen != "" %}
+                                        <div class="mensaje" style="border:none">
+                                            <div class="perfil" style="display: flex;flex-direction: column-reverse;align-items: center;">
+                                            {% if loop.index < loop.length %}
+                                            <div style="height: 100%;border: solid #DBDBDB 0.5px ;margin-left:20px;"></div>
+                                            {% else %}
+                                            <div style="height: 100%;margin-left:20px;"></div>    
+                                            {% endif %}
+                                                    {% if useResImg == "" %}
+                                                        <div onclick="irPerfil({{comen.coduser}})" class="foto_perfil" style="padding: 25px;margin-top: 0px;background-image: url(../../uploads/img/perfil_defecto.png)">
+                                                            <input type="text" value="../../uploads/img/perfil_defecto.png" id="src" hidden>
+                                                        </div>   
+                                                    {% else %}
+                                                        <div onclick="irPerfil({{comen.coduser}})" class="foto_perfil" style="padding: 25px;margin-top: 0px;background-image: url(../../uploads/img/{{useResImg}})">
+                                                            <input type="text" value="../../uploads/img/{{useResImg}}" id="src" hidden>
+                                                        </div>
+                                                    {% endif %}                                           
+                                            <div style="height: 100%;border: solid #DBDBDB 0.5px ;margin-left:20px;"></div>
+                                            </div>
+                                            <div class="contenido">
+                                                <div class="men_cabecera" onclick="irPerfil({{comen.coduser}})">
+                                                    <div class="nombre"><b>{{comen.nombreuser}}</b></div>
+                                                    <div class="tiempo">{{comen.fechapublicacion | date("g:i") }}h</div>
+                                                </div>
+                                                <div class="texto">
+                                                    {{comen.respuestasub}}
+                                                </div>
+                                            </div>
+                                        </div>       
+                                        {% endif %}
+                                    {% endfor %}
                                 </div>
                             </div>
                         {% endfor %}
-                        </div>
+                    
+                    {#Modal#}
+                    
         </div>
         
 </div>
