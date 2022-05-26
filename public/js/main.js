@@ -305,7 +305,12 @@ String.prototype.isEmpty = function() {
     return (this.length === 0 || !this.trim());
 };
 
-
+function seguidores (idPerfil) {
+    window.location.href = "/perfil/seguidores/"+idPerfil;
+}
+function seguidos (idPerfil) {
+    window.location.href = "/perfil/seguidos/"+idPerfil;
+}
 function irPerfil (idPerfil) {
     window.location.href = "/perfil/"+idPerfil;
 }
@@ -329,4 +334,48 @@ function mostrarMas(id) {
     } else {
         $('#mostrarMasTexto'+id).html('Mostrar menos');
     }  
+}
+
+function SeguirSeguidos(userLogued,idseguir) {
+    $.ajax({
+        type: 'POST',
+        url: "/follow",
+        data: ({userLogued: userLogued,idseguir: idseguir}),
+        async: true,
+        dataType: "json",
+        beforeSend: function ( xhr ) {
+            $('#seguir'+idseguir).html('<img src="../../uploads/img/ajax-loader.gif" id="ani_img_seguir"/>');
+         },
+        success: function (data) {
+            $('#seguir'+idseguir).html('<i class="bi bi-person-check-fill"></i>');
+            var numSeguidores = $('#seguidores').text();
+            $('#seguidores').html(parseInt(numSeguidores)+1);
+            $('#seguir'+idseguir).attr('onclick','DejarSeguirSeguidos('+userLogued+','+idseguir+')');
+        }
+    });
+}
+
+function DejarSeguirSeguidos(userLogued,idseguir,home) {
+    $.ajax({
+        type: 'POST',
+        url: "/unfollow",
+        data: ({userLogued: userLogued,idseguir: idseguir}),
+        async: true,
+        dataType: "json",    
+        beforeSend: function ( xhr ) {
+            if (home != true) {
+                $('#seguir'+idseguir).html('<img src="../../uploads/img/ajax-loader.gif" id="ani_img_seguir"/>');
+            }
+         },
+        success: function (data) {
+            if (home) {
+                window.location.reload();
+            } else {
+            $('#seguir'+idseguir).html('Seguir');
+            var numSeguidores = $('#seguidores').text();
+            $('#seguidores').html(parseInt(numSeguidores)-1);
+            $('#seguir'+idseguir).attr('onclick','SeguirSeguidos('+userLogued+','+idseguir+')');
+            }  
+        }
+    });
 }
