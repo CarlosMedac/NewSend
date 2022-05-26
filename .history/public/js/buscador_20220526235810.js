@@ -11,6 +11,8 @@ $( "#formBUSQUEDA" ).keyup(function() {
             url: "/buscador",
             data: {"userSolicitado":textoBuscador},
             success: function (data) {
+                console.log( data );
+                console.log("Ajax Success :)"); 
                 if(data !=""){
                     $("#usuariosEncontrados").html("");
                 
@@ -33,12 +35,11 @@ $( "#formBUSQUEDA" ).keyup(function() {
     window.location.href = "/registrarse";
 }IrLogIn
 function  IrLogIn() {
-    window.location.href = "/login";
+    window.location.href = "/logIn";
 }
   function visitarPerfil(idPerfil) {
     window.location.href = "/perfil/"+idPerfil;
 }
-
 function DejarSeguirBuscador(userLogued,idseguir) {
     $.ajax({
         type: 'POST',
@@ -47,19 +48,27 @@ function DejarSeguirBuscador(userLogued,idseguir) {
         async: true,
         dataType: "json",    
         beforeSend: function ( xhr ) {
-            $('[name='+idseguir+']').html('<img src="../../uploads/img/ajax-loader.gif" id="ani_img_seguir"/>'); 
+            
+            $('[name='+idseguir+']').html('<img src="../../uploads/img/ajax-loader.gif" id="ani_img_seguir"/>');
+            
          },
         success: function (data) {
-            var textoBuscador= $("#barra_busqueda_username").val();      
+            var textoBuscador= $("#barra_busqueda_username").val();
+            
         $.ajax({
             type: 'POST',
             url: "/buscador",
             data: {"userSolicitado":textoBuscador},
             success: function (data) {
+                console.log( data );
+                console.log("Ajax Success :)"); 
                 if(data !=""){
-                    $("#usuariosEncontrados").html("");          
+                    $("#usuariosEncontrados").html("");
+                
                 }         
                 $('#usuariosEncontrados').append(data);
+
+
             },
              error: function (xhr,responseText, ajaxOptions, thrownError) {
                 console.log(xhr.responseText);
@@ -71,7 +80,6 @@ function DejarSeguirBuscador(userLogued,idseguir) {
         }
     });
 }
-
 
 function SeguirBuscador(userLogued,idseguir) {
     $.ajax({
@@ -85,15 +93,21 @@ function SeguirBuscador(userLogued,idseguir) {
          },
         success: function (data) {
             var textoBuscador= $("#barra_busqueda_username").val();
+
         $.ajax({
             type: 'POST',
             url: "/buscador",
             data: {"userSolicitado":textoBuscador},
             success: function (data) {
+                console.log( data );
+                console.log("Ajax Success :)"); 
                 if(data !=""){
-                    $("#usuariosEncontrados").html("");            
+                    $("#usuariosEncontrados").html("");
+                
                 }         
                 $('#usuariosEncontrados').append(data);
+
+
             },
              error: function (xhr,responseText, ajaxOptions, thrownError) {
                 console.log(xhr.responseText);
