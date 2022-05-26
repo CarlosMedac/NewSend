@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SignUpUserController!{% endblock %}
+
+{% block body %}
+<div class="fullContainer">
+<div class="formContainer">
+<div class="enlaceRegistrarseContainer"><a class="enlaceRegistrarse" href="#" onclick="IrRegistrarse()">¡Regístrate aquí! ➡</a></div>
+    <div class="login">
+    
+    <div class="form">
+    {{ form_start(formulario, {'attr': {'id': 'formRegistrarse'}})}}
+                    <label for="inputEmail" class="labelLogin">REGISTRO</label>
+
+        {{ form_row(formulario.username, {'attr': {'placeholder':'Nombre' }} ) }}
+        {{ form_row(formulario.email, {'attr': {'placeholder':'Email' }} ) }}
+        {{ form_row(formulario.password, {'attr': {'placeholder':'Contraseña' }} ) }}
+
+                {{ form_end(formulario) }}
+    
+
+    </div>
+
+        </div>
+
+</div>
+
+</div>
+{% endblock %}

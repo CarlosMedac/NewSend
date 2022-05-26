@@ -5,7 +5,7 @@
 {% block body %}
 <div class="fullContainer">
 <div class="formContainer">
-<div class="enlaceRegistrarseContainer"><a class="enlaceRegistrarse" href="#" onclick="IrLogIn()">¡Inicia Sesión! ➡</a></div>
+<div class="enlaceRegistrarseContainer"><a class="enlaceRegistrarse" href="#" onclick="IrRegistrarse()">¡Regístrate aquí! ➡</a></div>
     <div class="login">
     
     <div class="form">
@@ -13,9 +13,8 @@
                     <label for="inputEmail" class="labelLogin">REGISTRO</label>
 
         {{ form_row(formulario.username, {'attr': {'placeholder':'Nombre' ,'class':'inputLogin'}} ) }}
-        {{ form_row(formulario.email, {'attr': {'placeholder':'Email','class':'inputLogin' }} ) }}
-        {{ form_row(formulario.password, {'attr': {'placeholder':'Contraseña','class':'inputLogin' }} ) }}
-        {{ form_row(formulario.registrar, {'attr': {'class':'buttonLogin' }} ) }}
+        {{ form_row(formulario.email, {'attr': {'placeholder':'Email' }} ) }}
+        {{ form_row(formulario.password, {'attr': {'placeholder':'Contraseña' }} ) }}
 
                 {{ form_end(formulario) }}
     

@@ -35,7 +35,7 @@ $( "#formBUSQUEDA" ).keyup(function() {
     window.location.href = "/registrarse";
 }IrLogIn
 function  IrLogIn() {
-    window.location.href = "/login";
+    window.location.href = "/logIn";
 }
   function visitarPerfil(idPerfil) {
     window.location.href = "/perfil/"+idPerfil;

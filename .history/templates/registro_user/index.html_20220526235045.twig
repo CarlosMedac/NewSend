@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SignUpUserController!{% endblock %}
+
+{% block body %}
+
+    
+    <div class="form">
+    {{ form_start(formulario, {'attr': {'id': 'formRegistrarse'}})}}
+            
+        {{ form_row(formulario.username, {'attr': {'placeholder':'Buscar' }} ) }}
+
+                {{ form_end(formulario) }}
+    
+
+    </div>
+{% endblock %}
