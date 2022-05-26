@@ -1,0 +1,41 @@
+{% for test in test %}
+ <div class="tarjetaCompletaUsuario">
+    <div class="perfilImg">
+    {% if test.img == "" %}
+        <div onclick="visitarPerfil({{test.id}})" class="foto_perfilBuscador" style="background-image: url(../uploads/img/perfil_defecto.png)">
+            <input type="text" value="uploads/img/perfil_defecto.png" id="src" hidden>
+        </div>   
+    {% else %}
+        <div onclick="visitarPerfil({{test.id}})" class="foto_perfilBuscador" style="background-image: url(../uploads/img/{{test.img}})">
+            <input type="text" value="uploads/img/{{test.img}}" id="src" hidden>
+        </div>
+    {% endif %}
+        <div class="aux" style="height: 77%;" onclick="irMensaje({{test.id}})"></div>
+    </div>
+    <div id="contenido" >
+
+        <div id="cabeceraBuscador">
+            <div class="nombre_followContenedor">
+
+                <div class="nombre" onclick="visitarPerfil({{test.id}})"><b >{{test.username}}</b></div>
+                <div class="followContenedor">
+                            {% if usuarioLogueadoId == test.id %}
+                                 <p >(Tú)</p>
+                                             {% else %}
+                            {% set follow = FollowUsuario(usuarioLogueadoId , test.id) %}
+                                {% if follow %}
+                                    <a class="followBuscador" id="seguirBuscador" >Seguir</a>
+                                {% else %}
+                                    <a class="unfollowBuscador" id="seguirBuscador"><i class="bi bi-person-check-fill"></i></a>
+                                {% endif %}
+
+                            {% endif %}
+                </div> 
+            </div>
+            <div class="descripcion" onclick="visitarPerfil({{test.id}})">{{test.description}}</div>
+        </div>
+    </div>        
+</div>    
+{% endfor %}
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../js/img.js"></script>

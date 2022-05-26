@@ -1,0 +1,50 @@
+#tarjetaUsuario{
+    min-height: 10vh;
+    
+    display: flex;
+ 
+}
+#formBUSQUEDA{
+    display: flex;
+}
+#barraBusqueda{
+    width: 70%;
+    border-bottom: solid #ece0f7 0.5px;
+    
+    color:white
+}
+.usuariosEncontrados{
+    width: 100%;
+}
+#bloqueImgBusqueda{
+    padding-top: 21px;
+    padding-left: 10px;
+}
+#contenido{
+    width: 50%;
+    border-bottom: solid #ece0f7 0.5px;
+}
+#iconoBuscar{
+    color: #7f5aa1;
+}
+.parteSuperior{
+    width: 100%;
+}
+i{
+    color:white
+}
+.required{
+    display: none;
+}
+#barra_busqueda_username{
+    display: flex;
+    width: 200px;
+    margin-top: 2%;
+    height: 40px;
+    border: none;
+    font-size: 10pt;
+    color: #63717f;
+    padding-left: 50px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+}

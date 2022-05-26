@@ -1,0 +1,83 @@
+#cabeceraBuscador{
+    align-items: flex-end;
+    padding: 30px 20px 5px 0px;
+ 
+}
+#formBUSQUEDA{
+    display: flex;
+}
+#barraBusqueda{
+    width: 85%;
+    border: solid #7f5aa1 0.5px;
+    border-radius: 25px;
+    color:white;
+    margin-top: 2%;
+}
+.usuariosEncontrados{
+    width: 100%;
+}
+.tarjetaCompletaUsuario{
+    width: 100%;
+    border-bottom: solid #ece0f7 0.5px;
+    display: flex;
+}
+#bloqueImgBusqueda{
+    padding-top: 10px;
+}
+.perfilImg{
+    width: 15%;
+}
+.foto_perfilBuscador{
+    cursor: pointer;
+    margin-top: 32px;
+    margin-left: 20px;
+    height: 75px;
+    width: 75px;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 50%;
+    background-size: 120% auto;
+}
+#contenido{
+   
+}
+.descripcion{
+    font-size: 12.5px;
+    margin-left: 17px;
+    cursor: pointer;
+}
+#iconoBuscar{
+    color: #7f5aa1;
+}
+.parteSuperior{
+    width: 100%;
+}
+i{
+    color:white
+}
+.required{
+    display: none;
+}
+#barra_busqueda_username{
+    /* display: flex;
+    width: 200px;
+    margin-top: 2%;
+    height: 40px;
+    border: none;
+    padding-top: 20px;
+    font-size: 9pt;
+    padding-left: 50px;
+   border-color: none; */
+   width: 30em;
+   border-style: inset;
+   border: 0;
+   outline: none;
+    padding-left: 10px;
+    padding-top: 10px;
+
+appearance:none;
+color:black;
+background-color:rgba(0, 0, 0, 0);
+
+
+}

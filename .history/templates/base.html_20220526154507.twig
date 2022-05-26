@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+            <link rel="stylesheet" href="../../css/cssbootstrap/bootstrap.min.css">
+            <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+            <link rel="stylesheet" type="text/css" href="../../css/estilosB.css"/>
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block imgjs %}
+            <!--=============== JS ===============--> 
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+            <script src="../../js/jsbootstrap/bootstrap.bundle.min.js"></script>
+            <script src="../../js/excanvas.js"></script>
+            <script src="../../js/main.js"></script>
+            <script src="../../js/buscador.js"></script>
+            <script src="../../js/excanvas.js"></script>
+            <script src="../../js/img.js"></script>
+            <script src="../../js/toast.js"></script>
+        {% endblock %}
+    </body>
+</html>
