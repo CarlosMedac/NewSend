@@ -34,12 +34,6 @@
 .enlaceRegistrarse{
     color:#573b8a;
 }
-#mensajeErrorLogin{
-    position: absolute;
-    width: 100%;
-    margin-top: 20%;
-    text-align: center;
-}
 .buttonLogin{
 	width: 60%;
 	height: 40px;

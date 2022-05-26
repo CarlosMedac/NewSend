@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SignUpUserController!{% endblock %}
+
+{% block body %}
+
+    {% for message in app.flashes('exitoso') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div class="form">
+        {{ form(formulario) }}
+        <h1>{{ app.session.get("name")}}</h1>
+    </div>
+{% endblock %}
