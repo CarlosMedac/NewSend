@@ -36,14 +36,16 @@
                             {% endif %}
                         {% endif %}
                         </div> 
+                        {% if user.Id == usuario.id %}
                         <div title="cerrar sesion" class="cerrarSesion">
                             <a href="/logout"><i class="bi bi-box-arrow-left"></i></a>
                         </div>
+                        {% endif %}
                     </div> 
                     <div class="informacion">
                         <div class="num_publi"><div class="num">{{totalMensajes}}</div> sends</div>
-                        <div class="num_seguidores"><div id="seguidores" class="num">{{seguidores}}</div> seguidores</div>
-                        <div class="num_seguidos"><div class="num">{{seguidos}}</div> seguidos</div>
+                        <div onclick="seguidores({{usuario.id}})" class="num_seguidores"><div id="seguidores" class="num">{{seguidores}}</div> seguidores</div>
+                        <div onclick="seguidos({{usuario.id}})" class="num_seguidos"><div class="num">{{seguidos}}</div> seguidos</div>
                     </div>
                     <div class="descripcion_perfil">{{usuario.description|nl2br}}</div>
                 </div>

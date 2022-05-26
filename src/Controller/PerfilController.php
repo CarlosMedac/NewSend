@@ -131,6 +131,98 @@ class PerfilController extends AbstractController
 
     }
 
+    /**
+     * @Route("/perfil/seguidores/{id}", name="seguidores")
+     */
+    public function seguidores($id,Request $request, ManagerRegistry $doctrine, SluggerInterface $slugger): Response
+    {
+        /** @var User $userLogued */
+        $userLogued = $this->getUser();
+        if(!empty($userLogued)){
+            $userLoguedId = $userLogued->getId();
+            $userLoguedname = $userLogued->getUserIdentifier();
+        }
+
+        $em = $doctrine->getManager();
+        $user = $em->getRepository(User::class)->findBy(array('id'=>$id));
+        // var_dump($user);
+        // exit;
+        if(!empty($user)){
+            foreach ($user as $user) {
+                $userId = $user->getId();
+                $username = $user->getUserIdentifier();
+            } 
+        }
+        //Seguidores
+        $seguidores = $em->getRepository(Seguir::class)->findBy(array("codseguido"=>$id));
+        
+        $totalSeguidores = count($seguidores);
+        foreach ($seguidores as $k => $seg) {
+            $userSeguidos[$k] = $em->getRepository(User::class)->findBy(array('id'=>$seg->getCoduser()));
+        }
+        if (empty($userSeguidos)){
+            $userSeguidos=[];
+        }
+        // var_dump($userSeguidos);
+        // exit;
+
+            return $this->render('perfil/indexSeguidos.html.twig', array(
+                'pagina' => 'Perfil',
+                'mensajes' => " ",
+                'id' => $id,
+                'user' => $userLogued,
+                'usuario' => $user,
+                'seguidos' =>$userSeguidos,
+            ));
+
+    }
+
+    /**
+     * @Route("/perfil/seguidos/{id}", name="seguidos")
+     */
+    public function seguidos($id,Request $request, ManagerRegistry $doctrine, SluggerInterface $slugger): Response
+    {
+        /** @var User $userLogued */
+        $userLogued = $this->getUser();
+        if(!empty($userLogued)){
+            $userLoguedId = $userLogued->getId();
+            $userLoguedname = $userLogued->getUserIdentifier();
+        }
+
+        $em = $doctrine->getManager();
+        $user = $em->getRepository(User::class)->findBy(array('id'=>$id));
+        // var_dump($user);
+        // exit;
+        if(!empty($user)){
+            foreach ($user as $user) {
+                $userId = $user->getId();
+                $username = $user->getUserIdentifier();
+            } 
+        }
+        //Seguidores
+        $seguidores = $em->getRepository(Seguir::class)->findBy(array("coduser"=>$id));
+
+        $totalSeguidores = count($seguidores);
+        foreach ($seguidores as $k => $seg) {
+            $userSeguidos[$k] = $em->getRepository(User::class)->findBy(array('id'=>$seg->getCodseguido()));
+        }
+        if (empty($userSeguidos)){
+            $userSeguidos=[];
+        }
+        // var_dump($userSeguidos);
+        // exit;
+
+            return $this->render('perfil/indexSeguidos.html.twig', array(
+                'pagina' => 'Perfil',
+                'mensajes' => " ",
+                'id' => $id,
+                'user' => $userLogued,
+                'usuario' => $user,
+                'seguidos' =>$userSeguidos,
+            ));
+
+    }
+
 
     /**
      * @Route("/follow", name="follow")

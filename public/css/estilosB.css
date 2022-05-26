@@ -5,6 +5,7 @@
 }
 #formBUSQUEDA{
     display: flex;
+    align-items: center;
 }
 #barraBusqueda{
     width: 85%;
@@ -134,7 +135,7 @@ i{
    border: 0;
    outline: none;
     padding-left: 10px;
-    padding-top: 10px;
+    padding-top: 15px;
 
 appearance:none;
 color:black;

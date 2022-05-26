@@ -149,7 +149,7 @@ a {
     background-repeat: no-repeat;
     background-position: 50%;
     border-radius: 50%;
-    background-size: 120% auto;
+    background-size: 100% auto;
 }
 .contenido {
     display: flex;
@@ -402,7 +402,7 @@ img{
     background-repeat: no-repeat;
     background-position: 50%;
     border-radius: 50%;
-    background-size: 120% auto;
+    background-size: 100% auto;
     cursor: pointer;
 }
 .nombre_perfil {
@@ -449,6 +449,14 @@ img{
     display: flex;
     margin-right: 2vh;
 }
+.num_seguidos,
+.num_seguidores {
+    cursor: pointer;
+}
+.num_seguidos:hover,
+.num_seguidores:hover {
+    text-decoration: underline;
+}
 .num {
     color: #262626;
     font-weight: 600;
@@ -468,7 +476,7 @@ img{
     background-repeat: no-repeat;
     background-position: 50%;
     border-radius: 50%;
-    background-size: 120% auto;
+    background-size: 100% auto;
 }
 .editar_img {
     color: #8400ff;
