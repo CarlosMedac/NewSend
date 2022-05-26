@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+    {% block body %}
+    <div class="body">
+        <div class="nav">
+            {% include 'home/nav.html.twig' %}
+        </div>  
+        <div class="home">
+            <div class="br-arr"><div class="atras" onclick="irPerfil({{id}})"><i class="bi bi-arrow-left"></i></div><h3 class="h3-arr">{{pagina}}</h3></div>
+            <input id="cod_user" type="text" value="{{user.Id}}" hidden/>
+        
+            <div id="usuariosEncontrados" >
+            
+                {% if seguidos != " "%}
+    
+                {% include 'perfil/usuarios.html.twig' %}      
+
+            {% endif %}
+
+        </div>
+    </div>
+        </div>
+    </div>
+{% endblock %}
