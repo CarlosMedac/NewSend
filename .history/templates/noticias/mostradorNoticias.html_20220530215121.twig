@@ -1,0 +1,14 @@
+{% for noticias in noticias %}
+<div class="noticias">
+<div class="textoNoticias">
+{% for i in 0..5 %}
+   <h5> {{noticias[i].title}} </h5>
+
+   <p> {{noticias[i].description}}</p>
+   <a href={{noticias[i].link}}>Ver más</a>
+    
+    {% endfor %}
+</div>
+</div>
+
+{% endfor %}

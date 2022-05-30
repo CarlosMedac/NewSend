@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+    {% block body %}
+    <div class="body">
+        <div class="nav">
+            {% include 'home/nav.html.twig' %}
+        </div>  
+        <div class="home">
+            
+                <div class="br-arr"><div class="atras" onclick="IrHome()"><i class="bi bi-arrow-left"></i></div><h3 class="h3-arr">{{pagina}}</h3></div>
+                <div class="selectorNoticias">
+                    <div class="noticia1" >
+                        <a class='black' id="actualidad" href='#'>ACTUALIDAD</a>
+                        <div class='seleccionado'></div>
+                    </div>
+                    <div class="noticia1" id="deportes">
+                        DEPORTES
+                        <div class='seleccionado'></div>
+
+                    </div>
+                    <div class="noticia1" id="cultura">
+                        CULTURA
+                        <div class='seleccionado'></div>
+
+                    </div>
+
+                </div>
+                    
+                    {# {{dump(noticias)}} #}
+            
+                {% include 'noticias/mostradorNoticias.html.twig' %}
+            
+        </div>
+{% endblock %}

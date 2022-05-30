@@ -1,0 +1,10 @@
+{% for noticias in noticias %}
+<div class="noticias">
+
+{% for i in 0..5 %}
+   <h4> {{noticias[i].title}} </h4>
+
+   <p> {{noticias[i].description}} </p>
+    {% endfor %}
+</div>
+{% endfor %}

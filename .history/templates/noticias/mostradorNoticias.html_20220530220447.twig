@@ -1,0 +1,15 @@
+{% for noticias in noticias %}
+    <div class="noticias">
+
+    {% for i in 0..5 %}
+        <div class="textoNoticias">
+           <h5> {{noticias[i].title}} </h5>
+           <p class='mb-1'> {{noticias[i].description}}</p>
+           <div class='enlaceNoticia'>
+                <a class='mb-2' href={{noticias[i].link}}>Ver más</a>
+           </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endfor %}

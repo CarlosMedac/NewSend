@@ -1,0 +1,9 @@
+{% for noticias in noticias %}
+<div class="noticias">
+
+{% for i in 0..5 %}
+
+   <p> {{noticias[i].description}} </p>
+    {% endfor %}
+</div>
+{% endfor %}
