@@ -1,13 +1,13 @@
-body{
+body {
     margin: 0;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
 }
-.nav{   
+.nav {   
     min-height: 50vh;
     position: sticky;
     top: 0;
 }
-.nav2{
+.nav2 {
     text-align: right;
     display: grid;
     margin-top: 10rem;
@@ -17,7 +17,7 @@ body{
     padding-top: 20px;
     padding-bottom: 20px;
 }
-.enlace{
+.enlace {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -26,15 +26,15 @@ body{
     padding-left: 10px;
     padding-right: 10px;
 }
-.enl_ico{
+.enl_ico {
     padding: 10px 10px 10px 10px;
     border-radius: 50%;
     color: white;
 }
-.enl_ico:hover{
+.enl_ico:hover {
     background-color: #c09ce2;
 }
-i{
+i {
     font-size: 25px;
     display: contents;
 }
@@ -93,7 +93,7 @@ a {
 .aux {
     height: 2.5rem;
 }
-.crear_mensaje{
+.crear_mensaje {
     border: none;
     border-radius: 100px;
     background-color: #7f5aa1;
@@ -112,7 +112,7 @@ a {
     color: white;
     pointer-events:all;
 }
-.br-abj{
+.br-abj {
     border: none;
     background-color: transparent;
     position: sticky;
@@ -160,20 +160,20 @@ a {
     align-items: flex-end;
     padding: 18px 20px 5px 0px;
 }
-.imagen{
+.imagen { 
     display: flex;
     margin-left: 30px;
     margin-bottom: 20px;
 }
-img{
+img {
    cursor: pointer; 
 }
-.texto{
+.texto {
     margin-left: 1rem;
     margin-bottom: 20px;
     
 }
-.nombre{
+.nombre {
     font-size: 20px;
     margin-left: 17px;
     cursor: pointer;
@@ -181,20 +181,20 @@ img{
 .nombre b:hover {
     text-decoration: underline;
 }
-.tiempo{
+.tiempo {
     margin-left: 10px;
 }
-#puntitos{
+#puntitos {
     font-size: 20px;
 }
-.opciones{
+.opciones {
     margin-left: 21rem;
     border: none;
     background-color: transparent;
     padding: 10px;
     border-radius: 50%;
 }
-.opciones i{
+.opciones i {
     color: #9a7cb6;
 }
 .opciones:hover{
@@ -205,13 +205,13 @@ img{
    justify-content: center;
    flex-direction: column;
 }
- .imagen2 img{
+ .imagen2 img {
     align-items:stretch;
     object-fit: contain;
     max-height: 60vh;
     max-width: 45vh;
  }
- .imagen1 img{
+ .imagen1 img {
     align-items:stretch;
     object-fit: contain;
     max-height: 80vh;
@@ -222,7 +222,7 @@ img{
     max-height: 35vh;
  }
 
-.btn_elimg{
+.btn_elimg {
     border: none;
     padding: 0.5rem;
     border-radius: 50%;
@@ -231,10 +231,10 @@ img{
     color: white;
     background-color: rgb(54, 54, 54,0.6);
 }
-.btn_elimg:hover{
+.btn_elimg:hover {
     background-color: rgb(54, 54, 54,0.8);
 }
-.btn_elimg i{
+.btn_elimg i {
     font-size: 20px;
 }
 #mensaje_imagen {
@@ -249,24 +249,24 @@ img{
     border-radius: 50%;
     margin-top: 2px;
 }
-.subir_img:hover{
+.subir_img:hover {
     background-color: #f3e8ff;
 }
-.subir_img i{
+.subir_img i {
     font-size: 20px;
     color: #9a7cb6;
 }
-.separador{
+.separador {
     border-top: solid 1px #ebdef8;
     width: 100%;
 }
-.aux{
+.aux {
     margin-top: 10px;
     height: 0;
     display: flex;
     justify-content: center;
 }
-.mensaje_texto{
+.mensaje_texto {
     border: none;
     outline: none;
     resize: none;
@@ -526,7 +526,7 @@ img{
     margin-left: 70px;
     align-items: center;
 }
-.editar_pass label{
+.editar_pass label {
     width: 150px;
     font-size: medium;
 }
@@ -542,13 +542,13 @@ img{
     margin-top: 60px;
     margin-right: 160px;
 }
-.toast-warning{
+.toast-warning {
     background-color: #9a7cb6 !important;
 }  
-.toast-success{
+.toast-success {
     background-color: #9a7cb6 !important;
 } 
-.toast-error{
+.toast-error {
     background-color: #9a7cb6 !important;
 }   
 .cerrarSesion {
@@ -556,10 +556,10 @@ img{
     border-radius: 50%;
     margin-left: 15px;
 }
-.cerrarSesion i{
+.cerrarSesion i {
     color: black;
 }
-.cerrarSesion i:hover{
+.cerrarSesion i:hover {
     color: #c09ce2;
 }
 .follow {
@@ -575,15 +575,15 @@ img{
     padding: 5px 22px 5px 22px !important;
     cursor: pointer;
 }
-.unfollow i{
+.unfollow i {
     color: #262626;
     font-size: medium;
 }
-.follow i{
+.follow i {
     color: #262626;
     font-size: medium;
 }
-#ani_img_seguir{
+#ani_img_seguir {
     width: 20px;
     height: 20px;
 }

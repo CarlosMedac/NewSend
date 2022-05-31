@@ -29,8 +29,8 @@ class RegistroUserController extends AbstractController
             return $this->redirectToRoute('home');
         }
         return $this->render('registro_user/index.html.twig', [
-            'controller_name' => 'RegistroUserController',
-            'formulario'=>$form->createView()
+            'controller_name'   => 'RegistroUserController',
+            'formulario'        => $form->createView()
         ]);
     }
 }

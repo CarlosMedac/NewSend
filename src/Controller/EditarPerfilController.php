@@ -86,9 +86,9 @@ class EditarPerfilController extends AbstractController
             return $this->redirectToRoute("perfil", array('id' => $id));
         }
          return $this->render('editar_perfil/index.html.twig', array(
-             'pagina'            => 'Editar',
-             'formulario'        => $form->createView(),
-             'user'              => $userLogued,
+             'pagina'      => 'Editar',
+             'formulario'  => $form->createView(),
+             'user'        => $userLogued,
          ));
     }
 

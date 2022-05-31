@@ -100,10 +100,10 @@ class HomeController extends AbstractController
             }
        } else {
             return $this->render('home/home.html.twig', array(
-                'pagina' => 'Inicio',
-                'mensajes' => " ",
-                'formulario' => $form->createView(),
-                'user' => $user,
+                'pagina'        => 'Inicio',
+                'mensajes'      => " ",
+                'formulario'    => $form->createView(),
+                'user'          => $user,
 
             ));
         }

@@ -34,8 +34,7 @@ class PerfilController extends AbstractController
 
         $em = $doctrine->getManager();
         $user = $em->getRepository(User::class)->findBy(array('id'=>$id));
-        // var_dump($user);
-        // exit;
+
         if(!empty($user)){
             foreach ($user as $user) {
                 $userId = $user->getId();
@@ -105,10 +104,10 @@ class PerfilController extends AbstractController
                 $verMensaje = $query->getResult();
     
                 $mensajes = $this->render('perfil/mensaje.html.twig', array(
-                                'mensajes' => $verMensaje,
-                                'usuarioLogueado' => $userLoguedname,
+                                'mensajes'          => $verMensaje,
+                                'usuarioLogueado'   => $userLoguedname,
                                 'usuarioLogueadoId' => $userLoguedId,
-                                'usuarioId' => $userId,
+                                'usuarioId'         => $userId,
                             ));
                             
                 return $mensajes;
@@ -118,14 +117,14 @@ class PerfilController extends AbstractController
             }
        } else {
             return $this->render('perfil/index.html.twig', array(
-                'pagina' => 'Perfil',
-                'mensajes' => " ",
-                'formulario' => $form->createView(),
-                'user' => $userLogued,
-                'usuario' => $user,
-                'totalMensajes' =>$totalMensajes,
-                'seguidores' =>$totalSeguidores,
-                'seguidos' =>$totalSeguidos,
+                'pagina'        => 'Perfil',
+                'mensajes'      => " ",
+                'formulario'    => $form->createView(),
+                'user'          => $userLogued,
+                'usuario'       => $user,
+                'totalMensajes' => $totalMensajes,
+                'seguidores'    => $totalSeguidores,
+                'seguidos'      => $totalSeguidos,
             ));
         }
 
@@ -145,8 +144,7 @@ class PerfilController extends AbstractController
 
         $em = $doctrine->getManager();
         $user = $em->getRepository(User::class)->findBy(array('id'=>$id));
-        // var_dump($user);
-        // exit;
+
         if(!empty($user)){
             foreach ($user as $user) {
                 $userId = $user->getId();
@@ -163,16 +161,14 @@ class PerfilController extends AbstractController
         if (empty($userSeguidos)){
             $userSeguidos=[];
         }
-        // var_dump($userSeguidos);
-        // exit;
 
             return $this->render('perfil/indexSeguidos.html.twig', array(
-                'pagina' => 'Perfil',
-                'mensajes' => " ",
-                'id' => $id,
-                'user' => $userLogued,
-                'usuario' => $user,
-                'seguidos' =>$userSeguidos,
+                'pagina'    => 'Perfil',
+                'mensajes'  => " ",
+                'id'        => $id,
+                'user'      => $userLogued,
+                'usuario'   => $user,
+                'seguidos'  => $userSeguidos,
             ));
 
     }
@@ -191,8 +187,7 @@ class PerfilController extends AbstractController
 
         $em = $doctrine->getManager();
         $user = $em->getRepository(User::class)->findBy(array('id'=>$id));
-        // var_dump($user);
-        // exit;
+
         if(!empty($user)){
             foreach ($user as $user) {
                 $userId = $user->getId();
@@ -209,16 +204,13 @@ class PerfilController extends AbstractController
         if (empty($userSeguidos)){
             $userSeguidos=[];
         }
-        // var_dump($userSeguidos);
-        // exit;
-
             return $this->render('perfil/indexSeguidos.html.twig', array(
-                'pagina' => 'Perfil',
-                'mensajes' => " ",
-                'id' => $id,
-                'user' => $userLogued,
-                'usuario' => $user,
-                'seguidos' =>$userSeguidos,
+                'pagina'    => 'Perfil',
+                'mensajes'  => " ",
+                'id'        => $id,
+                'user'      => $userLogued,
+                'usuario'   => $user,
+                'seguidos'  => $userSeguidos,
             ));
 
     }

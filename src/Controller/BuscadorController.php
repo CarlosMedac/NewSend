@@ -60,10 +60,10 @@ class BuscadorController extends AbstractController
         } 
         else {
            return $this->render('buscador/index.html.twig', [
-            'pagina' => 'Buscador',
-            'formulario'=>$form->createView(),
-            'user' => $user,
-            'test' => " ",
+            'pagina'    => 'Buscador',
+            'formulario'=> $form->createView(),
+            'user'      => $user,
+            'test'      => " ",
             'usuarioLogueadoId' => "",
 
         ]);
