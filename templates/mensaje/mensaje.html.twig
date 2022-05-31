@@ -16,7 +16,9 @@
     <div class="contenido">
         <div class="men_cabecera">
             <div class="nombre" onclick="irPerfil({{mensajes.coduser}})"><b>{{mensajes.nombreuser}}</b></div>
-            <div class="tiempo">{{mensajes.fechapublicacion | date('Y-m-d') }}</div>
+            {% set fecha = mensajes.fechapublicacion | date('d-m-Y H:i:s') %}
+            {% set time = timeago(fecha) %}
+            <div class="tiempo">{{time}}</div>
             <div class="dropdown show">
                 <button class="opciones" href="#" role="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i id="puntitos" class="bi bi-three-dots"></i>

@@ -247,7 +247,7 @@ img {
     color: #7f5aa1;
     padding: 10px;
     border-radius: 50%;
-    margin-top: 2px;
+    margin-top: 10px;
 }
 .subir_img:hover {
     background-color: #f3e8ff;
@@ -298,7 +298,7 @@ img {
 .btn-send {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
 .interaccion {
@@ -368,7 +368,6 @@ img {
     color: white;
     font-size: 15px;
     margin-left: 10px;
-    margin-top: 40px;
 }
 .respuesta {
     display: flex;
@@ -602,3 +601,159 @@ img {
     margin-left: 24px;
     
 }
+
+@media screen and (max-width: 835px) {
+    .nav {
+        position: fixed;
+        width: 20vh;
+        left: -150%;
+        top: 0;
+        transition: 0.4s;
+        z-index: 101;
+    }
+    .nav2{
+        background-color: #FFF3F8;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 10px;
+        margin-top: 0;
+        padding-top: 0;
+    }
+    .enl_ico:hover {
+        background-color: #FFF3F8;
+    }
+    .body {
+        display: block;
+    }
+    .home {
+        max-width: 100%;
+        min-width: 100% !important;
+    }
+    .modalimg {
+        padding-right: 0 !important;
+    }
+    .opciones {
+        margin-left: 100px;
+    }
+    .menu-nav {
+        display: block;
+    }
+    .atras {
+        display: none;
+    }
+    .mensaje_texto {
+        width: 100%;
+    }
+    .foto_perfil_perfil{
+        cursor: pointer;
+        margin-top: 32px;
+        margin-left: 20px !important;
+        height: 50px;
+        width: 50px;
+        background-repeat: no-repeat;
+        background-position: 50%;
+        border-radius: 50%;
+        background-size: 100% auto;
+    }
+    .cab_nom {
+        margin-left: 20px;
+    }
+    .informacion {
+        margin-left: 20px;
+    }
+    .descripcion_perfil {
+        margin-left: 20px;
+    }
+    .foto_perfil_editar {
+        margin-left: 20px !important;
+    }
+
+
+    .editar_nombre {
+        display: flex;
+        margin-top: 40px;
+        margin-left: 20px;
+    }
+    .editar_nombreInput {
+        margin-left: 50px;
+        width: 170px;
+        border: solid 0.5px #DBDBDB;
+    }
+    .editar_descripcion {
+        display: flex;
+        margin-top: 40px;
+        margin-left: 20px;
+    }
+    .editar_descripcionInput {
+        margin-left: 46px;
+        width: 170px;
+        resize:none;
+        height: 80px;
+        border: solid 0.5px #DBDBDB;
+    }
+    .editar_email {
+        display: flex;
+        margin-top: 40px;
+        margin-left: 20px;
+    }
+    .editar_emailInput {
+        margin-left: 70px;
+        width: 170px;
+        border: solid 0.5px #DBDBDB;
+    }
+    .editar_pass {
+        display: flex;
+        margin-top: 40px;
+        margin-left: 20px;
+        align-items: center;
+    }
+    .editar_pass label {
+        width: 170px;
+        font-size: medium;
+    }
+    .editar_passInput {
+        margin-left: 10px;
+        width: 150px;
+        border: solid 0.5px #DBDBDB;
+        max-height: 30px;
+    }
+    .editar_buton {
+        display: flex;
+        flex-direction: row-reverse;
+        margin-top: 60px;
+        margin-right: 60px;
+    }
+    .labelContra {
+        margin-left: 10px !important;
+    }
+    .perfilImg {
+        width: auto !important;
+    }
+    .seleccionado {
+        margin-left: 20px !important;
+    }
+    .textoNoticias {
+        max-width: 300px !important;
+    }
+    .fullContainer {
+        display: block !important;
+    }
+    .formContainer {
+        width: 100% !important;
+        height: 100% !important;
+        border-radius: 0 !important;
+    }
+  }
+  @media screen and (min-width: 835px) {
+    .menu-nav {
+      display: none;
+    }
+    #cerrar-nav {
+      display: none !important;
+    }
+  }
+  /* Eventos js*/
+  .show-menu {
+    left: 0;
+  }
+

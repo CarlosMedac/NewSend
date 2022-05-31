@@ -5,14 +5,16 @@
             {% include 'home/nav.html.twig' %}
         </div>  
         <div class="home">
-            <div class="br-arr"><div class="atras" onclick="IrHome()"><i class="bi bi-arrow-left"></i></div><h3 class="h3-arr">{{pagina}}</h3></div>
+            <div class="br-arr"><div class="menu-nav" id="menu-nav"><i class="bi bi-list"></i></div><div class="atras" onclick="IrHome()"><i class="bi bi-arrow-left"></i></div><h3 class="h3-arr">{{pagina}}</h3></div>
             {% set userImg = UserLogin(usuario.Id) %}
             <div class="cabecera"> 
+                <div>
                     {% if userImg == "" %}
                        <div class="foto_perfil_perfil" data-bs-toggle="modal" data-bs-target="#Modalimg{{usuario.Id}}" style="margin-left: 60px;margin-right: 10px;background-image: url(../../uploads/img/perfil_defecto.png)"></div>
                     {% else %}
                        <div class="foto_perfil_perfil" data-bs-toggle="modal" data-bs-target="#Modalimg{{usuario.Id}}" style="margin-left: 60px;margin-right: 10px;background-image: url(../../uploads/img/{{userImg}})"></div>
                     {% endif %}
+                </div>
                     {% include 'modals/modalimgUser.html.twig' %}
                 <input id="cod_user" type="text" value="{{usuario.Id}}" hidden/>
                 <div>

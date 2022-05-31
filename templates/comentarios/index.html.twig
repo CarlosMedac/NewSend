@@ -11,7 +11,7 @@
              {% for mensajes in mensajes %}
                 {% set idMensaje = mensajes.codmensaje %}
              {% endfor %}
-            <div class="br-arr"><div class="atras" onclick="irMensaje({{idMensaje}})"><i class="bi bi-arrow-left"></i></div><h3 class="h3-arr">Comentarios</h3></div>
+            <div class="br-arr"><div class="atras" style="display:block !important;" onclick="irMensaje({{idMensaje}})"><i class="bi bi-arrow-left"></i></div><h3 class="h3-arr">Comentarios</h3></div>
                      {% for mensajes in mensajes %}
                             {% set userComImg = UserLogin(mensajes.coduser) %}
                             <div class="respuesta" style="margin-top:25px;">
@@ -29,7 +29,9 @@
                                 <div class="contenido">
                                     <div class="men_cabecera" style="padding:0;" onclick="irPerfil({{mensajes.coduser}})">
                                         <div class="nombre"><b>{{mensajes.nombreuser}}</b></div>
-                                        <div class="tiempo">{{mensajes.fechapublicacion | date("g:i") }}h</div>
+                                        {% set fecha = mensajes.fechapublicacion | date('d-m-Y H:i:s') %}
+                                        {% set time = timeago(fecha) %}
+                                        <div class="tiempo">{{time}}</div>
                                     </div>
                                     <div class="texto">
                                         {{mensajes.respuesta}}
@@ -80,7 +82,9 @@
                                 <div class="contenido">
                                     <div class="men_cabecera" style="padding:0;" onclick="irPerfil({{comentarios.coduser}})">
                                         <div class="nombre"><b>{{comentarios.nombreuser}}</b></div>
-                                        <div class="tiempo">{{comentarios.fechapublicacion | date("g:i") }}h</div>
+                                        {% set fecha = comentarios.fechapublicacion | date('d-m-Y H:i:s') %}
+                                        {% set time = timeago(fecha) %}
+                                        <div class="tiempo">{{time}}</div>
                                     </div>
                                     <div class="texto">
                                         {{comentarios.respuestasub}}

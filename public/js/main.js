@@ -379,3 +379,11 @@ function DejarSeguirSeguidos(userLogued,idseguir,home) {
         }
     });
 }
+
+//Menu Responsive
+$('#menu-nav').on('click', function () {
+    $('.nav').addClass('show-menu');
+});
+$('#cerrar-nav').on('click', function () {
+    $('.nav').removeClass('show-menu');
+});

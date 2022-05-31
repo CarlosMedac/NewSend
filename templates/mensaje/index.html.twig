@@ -7,7 +7,7 @@
         </div>  
         <div class="home"> 
             <input id="cod_user" type="text" value="{{user.Id}}" hidden/>
-            <div class="br-arr"><div class="atras" onclick="IrHome()"><i class="bi bi-arrow-left"></i></div><h3 class="h3-arr">Send</h3></div>
+            <div class="br-arr"><div class="atras" style="display:block !important;" onclick="IrHome()"><i class="bi bi-arrow-left"></i></div><h3 class="h3-arr">Send</h3></div>
                 {% if mensajes != " "%}
                      {% include 'mensaje/mensaje.html.twig' %}
                 {% endif %}
@@ -79,7 +79,9 @@
                                 <div class="contenido">
                                         <div class="men_cabecera" onclick="irPerfil({{comentarios.coduser}})">
                                             <div class="nombre"><b>{{comentarios.nombreuser}}</b></div>
-                                            <div class="tiempo">{{comentarios.fechapublicacion | date("g:i") }}h</div>
+                                            {% set fecha = comentarios.fechapublicacion | date('d-m-Y H:i:s') %}
+                                            {% set time = timeago(fecha) %}
+                                            <div class="tiempo">{{time}}</div>
                                         </div>
                                         <div class="texto">
                                             {{comentarios.respuesta}}
@@ -143,7 +145,9 @@
                                             <div class="contenido">
                                                 <div class="men_cabecera" onclick="irPerfil({{comen.coduser}})">
                                                     <div class="nombre"><b>{{comen.nombreuser}}</b></div>
-                                                    <div class="tiempo">{{comen.fechapublicacion | date("g:i") }}h</div>
+                                                    {% set fecha = comen.fechapublicacion | date('d-m-Y H:i:s') %}
+                                                    {% set time = timeago(fecha) %}
+                                                    <div class="tiempo">{{time}}</div>
                                                 </div>
                                                 <div class="texto">
                                                     {{comen.respuestasub}}

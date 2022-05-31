@@ -7,7 +7,7 @@
         </div>  
         <div class="home">
             <input id="cod_user" type="text" value="{{user.Id}}" hidden/>
-            <div class="br-arr"><div class="atras" onclick="irPerfil({{user.id}})"><i class="bi bi-arrow-left"></i></div><h3 class="h3-arr">{{pagina}}</h3></div>
+            <div class="br-arr"><div class="atras" style="display:block !important;" onclick="irPerfil({{user.id}})"><i class="bi bi-arrow-left"></i></div><h3 class="h3-arr">{{pagina}}</h3></div>
             <div class="formulario_editar">
                 {{ form_start(formulario, {'attr': {'id': 'formhome'}})}}
                             <div class="my-custom-class-for-errors">
@@ -55,7 +55,7 @@
                                 <div class="editar_buton">
                                     {{ form_row(formulario.editar, {'attr': {'class': 'boton_guardar'}} ) }}
                                 </div>
-                                <div style="display: flex;flex-direction: column;align-items: flex-start;margin-top: 60px;margin-left: 80px;">
+                                <div class="labelContra" style="display: flex;flex-direction: column;align-items: flex-start;margin-top: 60px;margin-left: 80px;">
                                     <div>Cambiar contraseña</div>
                                     <div class="Aux" style="border:solid #ece0f7 0.5px;width: 80%;"></div>
                                 </div>

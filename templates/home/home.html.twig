@@ -6,7 +6,7 @@
         </div>  
         <div class="home">
             <input id="cod_user" type="text" value="{{user.Id}}" hidden/>
-            <div class="br-arr"><h3 class="h3-arr">{{pagina}}</h3></div>
+            <div class="br-arr"><div class="menu-nav" id="menu-nav"><i class="bi bi-list"></i></div><h3 class="h3-arr">{{pagina}}</h3></div>
             <div class="put_mess">
                 {% if mensajes != " "%}
                      {% include 'home/mensaje.html.twig' %}
