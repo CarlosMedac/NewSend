@@ -22,7 +22,7 @@ $( "#formBUSQUEDA" ).keyup(function() {
                 
                 }    
                 if(data.length<2000){
-                    $('#usuariosEncontrados').html('<div class="buscandoUser"><div class="containerBuscandoUser"><div class="textoBuscando">No se han encontrado usuarios para "'+textoBuscador+'"</div></div</div>'); 
+                    $('#usuariosEncontrados').html('<div class="buscandoUser"><div class="containerBuscandoUser"><div class="textoBuscando">No se han encontrado usuarios</div></div</div>'); 
 
                 }     
                 $('#usuariosEncontrados').append(data);

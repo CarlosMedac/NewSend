@@ -10,23 +10,17 @@ $( "#formBUSQUEDA" ).keyup(function() {
             type: 'POST',
             url: "/buscador",
             data: {"userSolicitado":textoBuscador},
-            async: true,
             beforeSend: function ( xhr ) {
                 $('#bloqueImgBusqueda').html('<img src="../../uploads/img/search-fondo.gif" id="iconoBuscarGif"/>'); 
-                $('#usuariosEncontrados').html('<div class="buscandoUser"><div class="containerBuscandoUser"><div class="gifBuscandoDIV"><img src="../../uploads/img/ajax-loader.gif" id="gifBuscando"/></div><div class="textoBuscando">Buscando "'+textoBuscador+'"...</div></div</div>'); 
-
              },
             success: function (data) {
                 if(data !=""){
                     $("#usuariosEncontrados").html("");
                 
-                }    
-                if(data.length<2000){
-                    $('#usuariosEncontrados').html('<div class="buscandoUser"><div class="containerBuscandoUser"><div class="textoBuscando">No se han encontrado usuarios para "'+textoBuscador+'"</div></div</div>'); 
-
-                }     
+                }         
                 $('#usuariosEncontrados').append(data);
-                $('#bloqueImgBusqueda').html('<i class="bi bi-search" id="iconoBuscar"></i>'); 
+                $('#bloqueImgBusqueda').html('<img src="../../uploads/img/search-fondo.gif" id="ani_img_seguir"/>'); 
+
 
             },
              error: function (xhr,responseText, ajaxOptions, thrownError) {

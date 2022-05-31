@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+    {% block body %}
+    <div class="body">
+        <div class="nav">
+            {% include 'home/nav.html.twig' %}
+        </div>  
+        <div class="home">
+            <div class="br-arr"><div class="atras" onclick="IrHome()"><i class="bi bi-arrow-left"></i></div><h3 class="h3-arr">{{pagina}}</h3></div>
+            <input id="cod_user" type="text" value="{{user.Id}}" hidden/>
+        <div class="d-flex justify-content-center">   
+            <div id="barraBusqueda"  >   
+            {{ form_start(formulario, {'attr': {'id': 'formBUSQUEDA'}})}}
+            
+            {{ form_row(formulario.username, {'attr': {'placeholder':'Buscar' }} ) }}
+
+            <div id="bloqueImgBusqueda">
+                
+                <i class="bi bi-search" id="iconoBuscar"></i>
+                
+            </div>
+            {{ form_end(formulario) }}
+
+                </div >
+            </div >   
+            <div id="usuariosEncontrados" >
+            <div class="buscandoUser">
+                <div class="containerBuscandoUser">
+                    <div class='gifBuscandoDIV'><img src="../../uploads/img/ajax-loader.gif" id="gifBuscando"/></div>
+                    <div class='textoBuscando'>Buscando "xd"...</div>
+                </div>
+            </div>
+                {% if test != " "%}
+
+                {% include 'buscador/barraBusqueda.html.twig' %}      
+
+            {% endif %}
+
+        </div>
+    </div>
+        </div>
+    </div>
+{% endblock %}

@@ -161,12 +161,11 @@
     display: flex;
 }
 #gifBuscando{
-    width: 30px;
+    width: 40px;
 }
 .textoBuscando{
-    margin-top: 4px;
-    margin-left: 10px;
-    color: #b8b8b8;
+    margin-top: 10px;
+    color:#b8b8b8
 
 }
 .parteSuperior{

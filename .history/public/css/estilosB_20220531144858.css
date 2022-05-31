@@ -152,7 +152,6 @@
 .buscandoUser{
     margin-top: 5%;
     width: 100%;
-    height: 95px;
     justify-content: center;
     display: flex;
 }
@@ -161,13 +160,7 @@
     display: flex;
 }
 #gifBuscando{
-    width: 30px;
-}
-.textoBuscando{
-    margin-top: 4px;
-    margin-left: 10px;
-    color: #b8b8b8;
-
+    width: 50px;
 }
 .parteSuperior{
     width: 100%;
