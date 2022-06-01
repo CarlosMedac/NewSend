@@ -63,9 +63,9 @@
                         {% else %}
                         {% set follow = FollowUsuario(user.Id , usuario.id) %}
                             {% if follow %}
-                                <a class="follow" id="seguirVersionMoviles" onclick="Seguir({{user.id}},{{usuario.id}})">Seguir</a>
+                                <a class="follow" id="seguir" onclick="Seguir({{user.id}},{{usuario.id}})">Seguir</a>
                             {% else %}
-                                <a class="unfollow" id="seguirVersionMoviles" onclick="DejarSeguir({{user.id}},{{usuario.id}})"><i class="bi bi-person-check-fill"></i></a>
+                                <a class="unfollow" id="seguir" onclick="DejarSeguir({{user.id}},{{usuario.id}})"><i class="bi bi-person-check-fill"></i></a>
                             {% endif %}
                         {% endif %}
                         {% if user.Id == usuario.id %}

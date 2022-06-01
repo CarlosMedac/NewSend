@@ -124,8 +124,6 @@ function Seguir(userLogued,idseguir) {
         beforeSend: function ( xhr ) {
             $('#seguir').html('<img src="../../uploads/img/ajax-loader.gif" id="ani_img_seguir"/>');
             $('#seguirVersionMoviles').css('background-color','white');
-            $('#seguir').css('background-color','white');
-
             $('#seguirVersionMoviles').html('<img src="../../uploads/img/ajax-loader.gif" id="ani_img_seguir"/>');
          },
         success: function (data) {

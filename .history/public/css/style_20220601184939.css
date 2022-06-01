@@ -425,9 +425,10 @@ img {
     margin-left: 20px;
 }
 .editar_perfil a {
+    background-color: transparent;
     border: 1px solid #dbdbdb;
     border: 1px solid rgba(var(--ca6,219,219,219),1);
-    color: white;
+    color: #262626;
     font-weight: 500;
     border-radius: 4px;
     position: relative;
@@ -625,7 +626,7 @@ img {
         text-align: center;
         border: 1px solid #dbdbdb;
         border: 1px solid rgba(var(--ca6,219,219,219),1);
-        color: white;
+        color: #262626;
         font-weight: 500;
         border-radius: 4px;
         position: relative;

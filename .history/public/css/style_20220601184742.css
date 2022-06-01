@@ -425,9 +425,10 @@ img {
     margin-left: 20px;
 }
 .editar_perfil a {
+    background-color: transparent;
     border: 1px solid #dbdbdb;
     border: 1px solid rgba(var(--ca6,219,219,219),1);
-    color: white;
+    color: #262626;
     font-weight: 500;
     border-radius: 4px;
     position: relative;
@@ -562,7 +563,7 @@ img {
 }
 .follow {
     cursor: pointer;
-    background-color:#8d6aad ;
+    background-color:#8d6aad !important;
     color:white;
 }
 .unfollow {
@@ -623,9 +624,10 @@ img {
         margin-left: 5%;
         width: 90%;
         text-align: center;
+        background-color: transparent;
         border: 1px solid #dbdbdb;
         border: 1px solid rgba(var(--ca6,219,219,219),1);
-        color: white;
+        color: #262626;
         font-weight: 500;
         border-radius: 4px;
         position: relative;

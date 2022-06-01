@@ -124,8 +124,6 @@ function Seguir(userLogued,idseguir) {
         beforeSend: function ( xhr ) {
             $('#seguir').html('<img src="../../uploads/img/ajax-loader.gif" id="ani_img_seguir"/>');
             $('#seguirVersionMoviles').css('background-color','white');
-            $('#seguir').css('background-color','white');
-
             $('#seguirVersionMoviles').html('<img src="../../uploads/img/ajax-loader.gif" id="ani_img_seguir"/>');
          },
         success: function (data) {
@@ -162,10 +160,8 @@ function DejarSeguir(userLogued,idseguir,home) {
             $('#seguirVersionMoviles').html('Seguir');
             var numSeguidores = $('#seguidores').text();
             $('#seguidores').html(parseInt(numSeguidores)-1);
-            $('#seguirVersionMoviles').css('background-color','#8d6aad');
-            $('#seguirVersionMoviles').css('color','white');
-            $('#seguir').css('background-color','#8d6aad');
-            $('#seguir').css('color','white');
+            $('.follow').css('background-color','#8d6aad');
+            $('.follow').css('color','white');
             $('#seguir').attr('onclick','Seguir('+userLogued+','+idseguir+')');
             $('#seguirVersionMoviles').attr('onclick','Seguir('+userLogued+','+idseguir+')');
 

@@ -15,7 +15,17 @@
                        <div class="foto_perfil_perfil" data-bs-toggle="modal" data-bs-target="#Modalimg{{usuario.Id}}" style="margin-left: 60px;margin-right: 10px;background-image: url(../../uploads/img/{{userImg}})"></div>
                     {% endif %}
                 </div>
-                    {% include 'modals/modalimgUser.html.twig' %}
+                <div class="modal fade modalimg" id="Modalimg{{mensajes.id}}" tabindex="-1" role="dialog" aria-labelledby="Modal1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 600px;">
+                        <div class="modal-content" style="background-color: unset;border: none;">
+                                <div class="modal-body" id="modalImgfondo" style="padding:0;">
+                                     <div class="imagen1">
+                                        <img src="../../uploads/img/{{mensajes.imagen}}" class="img_modal"/>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
                 <input id="cod_user" type="text" value="{{usuario.Id}}" hidden/>
                 <div>
                     <div class="cab_nom">
