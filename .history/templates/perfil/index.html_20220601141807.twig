@@ -50,10 +50,7 @@
                         <div onclick="seguidos({{usuario.id}})" class="num_seguidos"><div class="num">{{seguidos}}</div> seguidos</div>
                     </div>
                     <div class="descripcion_perfil">{{usuario.description|nl2br}}</div>
-                    
-                </div>
-            </div>
-            <div class="editar_perfilMoviles">
+                    <div class="editar_perfilMoviles">
                         {% if user.Id == usuario.id %}
                              <a href="{{
                                         path(
@@ -74,6 +71,8 @@
                         </div>
                         {% endif %}
                         </div> 
+                </div>
+            </div>
             <div class="put_messPerfil">
                 {% if mensajes != " "%}
                      {% include 'perfil/mensaje.html.twig' %}              

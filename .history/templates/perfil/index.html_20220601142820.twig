@@ -14,6 +14,9 @@
                     {% else %}
                        <div class="foto_perfil_perfil" data-bs-toggle="modal" data-bs-target="#Modalimg{{usuario.Id}}" style="margin-left: 60px;margin-right: 10px;background-image: url(../../uploads/img/{{userImg}})"></div>
                     {% endif %}
+                    <div class="nombre_perfilMoviles">
+                            <h2 class="estilos_nombreMoviles">{{usuario.username}}</h2>
+                        </div>
                 </div>
                     {% include 'modals/modalimgUser.html.twig' %}
                 <input id="cod_user" type="text" value="{{usuario.Id}}" hidden/>
@@ -50,10 +53,7 @@
                         <div onclick="seguidos({{usuario.id}})" class="num_seguidos"><div class="num">{{seguidos}}</div> seguidos</div>
                     </div>
                     <div class="descripcion_perfil">{{usuario.description|nl2br}}</div>
-                    
-                </div>
-            </div>
-            <div class="editar_perfilMoviles">
+                    <div class="editar_perfilMoviles">
                         {% if user.Id == usuario.id %}
                              <a href="{{
                                         path(
@@ -74,6 +74,8 @@
                         </div>
                         {% endif %}
                         </div> 
+                </div>
+            </div>
             <div class="put_messPerfil">
                 {% if mensajes != " "%}
                      {% include 'perfil/mensaje.html.twig' %}              

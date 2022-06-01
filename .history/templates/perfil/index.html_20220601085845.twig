@@ -50,30 +50,8 @@
                         <div onclick="seguidos({{usuario.id}})" class="num_seguidos"><div class="num">{{seguidos}}</div> seguidos</div>
                     </div>
                     <div class="descripcion_perfil">{{usuario.description|nl2br}}</div>
-                    
                 </div>
             </div>
-            <div class="editar_perfilMoviles">
-                        {% if user.Id == usuario.id %}
-                             <a href="{{
-                                        path(
-                                        'editar',
-                                        {'id' : user.Id}
-                                        )}}">Editar perfil</a>
-                        {% else %}
-                        {% set follow = FollowUsuario(user.Id , usuario.id) %}
-                            {% if follow %}
-                                <a class="follow" id="seguir" onclick="Seguir({{user.id}},{{usuario.id}})">Seguir</a>
-                            {% else %}
-                                <a class="unfollow" id="seguir" onclick="DejarSeguir({{user.id}},{{usuario.id}})"><i class="bi bi-person-check-fill"></i></a>
-                            {% endif %}
-                        {% endif %}
-                        {% if user.Id == usuario.id %}
-                        <div title="cerrar sesion" class="cerrarSesionMoviles">
-                            <a href="/logout"><i class="bi bi-box-arrow-left"></i></a>
-                        </div>
-                        {% endif %}
-                        </div> 
             <div class="put_messPerfil">
                 {% if mensajes != " "%}
                      {% include 'perfil/mensaje.html.twig' %}              

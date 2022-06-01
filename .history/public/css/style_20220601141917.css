@@ -607,20 +607,13 @@ img {
 }
 @media screen and (max-width: 835px) {
 
-    .nombre_perfilMoviles {
-        max-width: 25vh;
-    }
-    
-    .estilos_nombre {
-        
-    }
     .editar_perfilMoviles{
         display: flex;
-        margin-top: 8%;
+        margin-top: 7%;
+
     }
     .editar_perfilMoviles a {
-        margin-left: 5%;
-        width: 90%;
+        width: 95%;
         text-align: center;
         background-color: transparent;
         border: 1px solid #dbdbdb;
@@ -637,14 +630,10 @@ img {
     .editar_perfil{
         display: none;
     }
-    .cerrarSesion{
-        display:none;
-    }
     .cerrarSesionMoviles {
-        margin-top: 0.5%;
+        padding: 8px 10px 6px 8px;
         border-radius: 50%;
-        margin-left:5px;
-        width: 15%;
+        margin-left: 15px;
     }
     .cerrarSesionMoviles i {
         color: black;
@@ -706,8 +695,8 @@ img {
         cursor: pointer;
         margin-top: 32px;
         margin-left: 20px !important;
-        height: 100px;
-        width: 100px;
+        height: 130px;
+        width: 130px;
         background-repeat: no-repeat;
         background-position: 50%;
         border-radius: 50%;
@@ -717,8 +706,7 @@ img {
         margin-left: 20px;
     }
     .informacion {
-        margin-left: 15px;
-        font-size: 14px;
+        margin-left: 20px;
     }
     .descripcion_perfil {
         margin-left: 20px;
@@ -816,11 +804,3 @@ img {
     left: 0;
   }
 
-  @media screen and (max-width: 510px) {
-
-    
-    .editar_perfilMoviles{
-        width: 97%;
-
-    }
-}

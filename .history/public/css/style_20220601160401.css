@@ -619,7 +619,6 @@ img {
         margin-top: 8%;
     }
     .editar_perfilMoviles a {
-        margin-left: 5%;
         width: 90%;
         text-align: center;
         background-color: transparent;
@@ -644,7 +643,6 @@ img {
         margin-top: 0.5%;
         border-radius: 50%;
         margin-left:5px;
-        width: 15%;
     }
     .cerrarSesionMoviles i {
         color: black;
@@ -717,8 +715,8 @@ img {
         margin-left: 20px;
     }
     .informacion {
-        margin-left: 15px;
-        font-size: 14px;
+        margin-left: 20px;
+
     }
     .descripcion_perfil {
         margin-left: 20px;
@@ -820,7 +818,7 @@ img {
 
     
     .editar_perfilMoviles{
-        width: 97%;
+        width: 70%;
 
     }
 }
