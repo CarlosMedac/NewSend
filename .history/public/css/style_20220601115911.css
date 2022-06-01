@@ -612,7 +612,7 @@ img {
         z-index: 101;
     }
     .nav2{
-        background-color:#9066b8;
+        background-color:#8400ff;
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 10px;
@@ -620,12 +620,15 @@ img {
         padding-top: 0;
     }
     .enl_ico:hover {
-        background-color:#caa8e9;
+        background-color:#7f5aa1;
 
     }
-     
+    .enl_ico:hover i {
+        color:#FFF3F8;
+
+    }
     .enl_ico i{
-        color:white;
+        color:#7f5aa1;
 
     }
     .body {
