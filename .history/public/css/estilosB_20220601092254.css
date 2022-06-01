@@ -206,12 +206,6 @@ background-color:rgba(0, 0, 0, 0);
 }
 @media screen and (max-width: 835px) {
     .containerResponsive{
-        width: 90%;
-    }
-}
-
-@media screen and (max-width: 400px) {
-    .containerResponsive{
-        width: 80%;
+        width: 85%;
     }
 }

@@ -37,7 +37,7 @@
     margin-top: 2%;
 }
 .containerResponsive{
-    width: 90%;
+    width: 87%;
 }
 .usuariosEncontrados{
     width: 100%;
@@ -205,12 +205,6 @@ background-color:rgba(0, 0, 0, 0);
 
 }
 @media screen and (max-width: 835px) {
-    .containerResponsive{
-        width: 90%;
-    }
-}
-
-@media screen and (max-width: 400px) {
     .containerResponsive{
         width: 80%;
     }

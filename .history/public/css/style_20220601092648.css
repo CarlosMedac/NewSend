@@ -612,7 +612,7 @@ img {
         z-index: 101;
     }
     .nav2{
-        background-color: #8d6aad;
+        background-color: #FFF3F8;
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 10px;
@@ -639,7 +639,7 @@ img {
         display: block;
     }
     .menu-nav i{
-        color:#8d6aad
+color:#8d6aad
     }
     .atras {
         display: none;
