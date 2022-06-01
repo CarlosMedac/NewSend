@@ -183,18 +183,10 @@ i{
     display: none;
 }
 #barra_busqueda_username{
-    /* display: flex;
-    width: 200px;
-    margin-top: 2%;
-    height: 40px;
-    border: none;
-    padding-top: 20px;
-    font-size: 9pt;
-    padding-left: 50px;
-   border-color: none; */
-   border-style: inset;
-   border: 0;
-   outline: none;
+    width: 98%;
+    border-style: inset;
+    border: 0;
+    outline: none;
     padding-left: 10px;
     padding-top: 15px;
 
