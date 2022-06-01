@@ -101,7 +101,8 @@ function SeguirBuscador(userLogued,idseguir) {
             $('[name='+idseguir+']').html('<img src="../../uploads/img/ajax-loader.gif" id="ani_img_seguir"/>');
          },
         success: function (data) {
-            $(this).find('#seguirBuscador').css('background-color','white');
+            $('#seguirBuscador').css('background-color','white');
+
             var textoBuscador= $("#barra_busqueda_username").val();
         $.ajax({
             type: 'POST',

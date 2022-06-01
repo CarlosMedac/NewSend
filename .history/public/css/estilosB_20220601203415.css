@@ -106,6 +106,7 @@
     cursor: pointer;
 }
 .unfollowBuscador i{
+    color: #7f5aa1;
     font-size: medium;
 }
 .followBuscador i{
@@ -130,7 +131,6 @@
     border: 1px solid #dbdbdb;
     border: 1px solid rgba(var(--ca6,219,219,219),1);
     color: white;
-    background-color:#7f5aa1;
     font-weight: 500;
     border-radius: 4px;
     position: relative;

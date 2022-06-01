@@ -71,7 +71,7 @@ class BuscadorController extends AbstractController
             'formulario'=> $form->createView(),
             'user'      => $user,
             'test'      => $UsersPrevia,
-            'usuarioLogueadoId' => $userId,
+            'usuarioLogueadoId' => "",
 
         ]);
         }

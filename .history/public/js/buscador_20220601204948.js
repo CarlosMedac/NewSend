@@ -99,9 +99,9 @@ function SeguirBuscador(userLogued,idseguir) {
         dataType: "json",
         beforeSend: function ( xhr ) {
             $('[name='+idseguir+']').html('<img src="../../uploads/img/ajax-loader.gif" id="ani_img_seguir"/>');
+            $('#seguirBuscador').css('background-color','white');
          },
         success: function (data) {
-            $(this).find('#seguirBuscador').css('background-color','white');
             var textoBuscador= $("#barra_busqueda_username").val();
         $.ajax({
             type: 'POST',
